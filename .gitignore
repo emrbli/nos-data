@@ -1,0 +1,13 @@
+# Operasyonel artefaktlar — commit edilmez.
+.venv/
+__pycache__/
+*.pyc
+
+# Pipeline girdileri/çıktıları. dist/ GitHub Release asset'i olarak yayınlanır
+# (bkz. scripts/release.sh); git geçmişine 23 MB binary girmez.
+raw/
+logs/
+dist/
+dist.tmp/
+
+.DS_Store

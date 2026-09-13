@@ -1,0 +1,14 @@
+[project]
+name = "nos-veri-pipeline"
+version = "0.1.0"
+description = "NOS Tercih Sihirbazı veri pipeline: YÖK Atlas (K1) + ÖSYM 2026 kılavuz (K2) -> nos.db + programs.json"
+requires-python = ">=3.10"
+dependencies = [
+    "yokatlas-py>=0.7.0",
+    "httpx>=0.27",
+    "openpyxl>=3.1",
+    "pdfplumber>=0.11",
+]
+
+[tool.uv]
+package = false
