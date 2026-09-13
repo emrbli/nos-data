@@ -57,13 +57,13 @@ _T4_MARKERS: dict[int, float] = {
 # haritalanmaz -> otomatik olarak yok sayılır (bant değeri okunur ama kullanılmaz).
 _T3_FIELD: dict[int, str] = {
     3: "sure", 4: "puanTuru", 5: "genelKont", 6: "okBirKont",
-    7: "sehitGaziKont", 8: "y34Kont", 9: "kosul", 10: "sirasi2025",
-    11: "puan2025", 12: "tyc", 13: "akreditasyon",
+    7: "sehitGaziKont", 8: "y34Kont", 9: "kosul", 10: "sirasiOnceki",
+    11: "puanOnceki", 12: "tyc", 13: "akreditasyon",
 }
 _T4_FIELD: dict[int, str] = {
     3: "sure", 4: "puanTuru", 5: "genelKont", 6: "okBirKont",
-    8: "sehitGaziKont", 9: "y34Kont", 10: "kosul", 11: "sirasi2025",
-    12: "puan2025", 17: "tyc", 18: "akreditasyon",
+    8: "sehitGaziKont", 9: "y34Kont", 10: "kosul", 11: "sirasiOnceki",
+    12: "puanOnceki", 17: "tyc", 18: "akreditasyon",
 }
 
 
@@ -212,8 +212,8 @@ class GuideProgram:
     kont_sehit_gazi: int | None = None
     kont_34yas: int | None = None
     kosul_kodlari: list[str] = field(default_factory=list)
-    basari_sirasi_2025: int | None = None
-    en_kucuk_puan_2025: float | None = None
+    basari_sirasi_onceki: int | None = None
+    en_kucuk_puan_onceki: float | None = None
     tyc: str | None = None
     akreditasyon: str | None = None
     uni_ad: str | None = None
@@ -448,21 +448,21 @@ def _apply_fields(gp: GuideProgram, col_vals: dict[str, list[str]]) -> None:
         codes = [d for c in raw_codes for d in re.findall(r"\d+", c)]
         if codes:
             gp.kosul_kodlari = sorted(set(gp.kosul_kodlari) | set(codes), key=lambda c: (len(c), c))
-    if "sirasi2025" in col_vals and gp.basari_sirasi_2025 is None:
-        d = _digits_of(col_vals["sirasi2025"])
+    if "sirasiOnceki" in col_vals and gp.basari_sirasi_onceki is None:
+        d = _digits_of(col_vals["sirasiOnceki"])
         if d:
             v = int(d)
             if 0 < v <= _SIRA_MAX:
-                gp.basari_sirasi_2025 = v
-    if "puan2025" in col_vals and gp.en_kucuk_puan_2025 is None:
+                gp.basari_sirasi_onceki = v
+    if "puanOnceki" in col_vals and gp.en_kucuk_puan_onceki is None:
         # Bölünmüş/harf-yapışmış puanı birleştir: rakam ve nokta dışını at.
-        joined = "".join(re.sub(r"[^\d.]", "", t) for t in col_vals["puan2025"])
+        joined = "".join(re.sub(r"[^\d.]", "", t) for t in col_vals["puanOnceki"])
         try:
             v = float(joined) if joined else None
         except ValueError:
             v = None
         if v is not None and _PUAN_LO <= v <= _PUAN_HI:
-            gp.en_kucuk_puan_2025 = v
+            gp.en_kucuk_puan_onceki = v
     if "tyc" in col_vals:
         v = col_vals["tyc"][0].strip()
         if not _is_dash_or_star(v):

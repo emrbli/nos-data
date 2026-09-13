@@ -3,22 +3,26 @@
 Ham K1 kayıtlarını (YÖK Atlas 2026 arama sonucu) tekilleştirir, türetmeleri
 uygular ve uygulamanın tükettiği zenginleştirilmiş `programs.json` yapısını üretir.
 
-Yıl modeli (net endpoint çapraz-doğrulamasıyla DÜZELTİLDİ, 2026-07-25):
-  Tercih-kilavuz kaydındaki top-level `yil` (=2026) KATALOG/kılavuz yılıdır,
-  yerleştirme yılı DEĞİL. "current" (no-suffix) alanları EN SON TAMAMLANAN
-  yerleştirmeyi taşır = 2025 (2026 yerleştirmesi Temmuz sonu, henüz yapılmadı).
-  Bu, /api/netler/search'ün yerleştirme-yılı etiketleriyle %99.84 birebir
-  doğrulandı: net(2025)==current.minPuan, net(2024)==minPuan1, net(2023)==minPuan2.
-  - current (no-suffix) -> 2025: p = minPuan, s = basariSirasi (yerleşme sonucu).
-    DİKKAT: current'ta gk/gkY YOKTUR -> 2025 satırı k/z (kontenjan/yerleşen) NULL
-    taşır; kontenjan alanı (kont2026) 2026 kontenjanıdır, 2025 değil (kullanılmaz).
-  - yillar (yerleşme geçmişi): suffix 1/2/3 -> 2024/2023/2022
-      k = gk{N} (genel kontenjan), z = gkY{N} (yerleşen),
-      p = minPuan{N} (0/boş -> NULL), s = basariSirasi{N}.
+Yıl modeli (tek kaynak: pipeline/years.py — literal yıl YAZMA):
+  Tercih-kilavuz kaydındaki top-level `yil` KATALOG/kılavuz yılıdır (CATALOG_YEAR).
+  "current" (suffix'siz) alanlar EN SON TAMAMLANAN yerleştirmeyi taşır
+  (RESULT_YEAR); suffix 1/2/3 önceki üç yıldır (HISTORY_YEARS). Bu eşleme
+  2026-07'de /api/netler/search yıl etiketleriyle (%99.84), 2026-09 geçişinde
+  canlı API ile (suffix kayması birebir) doğrulandı.
+  - current -> RESULT_YEAR: p = minPuan, s = basariSirasi, z = gkY (yerleşen,
+    2026-09'da API'ye eklendi); k = kontenjan yalnız RESULT_YEAR == CATALOG_YEAR
+    ise (aynı yılın kılavuz kontenjanı; kont2026 ile aynı değer).
+  - suffix N -> RESULT_YEAR-N: k = gk{N}, z = gkY{N} (2026-09'dan itibaren API
+    göndermiyor -> arşivden dolar), p = minPuan{N} (0/boş -> NULL), s = basariSirasi{N}.
+  - ARŞİV (archive/yearly_stats_*.json.gz, doğrulanmış önceki build): API'den
+    düşen yıllar (2022) satır olarak eklenir, mevcut yılların NULL alanları
+    doldurulur; ikisi de doluysa API KAZANIR (çakışma sayılır + raporlanır).
+    API'de olmayan (kapanan) programlar arşivden GERİ GELMEZ (§1.1 kuralı).
 """
 
 from __future__ import annotations
 
+import gzip
 import hashlib
 import json
 from dataclasses import dataclass, field
@@ -27,11 +31,14 @@ from typing import Any, Callable
 
 from .parse_kilavuz import GuideData, GuideProgram, Tablo1BRow, match_fees
 from .turkish import fold
+from .years import (
+    ALL_YEARS, CATALOG_YEAR, GUIDE_RESULT_YEAR, HISTORY_YEARS, RESULT_YEAR, TREND_YEARS,
+)
 
-# suffix -> GERÇEK yerleşme yılı (yeni -> eski). "" = current (no-suffix) = 2025.
-# Net endpoint çapraz-doğrulaması (%99.84) top-level yil=2026'nın katalog yılı
-# olduğunu, current'ın 2025 yerleştirmesini taşıdığını kanıtladı (bkz. modül docstring).
-_HISTORY_YEARS: list[tuple[int, str]] = [(2025, ""), (2024, "1"), (2023, "2"), (2022, "3")]
+# Kayıt-içi yıl satırı alanları: y (yıl), k (kontenjan), z (yerleşen), p (en küçük
+# puan), s (başarı sırası), pt (puan türü). Arşivden doldurulan alanlar için bkz.
+# apply_history_archive / _extract_years.
+_YEAR_FIELDS = ("k", "z", "p", "s")
 
 # KKTC il adları (universite_turu boş/anormal gelirse yedek türetme için).
 _KKTC_ILLER = {"KIBRIS", "LEFKOŞA", "GAZİMAĞUSA", "GİRNE", "LEFKE", "İSKELE", "GÜZELYURT"}
@@ -179,18 +186,88 @@ def _detect_flags(birim_adi: str) -> tuple[int, int]:
     return mtok, kktc_uyruklu
 
 
-def _extract_years(item: dict[str, Any]) -> tuple[list[dict[str, Any]], bool]:
-    """Yerleşme geçmişini (yillar) çıkarır. (yillar, mixed_suspect) döndürür."""
+@dataclass
+class ArchiveStats:
+    """Arşiv doldurma sayaçları (merge() toplar, discrepancy_report yazar)."""
+    rows_added: int = 0          # API'de olmayan yıl satırı arşivden eklendi (ör. 2022 sıra/puan)
+    fields_filled: int = 0       # API NULL alanı arşivden doldu (ör. 2025 yerleşen)
+    conflicts: int = 0           # ikisi de dolu ve farklı -> API korundu
+    conflict_sample: list[str] = field(default_factory=list)
+    programs_with_archive: int = 0
+
+
+def _extract_years(
+    item: dict[str, Any],
+    archive_rows: list[dict[str, Any]] | None = None,
+    arch: ArchiveStats | None = None,
+) -> tuple[list[dict[str, Any]], bool]:
+    """Yerleşme geçmişini (yillar) çıkarır. (yillar, mixed_suspect) döndürür.
+
+    API satırları önce kurulur (HISTORY_YEARS), sonra `archive_rows` (önceki
+    doğrulanmış build'in yearly_stats satırları) YALNIZ DOLDURUR: eksik yıl
+    eklenir, NULL alan doldurulur, dolu alan asla ezilmez (fark -> çakışma sayacı)."""
     puan_turu = item.get("puanTuru") or item.get("_fetch_puan_turu")
-    yillar: list[dict[str, Any]] = []
-    for year, sfx in _HISTORY_YEARS:
-        k = _parse_int(item.get(f"gk{sfx}"))
-        z = _parse_int(item.get(f"gkY{sfx}"))
+    by_year: dict[int, dict[str, Any]] = {}
+
+    def row(year: int) -> dict[str, Any]:
+        return by_year.setdefault(
+            year, {"y": year, "k": None, "z": None, "p": None, "s": None, "pt": puan_turu})
+
+    # İKİ AYRI ÇAPA (2026-09-13'te Temmuz/Eylül ham verisi karşılaştırılarak kanıtlandı,
+    # 300 DİL programı: gk1/gk2/gk3 iki anlık görüntüde BİREBİR aynı, minPuan/basariSirasi
+    # tam bir suffix kaydı):
+    #   - Kontenjan/yerleşen `kontenjan`,`gkY` (N=0) ve `gk{N}`,`gkY{N}` -> CATALOG_YEAR - N
+    #     (kılavuz yılına çapalı; kılavuz kontenjanı o yılın kılavuzundan gelir).
+    #   - Sonuç `minPuan{N}`,`basariSirasi{N}` -> RESULT_YEAR - N (en son yerleştirmeye çapalı).
+    # CATALOG_YEAR == RESULT_YEAR iken ikisi çakışır; kılavuz çıktı ama yerleştirme
+    # yapılmadıysa (Temmuz) bir yıl ayrışır — Temmuz 2026 build'i bu yüzden k/z'yi bir yıl
+    # eski etiketlemişti (arşiv üretiminde --kz-year-shift 1 ile düzeltildi).
+    for year, sfx in HISTORY_YEARS:          # sonuç çapası
         p = _parse_puan(item.get(f"minPuan{sfx}"))
         s = _parse_int(item.get(f"basariSirasi{sfx}"))
-        if k is None and z is None and p is None and s is None:
-            continue  # o yıl için hiç veri yok -> satırı ekleme
-        yillar.append({"y": year, "k": k, "z": z, "p": p, "s": s, "pt": puan_turu})
+        if p is not None or s is not None:
+            r = row(year)
+            r["p"], r["s"] = p, s
+    for n, (_, sfx) in enumerate(HISTORY_YEARS):  # kontenjan çapası
+        year = CATALOG_YEAR - n
+        if year not in ALL_YEARS:
+            continue
+        k = _parse_int(item.get("kontenjan" if sfx == "" else f"gk{sfx}"))
+        z = _parse_int(item.get(f"gkY{sfx}"))
+        if k is not None or z is not None:
+            r = row(year)
+            r["k"], r["z"] = k, z
+
+    if archive_rows:
+        if arch is not None:
+            arch.programs_with_archive += 1
+        for arow in archive_rows:
+            y = int(arow["y"])
+            if y not in ALL_YEARS:
+                continue
+            cur = by_year.get(y)
+            if cur is None:
+                by_year[y] = {"y": y, "k": arow.get("k"), "z": arow.get("z"),
+                              "p": arow.get("p"), "s": arow.get("s"),
+                              "pt": puan_turu or arow.get("pt")}
+                if arch is not None:
+                    arch.rows_added += 1
+                continue
+            for f in _YEAR_FIELDS:
+                av = arow.get(f)
+                if av is None:
+                    continue
+                if cur[f] is None:
+                    cur[f] = av
+                    if arch is not None:
+                        arch.fields_filled += 1
+                elif cur[f] != av and arch is not None:
+                    arch.conflicts += 1
+                    if len(arch.conflict_sample) < 20:
+                        arch.conflict_sample.append(
+                            f"{item.get('kilavuzKodu')} {y}.{f}: api={cur[f]} arşiv={av}")
+
+    yillar = [by_year[y] for y in sorted(by_year, reverse=True)]  # yeni -> eski
     # K-1: yıllar arası >5x sıra sıçraması -> karma puan türü şüphesi
     ranked = [row["s"] for row in yillar if row["s"] is not None]
     mixed = False
@@ -215,15 +292,15 @@ def _derive_trend(yillar: list[dict[str, Any]], mixed: bool) -> str | None:
     if mixed:
         return None
     by_year = {row["y"]: row for row in yillar}
-    seq = [by_year.get(y) for y in (2023, 2024, 2025)]
+    seq = [by_year.get(y) for y in TREND_YEARS]  # eski -> yeni
     if any(r is None or r["s"] is None for r in seq):
         return None  # 3 ardışık yıl dolu değil
-    s2023, s2024, s2025 = (r["s"] for r in seq)
-    # rakam küçülmeli (sıra iyileşmeli): 2023 > 2024 > 2025
-    if not (s2023 > s2024 > s2025):
+    s_old, s_mid, s_new = (r["s"] for r in seq)
+    # rakam küçülmeli (sıra iyileşmeli): eski > orta > yeni
+    if not (s_old > s_mid > s_new):
         return None
     # tek yılda >%40 sıçrama yok
-    for prev, cur in ((s2023, s2024), (s2024, s2025)):
+    for prev, cur in ((s_old, s_mid), (s_mid, s_new)):
         if prev > 0 and abs(cur - prev) / prev > _TREND_MAX_YOY_JUMP:
             return None
     # kontenjan değişimi ±%25 içinde
@@ -235,7 +312,18 @@ def _derive_trend(yillar: list[dict[str, Any]], mixed: bool) -> str | None:
     return "yukselen"
 
 
-def _build_record(item: dict[str, Any]) -> dict[str, Any]:
+def _rederive(rec: dict[str, Any]) -> None:
+    """yillar değiştiğinde (kılavuz doldurması) son* ve trend'i yeniden türet."""
+    rec["yillar"].sort(key=lambda r: -r["y"])
+    rec["sonYil"], rec["sonSiralama"], rec["sonPuan"] = _derive_son(rec["yillar"])
+    rec["trend"] = _derive_trend(rec["yillar"], rec["mixedSuspect"])
+
+
+def _build_record(
+    item: dict[str, Any],
+    archive_rows: list[dict[str, Any]] | None = None,
+    arch: ArchiveStats | None = None,
+) -> dict[str, Any]:
     kilavuz_kodu = int(item["kilavuzKodu"])
     uni = _clean_str(item.get("universiteAdi")) or ""
     raw_il = _clean_str(item.get("ilAdi")) or _clean_str(item.get("uniIlAdi"))
@@ -257,7 +345,7 @@ def _build_record(item: dict[str, Any]) -> dict[str, Any]:
     kosul = [c.strip() for c in kosul_raw.split(",") if c.strip()]
     mtok, kktc_uyruklu = _detect_flags(prog)
 
-    yillar, mixed = _extract_years(item)
+    yillar, mixed = _extract_years(item, archive_rows, arch)
     son_yil, son_siralama, son_puan = _derive_son(yillar)
     trend = _derive_trend(yillar, mixed)
     baraj_sira = _parse_int(item.get("minBasariSirasi"))
@@ -336,9 +424,11 @@ def _build_record(item: dict[str, Any]) -> dict[str, Any]:
 #    ücret, baraj): ÖSYM kılavuzu KAYNAĞIN KENDİSİ -> kılavuz OTORİTER,
 #    K1'den farklıysa üzerine yazılır.
 #
-# 2) 2025 YERLEŞME SONUÇLARI (başarı sırası, en küçük puan): bunlar YÖK
-#    Atlas'ın yayınladığı TARİHSEL OLGULAR; kılavuz aynı sonuçları yeniden
-#    basar. İki kaynak arasında "editöryal fark" OLAMAZ — fark varsa PDF
+# 2) ÖNCEKİ YIL (GUIDE_RESULT_YEAR) YERLEŞME SONUÇLARI (başarı sırası, en küçük
+#    puan): bunlar YÖK Atlas'ın yayınladığı TARİHSEL OLGULAR; kılavuz aynı
+#    sonuçları yeniden basar. Kılavuz değeri `son*`'a DEĞİL, o yılın `yillar`
+#    satırına uygulanır (son* sonra yeniden türetilir — 2026-09 geçişinden
+#    itibaren son yıl kılavuzdakinden bir yıl ileridedir). İki kaynak arasında "editöryal fark" OLAMAZ — fark varsa PDF
 #    parse hatasıdır (çapraz filigran sayı bloklarını bölüyor: 154725 ->
 #    "1"+"54725"; ilk sürüm bunu 1 diye okuyup Erciyes Makine Müh'ü sihirbazda
 #    1. sıraya fırlatmıştı, 90 kayıt bozulmuştu). Bu yüzden bu iki alanda
@@ -350,9 +440,10 @@ _GUIDE_OVERWRITE_FIELDS: list[tuple[str, str, str]] = [
     ("puanTuru", "puan_turu", "puanTuru"),
     ("akreditasyon", "akreditasyon", "akreditasyon"),
 ]
+# (yil-satırı alanı, GuideProgram alanı, rapor etiketi)
 _GUIDE_FILL_ONLY_FIELDS: list[tuple[str, str, str]] = [
-    ("sonSiralama", "basari_sirasi_2025", "sonSiralama"),
-    ("sonPuan", "en_kucuk_puan_2025", "sonPuan"),
+    ("s", "basari_sirasi_onceki", f"sira{GUIDE_RESULT_YEAR}"),
+    ("p", "en_kucuk_puan_onceki", f"puan{GUIDE_RESULT_YEAR}"),
 ]
 
 
@@ -360,10 +451,11 @@ def _apply_guide(
     rec: dict[str, Any], gp: GuideProgram, *,
     discrepancies: list[dict[str, Any]], fill_counts: dict[str, int],
     overwrite_counts: dict[str, int], kept_counts: dict[str, int],
-) -> None:
-    """Kılavuz uygulaması. 2026 alanları: kılavuz otoriter (üzerine yaz +
-    raporla). 2025 sonuç alanları: yalnız doldur; çelişkide K1 korunur +
-    raporlanır (gerekçe: yukarıdaki KAYNAK OTORİTESİ AYRIMI bloğu)."""
+) -> bool:
+    """Kılavuz uygulaması. Kılavuz-yılı alanları: kılavuz otoriter (üzerine yaz +
+    raporla). Önceki yıl sonuç alanları: yalnız o yılın yillar satırını doldur;
+    çelişkide K1 korunur + raporlanır (gerekçe: KAYNAK OTORİTESİ AYRIMI bloğu).
+    Döndürür: yillar değişti mi (çağıran _rederive çağırır)."""
     for rec_key, gp_field, label in _GUIDE_OVERWRITE_FIELDS:
         guide_val = getattr(gp, gp_field)
         if guide_val is None:
@@ -377,28 +469,32 @@ def _apply_guide(
             overwrite_counts[label] = overwrite_counts.get(label, 0) + 1
         rec[rec_key] = guide_val
 
-    # 2025 sonuçları: yalnız K1 NULL ise doldur; makullük kapısı ile
-    # (sıra ≤ 5000 iddiası ancak kılavuz puanı da elit düzeydeyse kabul —
-    # tek başına küçük bir sayı, bölünmüş-rakam artığı olabilir).
-    filled_sira = False
+    # Önceki yıl sonuçları: yalnız K1/arşiv NULL ise o yılın satırını doldur;
+    # makullük kapısı ile (sıra ≤ 5000 iddiası ancak kılavuz puanı da elit
+    # düzeydeyse kabul — tek başına küçük bir sayı, bölünmüş-rakam artığı olabilir).
+    yillar_changed = False
+    yrow = next((row for row in rec["yillar"] if row["y"] == GUIDE_RESULT_YEAR), None)
     for rec_key, gp_field, label in _GUIDE_FILL_ONLY_FIELDS:
         guide_val = getattr(gp, gp_field)
         if guide_val is None:
             continue
-        old = rec.get(rec_key)
+        old = yrow[rec_key] if yrow is not None else None
         if old is None:
-            if rec_key == "sonSiralama" and guide_val <= 5000 and (
-                gp.en_kucuk_puan_2025 is None or gp.en_kucuk_puan_2025 < 450.0
+            if rec_key == "s" and guide_val <= 5000 and (
+                gp.en_kucuk_puan_onceki is None or gp.en_kucuk_puan_onceki < 450.0
             ):
                 continue  # elit sıra iddiası puanla desteklenmiyor -> güvenme
-            rec[rec_key] = guide_val
+            if yrow is None:
+                yrow = {"y": GUIDE_RESULT_YEAR, "k": None, "z": None, "p": None, "s": None,
+                        "pt": rec.get("puanTuru")}
+                rec["yillar"].append(yrow)
+            yrow[rec_key] = guide_val
+            yillar_changed = True
             fill_counts[label] = fill_counts.get(label, 0) + 1
-            if rec_key == "sonSiralama":
-                filled_sira = True
         elif old != guide_val:
-            # ÜZERİNE YAZMA — K1 korunur (2025 sonucunda YÖK Atlas otoriter).
+            # ÜZERİNE YAZMA YOK — K1 korunur (yerleşme sonucunda YÖK Atlas otoriter).
             discrepancies.append({"kod": rec["id"], "field": label, "k1": old, "guide": guide_val,
-                                  "aksiyon": "K1 korundu (2025 sonucu)"})
+                                  "aksiyon": f"K1 korundu ({GUIDE_RESULT_YEAR} sonucu)"})
             kept_counts[label] = kept_counts.get(label, 0) + 1
 
     if guide_val_kosul := gp.kosul_kodlari:
@@ -410,14 +506,19 @@ def _apply_guide(
                                   "guide": guide_val_kosul, "aksiyon": "kılavuz yazıldı"})
             overwrite_counts["kosul"] = overwrite_counts.get("kosul", 0) + 1
         rec["kosul"] = guide_val_kosul
-    if filled_sira:
-        rec["sonYil"] = 2025  # kılavuzdan doldurulan sıra 2025 yerleşme sonucudur
     # Yeni alanlar (yalnız guide'dan gelir, K1'de karşılığı yok -> doğrudan ata).
     if gp.kont_34yas is not None:
         rec["kontenjanY34"] = gp.kont_34yas
     rec["kontSehitGazi"] = gp.kont_sehit_gazi
     rec["kontOkulBirincisi"] = gp.kont_okul_birincisi
     rec["tyc"] = gp.tyc
+    # Kılavuz yılı == sonuç yılı ise o yılın yillar.k'sı kılavuz kontenjanıyla hizalı kalsın.
+    if RESULT_YEAR == CATALOG_YEAR and rec.get("kont2026") is not None:
+        crow = next((row for row in rec["yillar"] if row["y"] == CATALOG_YEAR), None)
+        if crow is not None and crow["k"] != rec["kont2026"]:
+            crow["k"] = rec["kont2026"]
+            yillar_changed = True
+    return yillar_changed
 
 
 # Tablo 1B: 5 kategori TEK bir grup_pattern'e karşılık gelir (belirsizlik yok) ->
@@ -483,22 +584,39 @@ def _apply_tablo1b(
             "tablo1bViolations": violations}
 
 
+def load_history_archive(path: str | Path) -> tuple[dict[int, list[dict[str, Any]]], dict[str, Any]]:
+    """scripts/make_history_archive.py çıktısını okur: ({program_id: [yıl satırı]}, meta)."""
+    path = Path(path)
+    with gzip.open(path, "rt", encoding="utf-8") as fh:
+        doc = json.load(fh)
+    programs = {int(k): v for k, v in (doc.get("programs") or {}).items()}
+    return programs, doc.get("meta") or {}
+
+
 def merge(
     k1_programs: list[dict[str, Any]],
-    k2_map: dict[int, dict[str, Any]] | None = None,
     *,
     guide: GuideData | None = None,
+    history: dict[int, list[dict[str, Any]]] | None = None,
+    xls_programs: dict[int, GuideProgram] | None = None,
+    xls_check_base: dict[int, GuideProgram] | None = None,
     logf: Callable[[str], None] | None = None,
 ) -> MergeResult:
     """K1 ham kayıtlarını tekilleştirip zenginleştirilmiş kayıtlara dönüştürür.
 
-    `guide`: ÖSYM 2026 kılavuzu parse çıktısı (parse_kilavuz.parse_kilavuz).
+    `guide`: ÖSYM kılavuzu (PDF) parse çıktısı (parse_kilavuz.parse_kilavuz).
     Verilirse OTORİTER kaynak olarak uygulanır (bkz. _apply_guide) — kont2026,
-    kosul, sure, puanTuru, akreditasyon, sonSiralama/sonPuan/sonYil üzerine
-    yazılır (K1'den farklıysa sapma kaydedilir); şehit/gazi + 34-yaş + TYÇ +
-    ücret + üniversite web adresi yalnız guide'dan doldurulur. `k2_map` (eski
-    XLS/PDF taslağı) geriye dönük uyumluluk için tutulur, artık kullanılmaz."""
-    k2_map = k2_map or {}
+    kosul, sure, puanTuru, akreditasyon üzerine yazılır (K1'den farklıysa sapma
+    kaydedilir), önceki yıl sıra/puanı yalnız doldurulur; şehit/gazi + 34-yaş +
+    TYÇ + ücret + üniversite web adresi yalnız guide'dan gelir.
+    `history`: load_history_archive() çıktısı — API'den düşen yılları/alanları
+    yalnız DOLDURUR (bkz. _extract_years).
+    `xls_programs`: kılavuz Tablo 3/4 XLS parse çıktısı — çapraz kontrol raporu
+    için (bkz. cross_check_guide_xls); `xls_check_base` PDF tarafı (varsayılan
+    guide.programs; run.py --kilavuz-tablo-kaynak xls ile guide.programs XLS
+    olduğunda orijinal PDF parse'ı buradan gelir)."""
+    history = history or {}
+    arch = ArchiveStats()
     seen: dict[int, dict[str, Any]] = {}
     dup_count = 0
     kosul_sozluk: dict[str, str] = {}
@@ -516,7 +634,7 @@ def merge(
         if code in seen:
             dup_count += 1
             continue  # ilk kayıt korunur (brief §3)
-        rec = _build_record(item)
+        rec = _build_record(item, history.get(code), arch)
 
         # kosul_sozluk (K-5): tüm kosulList girdilerini global sözlüğe topla
         for entry in rec.pop("_kosulList"):
@@ -546,12 +664,6 @@ def merge(
                 _log(logf, f"  [baraj] {key} için farklı baraj: {prev} vs {baraj_sira} "
                            f"-> en katı {min(prev, baraj_sira)} tutuldu")
 
-        # K2 çapraz-kontrol (opsiyonel): kont2026 sapması logla, K1'i otoriter kabul et
-        if code in k2_map:
-            k2_kont = k2_map[code].get("kont2026")
-            if k2_kont is not None and rec["kont2026"] is not None and k2_kont != rec["kont2026"]:
-                _log(logf, f"  [K2 sapma] {code}: K1 kont={rec['kont2026']} != K2 kont={k2_kont}")
-
         seen[code] = rec
 
     records = list(seen.values())
@@ -570,9 +682,12 @@ def merge(
             if gp is None:
                 continue
             guide_matched += 1
-            _apply_guide(r, gp, discrepancies=discrepancies,
-                         fill_counts=guide_fill_counts, overwrite_counts=guide_overwrite_counts,
-                         kept_counts=guide_kept_counts)
+            changed = _apply_guide(r, gp, discrepancies=discrepancies,
+                                   fill_counts=guide_fill_counts,
+                                   overwrite_counts=guide_overwrite_counts,
+                                   kept_counts=guide_kept_counts)
+            if changed:
+                _rederive(r)
             # uni_web: guide'ın üniversite adı üzerinden (uniNorm eşleşmesi).
             web = guide.uni_web.get(r["uniNorm"])
             if web:
@@ -599,7 +714,13 @@ def merge(
         _log(logf, f"  [kilavuz] uygulandı: {guide_matched}/{len(records)} program eşleşti, "
                    f"{len(discrepancies)} sapma, doldurma={guide_fill_counts}, "
                    f"üzerine-yazma={guide_overwrite_counts}, "
-                   f"K1-korundu(2025 sonucu)={guide_kept_counts}")
+                   f"K1-korundu({GUIDE_RESULT_YEAR} sonucu)={guide_kept_counts}")
+
+    if history:
+        _log(logf, f"  [arşiv] {arch.programs_with_archive} programda arşiv satırı vardı: "
+                   f"+{arch.rows_added} yıl satırı, {arch.fields_filled} alan dolduruldu, "
+                   f"{arch.conflicts} çakışma (API korundu)"
+                   + (f" örn: {arch.conflict_sample[:3]}" if arch.conflict_sample else ""))
 
     # Tamamlama taraması kayıtları (API puanTuru NULL — ör. Manas Filoloji):
     # puan türünü yukarıda kılavuz doldurdu; yillar satırlarındaki pt izini de
@@ -627,10 +748,18 @@ def merge(
     null_sira = sum(1 for r in records if r["sonSiralama"] is None)
     mixed_n = sum(1 for r in records if r["mixedSuspect"])
     trend_n = sum(1 for r in records if r["trend"] == "yukselen")
+    trend_set = set(TREND_YEARS)
     full_3yr = sum(
         1 for r in records
-        if {2023, 2024, 2025} <= {row["y"] for row in r["yillar"] if row["s"] is not None}
+        if trend_set <= {row["y"] for row in r["yillar"] if row["s"] is not None}
     )
+    result_year_sira = sum(
+        1 for r in records
+        if any(row["y"] == RESULT_YEAR and row["s"] is not None for row in r["yillar"])
+    )
+    son_yil_dist: dict[str, int] = {}
+    for r in records:
+        son_yil_dist[str(r["sonYil"])] = son_yil_dist.get(str(r["sonYil"]), 0) + 1
     uni_tur_dist: dict[str, int] = {}
     pt_dist: dict[str, int] = {}
     for r in records:
@@ -647,6 +776,16 @@ def merge(
         "nullSonSiralamaPct": round(100 * null_sira / n, 2) if n else 0,
         "full3YearCount": full_3yr,
         "full3YearPct": round(100 * full_3yr / n, 2) if n else 0,
+        "trendYears": list(TREND_YEARS),
+        "resultYear": RESULT_YEAR,
+        "resultYearSiraCount": result_year_sira,
+        "resultYearSiraPct": round(100 * result_year_sira / n, 2) if n else 0,
+        "sonYilDist": dict(sorted(son_yil_dist.items(), reverse=True)),
+        "archiveProgramsWithRows": arch.programs_with_archive,
+        "archiveRowsAdded": arch.rows_added,
+        "archiveFieldsFilled": arch.fields_filled,
+        "archiveConflicts": arch.conflicts,
+        "archiveConflictSample": arch.conflict_sample,
         "mixedSuspectCount": mixed_n,
         "trendYukselenCount": trend_n,
         "kosulSozlukCount": len(kosul_sozluk),
@@ -680,6 +819,8 @@ def merge(
             **{f"guide{k[0].upper()}{k[1:]}": v for k, v in fee_stats.items()},
             **tablo1b_stats,
         })
+        if xls_programs is not None:
+            stats.update(cross_check_guide_xls(xls_check_base or guide.programs, xls_programs, logf=logf))
     _log(logf, f"  merge: {n} kayıt, {dup_count} duplicate atıldı, "
                f"{len(kosul_sozluk)} koşul kodu, {len(baraj)} baraj kaydı")
     return MergeResult(records=records, kosul_sozluk=kosul_sozluk, baraj=baraj, stats=stats,
@@ -838,6 +979,79 @@ def merge_netler(
     return net_rows, stats
 
 
+# --- Kılavuz PDF ↔ XLS çapraz kontrolü -----------------------------------------
+
+# GuideProgram alanı -> rapor etiketi. Ücret/uni_web XLS'te yok; kosul küme
+# karşılaştırması; puan 1e-4 toleransla.
+_XLS_CHECK_FIELDS: list[tuple[str, str]] = [
+    ("kont_genel", "kont2026"),
+    ("sure", "sure"),
+    ("puan_turu", "puanTuru"),
+    ("kosul_kodlari", "kosul"),
+    ("basari_sirasi_onceki", f"sira{GUIDE_RESULT_YEAR}"),
+    ("en_kucuk_puan_onceki", f"puan{GUIDE_RESULT_YEAR}"),
+    ("kont_okul_birincisi", "kontOkulBirincisi"),
+    ("kont_sehit_gazi", "kontSehitGazi"),
+    ("kont_34yas", "kontenjanY34"),
+    ("tyc", "tyc"),
+    ("akreditasyon", "akreditasyon"),
+]
+_XLS_SAMPLE_CAP = 50
+
+
+def cross_check_guide_xls(
+    pdf_programs: dict[int, GuideProgram],
+    xls_programs: dict[int, GuideProgram],
+    *,
+    logf: Callable[[str], None] | None = None,
+) -> dict[str, Any]:
+    """Aynı kılavuzun PDF ve XLS parse'larını alan bazında karşılaştırır.
+    Yalnız istatistik üretir (validate yumuşak uyarı, discrepancy_report bölümü);
+    hiçbir kayıt değiştirilmez. Yalnız iki tarafta da DOLU alanlar karşılaştırılır
+    (PDF parser'ın boş bıraktığı alanlar — ör. tyc — sapma sayılmaz)."""
+    pdf_codes, xls_codes = set(pdf_programs), set(xls_programs)
+    common = pdf_codes & xls_codes
+    by_field: dict[str, dict[str, Any]] = {}
+    sample: list[dict[str, Any]] = []
+    for code in sorted(common):
+        gp, gx = pdf_programs[code], xls_programs[code]
+        for attr, label in _XLS_CHECK_FIELDS:
+            a, b = getattr(gp, attr), getattr(gx, attr)
+            if a in (None, [], "") or b in (None, [], ""):
+                continue
+            d = by_field.setdefault(label, {"compared": 0, "mismatch": 0})
+            d["compared"] += 1
+            if attr == "kosul_kodlari":
+                same = set(a) == set(b)
+            elif isinstance(a, float) or isinstance(b, float):
+                same = abs(float(a) - float(b)) < 1e-4
+            else:
+                same = str(a).strip().upper() == str(b).strip().upper()
+            if not same:
+                d["mismatch"] += 1
+                if len(sample) < _XLS_SAMPLE_CAP:
+                    sample.append({"kod": code, "field": label, "pdf": a, "xls": b})
+    for d in by_field.values():
+        d["pct"] = round(100 * d["mismatch"] / d["compared"], 2) if d["compared"] else 0.0
+    only_xls = sorted(xls_codes - pdf_codes)
+    only_pdf = sorted(pdf_codes - xls_codes)
+    stats = {
+        "xlsProgramCount": len(xls_programs),
+        "xlsPdfProgramCount": len(pdf_programs),
+        "xlsCommonCount": len(common),
+        "xlsOnlyCount": len(only_xls),
+        "xlsOnlySample": only_xls[:15],
+        "xlsPdfOnlyCount": len(only_pdf),
+        "xlsPdfOnlySample": only_pdf[:15],
+        "xlsMismatchByField": by_field,
+        "xlsMismatchSample": sample,
+    }
+    _log(logf, f"  [xls] çapraz kontrol: ortak {len(common)}, yalnız XLS {len(only_xls)}, "
+               f"yalnız PDF {len(only_pdf)}, alan farkları "
+               f"{ {k: v['mismatch'] for k, v in by_field.items()} }")
+    return stats
+
+
 # --- programs.json çıktısı ----------------------------------------------------
 
 
@@ -867,10 +1081,11 @@ def write_programs_json(
     doc = {
         "meta": {
             "exportedAt": exported_at,
-            "source": "yokatlas.yok.gov.tr (K1) + ÖSYM 2026 Kılavuzu (K2, OTORİTER)",
+            "source": f"yokatlas.yok.gov.tr (K1) + ÖSYM {CATALOG_YEAR} Kılavuzu (K2, OTORİTER) "
+                      f"+ arşiv ({ALL_YEARS[0]}-{ALL_YEARS[-1]})",
             "programCount": len(result.records),
             "sha256": sha,
-            "dataYear": 2025,
+            "dataYear": RESULT_YEAR,
             "schemaVersion": schema_version,
         },
         "kosulSozluk": dict(sorted(result.kosul_sozluk.items())),
@@ -907,8 +1122,8 @@ def write_discrepancy_report(result: MergeResult, path: str | Path) -> None:
     lines.append(f"- Toplam alan sapması (K1 ≠ kılavuz, kılavuz yazıldı): **{stats['guideDiscrepancyCount']}**")
     lines.append("")
     lines.append("## Alan bazında doldurma / üzerine-yazma / K1-korundu")
-    lines.append("> 2026 alanlarında (kont2026/kosul/sure/puanTuru/akreditasyon) kılavuz otoriter →")
-    lines.append("> çelişkide kılavuz yazılır. 2025 SONUÇ alanlarında (sonSiralama/sonPuan) YÖK Atlas")
+    lines.append(f"> {CATALOG_YEAR} kılavuz alanlarında (kont2026/kosul/sure/puanTuru/akreditasyon) kılavuz otoriter →")
+    lines.append(f"> çelişkide kılavuz yazılır. {GUIDE_RESULT_YEAR} SONUÇ alanlarında (sira{GUIDE_RESULT_YEAR}/puan{GUIDE_RESULT_YEAR}) YÖK Atlas")
     lines.append("> otoriter → çelişkide K1 korunur (kılavuz PDF filigranı sayıları bölebiliyor).")
     lines.append("")
     lines.append("| Alan | Doldurma (K1 NULL idi) | Üzerine-yazma (kılavuz kazandı) | K1 korundu | Üzerine-yazma % |")
@@ -947,6 +1162,37 @@ def write_discrepancy_report(result: MergeResult, path: str | Path) -> None:
         lines.append("### Eşleşmeyen ücret satırı örnekleri")
         for s in unmatched_sample[:15]:
             lines.append(f"- {s}")
+    lines.append("")
+    lines.append("## Tarihsel arşiv ↔ API (archive/yearly_stats_*.json.gz, yalnız doldurma)")
+    lines.append(f"- Arşiv satırı olan program: {stats.get('archiveProgramsWithRows', 0)}  ·  "
+                 f"eklenen yıl satırı: {stats.get('archiveRowsAdded', 0)}  ·  "
+                 f"doldurulan alan: {stats.get('archiveFieldsFilled', 0)}  ·  "
+                 f"çakışma (API korundu): **{stats.get('archiveConflicts', 0)}**")
+    for c in (stats.get("archiveConflictSample") or [])[:20]:
+        lines.append(f"  - {c}")
+    lines.append("")
+    lines.append("## Kılavuz PDF ↔ XLS çapraz kontrolü (Tablo 3/4; XLS yalnız rapor, veriye yazılmaz)")
+    if "xlsProgramCount" not in stats:
+        lines.append("- XLS bu koşuda verilmedi / parse edilmedi.")
+    else:
+        lines.append(f"- XLS program: {stats['xlsProgramCount']}  ·  PDF program: {stats['xlsPdfProgramCount']}  ·  "
+                     f"ortak: {stats['xlsCommonCount']}  ·  yalnız XLS: {stats['xlsOnlyCount']}  ·  "
+                     f"yalnız PDF: {stats['xlsPdfOnlyCount']}")
+        lines.append("")
+        lines.append("| Alan | Karşılaştırılan | Fark | Fark % |")
+        lines.append("|---|---|---|---|")
+        for fname, d in stats.get("xlsMismatchByField", {}).items():
+            lines.append(f"| {fname} | {d['compared']} | {d['mismatch']} | %{d['pct']} |")
+        if stats.get("xlsOnlySample"):
+            lines.append("")
+            lines.append(f"- Yalnız XLS'te olan kod örnekleri: {stats['xlsOnlySample']}")
+        if stats.get("xlsMismatchSample"):
+            lines.append("")
+            lines.append("### PDF ≠ XLS örnekleri")
+            lines.append("| Kod | Alan | PDF | XLS |")
+            lines.append("|---|---|---|---|")
+            for m in stats["xlsMismatchSample"]:
+                lines.append(f"| {m['kod']} | {m['field']} | {m['pdf']} | {m['xls']} |")
     lines.append("")
     lines.append(f"## Sapma örnekleri (ilk {_DISCREPANCY_SAMPLE_CAP})")
     lines.append("| Kod | Alan | K1 | Kılavuz | Aksiyon |")

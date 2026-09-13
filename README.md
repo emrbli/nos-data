@@ -1,12 +1,13 @@
 # nos-data
 
 Nos Tercih (iOS/Android uygulaması) ve [nostercih.com](https://nostercih.com) için ortak
-veri kaynağı. Türkiye'deki tüm lisans ve önlisans programlarının 2023-2025 yerleştirme
+veri kaynağı. Türkiye'deki tüm lisans ve önlisans programlarının 2022-2026 yerleştirme
 sonuçlarını ve 2026 kontenjan/koşullarını çeker, doğrular ve tek bir SQLite dosyası
 (`nos.db`) olarak **GitHub Releases** üzerinden yayınlar. Backend yok, veritabanı sunucusu yok.
 
 ```
-YÖK Atlas API (K1) + ÖSYM 2026 Kılavuzu PDF (K2)
+YÖK Atlas API (K1: 2026 + 3 önceki yıl) + archive/ (API'den düşen 2022)
+      + ÖSYM 2026 Kılavuzu PDF (K2, otoriter) + Tablo 3/4 XLS (çapraz kontrol)
         │  uv run python run.py
         ▼
 dist/ (nos.db, meta.json, fold_fixture.json, programs.json, validation_report.md)
@@ -33,15 +34,22 @@ uv run python run.py --skip-fetch    # raw/'tan yeniden üret (ağ yok, ~1 dk; i
 uv run python run.py --until merge   # yalnız fetch + merge
 uv run python run.py --only DİL      # tek puan türü (hızlı bounded test)
 uv run python run.py --skip-netler   # net çekimini atla (net_profiles boş)
+uv run python run.py --skip-xls      # kılavuz XLS çapraz kontrolünü atla
+uv run python run.py --kilavuz-tablo-kaynak xls   # Tablo 3/4 alanlarını XLS'ten yaz (varsayılan pdf)
 ```
+
+Yıl modeli tek yerde: `pipeline/years.py` (`RESULT_YEAR=2026`). YÖK Atlas yalnız son 4 yılı
+döndürür; API'den düşen yıllar (2022) `archive/yearly_stats_2022_2025.json.gz`'den yalnız
+doldurulur (API kazanır). Yıl geçişi prosedürü: `docs/VERI_NOTLARI.md` §1.6.
 
 Pipeline atomiktir: her şey `dist.tmp/` altında üretilir, VALIDATE ve TEST kapıları geçmeden
 `dist/` değişmez. Kaynaklar, alan anlamları ve bilinen veri tuhaflıkları için
 `docs/VERI_NOTLARI.md`. ÖSYM kılavuzu `docs/kontkilavuz_yktd21072026.pdf` otoriter kaynaktır
 (kontenjan, koşul, süre, puan türü); `--kilavuz-pdf` ile farklı dosya verilebilir.
 
-`raw/`, `logs/`, `dist/`, `dist.tmp/`, `.venv/` git dışıdır. `dist/` çıktısı release olarak yayınlanır,
-git geçmişine binary girmez.
+`raw/`, `logs/`, `dist/`, `dist.tmp/`, `.venv/` git dışıdır (`raw/k1/{yıl}/` sonuç yılına göre
+bölünür, önceki yılın anlık görüntüsü üzerine yazılmaz). `dist/` çıktısı release olarak yayınlanır,
+git geçmişine binary girmez; `archive/` git-izlidir.
 
 ## Yayın
 
@@ -92,7 +100,9 @@ Yeni veri yayınlandığında tüketici repolarda `nos-data.json` güncellenir v
 
 ```
 run.py            orkestratör, SCHEMA_VERSION burada
-pipeline/         fetch, fetch_netler, parse_kilavuz, merge, validate, build_sqlite, net_katsayi, tests, turkish
-scripts/          release.sh
-docs/             VERI_NOTLARI.md, ÖSYM kılavuz PDF, briefs/
+pipeline/         years (yıl modeli), fetch, fetch_netler, parse_kilavuz (PDF), parse_kilavuz_xls,
+                  merge, validate, build_sqlite, net_katsayi, tests, turkish
+archive/          yearly_stats_*.json.gz — API'den düşen yılların tarihsel arşivi (git-izli)
+scripts/          release.sh, make_history_archive.py
+docs/             VERI_NOTLARI.md, ÖSYM kılavuz PDF + Tablo 3/4 XLS, briefs/
 ```

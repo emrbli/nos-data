@@ -6,11 +6,13 @@ fırlattığı için (`universite_turu` Literal'i yalnız DEVLET/VAKIF/VAKIF MYO
 eder) ham JSON'ı doğrudan işleriz; kütüphanenin yalnızca HTTP taşımasını
 (base_url, header, RateLimitError) kullanırız.
 
-K2: ÖSYM 2026 kılavuzu — 2026-07-25 itibarıyla OTORİTER kaynak (bkz.
-docs/VERI_NOTLARI.md §1.3). Aşağıdaki `fetch_k2`/`_parse_osym_xls`/
-`_parse_osym_pdf` bu kararın ÖNCESİNDEN kalma, kullanılmayan bir taslaktır;
-gerçek parser `OUTBOX/pipeline/parse_kilavuz.py::parse_kilavuz()`dur (run.py
-oradan çağırır). Bu fonksiyonlar yalnız referans için bırakıldı.
+K2: ÖSYM kılavuzu — OTORİTER kaynak (bkz. docs/VERI_NOTLARI.md §1.3);
+parser `pipeline/parse_kilavuz.py::parse_kilavuz()` (PDF), çapraz kontrol
+`pipeline/parse_kilavuz_xls.py` (XLS). Bu modül yalnız K1'i çeker.
+
+Ham sayfalar `raw/k1/{RESULT_YEAR}/{kombo}/NNNN.json` altına yazılır: API her
+yıl geçişinde en eski yılı düşürdüğü için önceki yılın anlık görüntüsü
+ÜZERİNE YAZILMAZ (yerel yedek; kalıcı güvence archive/, bkz. years.py).
 """
 
 from __future__ import annotations
@@ -23,8 +25,10 @@ from typing import Any, Callable
 
 from yokatlas_py import SearchFilters
 from yokatlas_py.client import _SEARCH_PATH, _build_request
-from yokatlas_py.exceptions import APIError, RateLimitError
+from yokatlas_py.exceptions import RateLimitError
 from yokatlas_py.http_client import HttpClient
+
+from .years import RESULT_YEAR
 
 # 5 tarama kombinasyonu (Plan §5 Faz 1.1) + 2 TAMAMLAMA taraması (2026-07-25).
 #   puan_turu (BÜYÜK, Türkçe) x birim_turu_id (46=LİSANS, 47=ÖNLİSANS)
@@ -55,6 +59,11 @@ def _combo_dir_name(puan_turu: str | None, birim_turu_id: int) -> str:
     return _PT_DIR[puan_turu] if puan_turu is not None else f"ALL{birim_turu_id}"
 
 _PAGE_SIZE = 100
+
+
+def k1_raw_dir(raw_dir: str | Path) -> Path:
+    """Bu sonuç yılının K1 ham dizini: raw/k1/{RESULT_YEAR}/ (bkz. years.py)."""
+    return Path(raw_dir) / "k1" / str(RESULT_YEAR)
 _INTER_PAGE_SLEEP = 0.3  # saniye, sayfalar arası
 _BACKOFF_SCHEDULE = (1, 2, 4, 8, 16)  # RateLimitError için exponential backoff
 
@@ -64,8 +73,6 @@ class FetchResult:
     programs: list[dict[str, Any]] = field(default_factory=list)
     pages_fetched: int = 0
     per_combo: dict[str, int] = field(default_factory=dict)
-    osym_used: bool = False
-    osym_note: str = ""
 
 
 def _log(logf: Callable[[str], None] | None, msg: str) -> None:
@@ -106,7 +113,7 @@ def fetch_k1(
     logf: Callable[[str], None] | None = None,
     http: HttpClient | None = None,
 ) -> tuple[list[dict[str, Any]], int, dict[str, int]]:
-    """K1: tüm evreni sayfalı çeker. Ham sayfaları raw/k1/{PT}/{page}.json yazar.
+    """K1: tüm evreni sayfalı çeker. Ham sayfaları raw/k1/{RESULT_YEAR}/{PT}/{page}.json yazar.
 
     Döndürür: (ham_program_dict_listesi, çekilen_sayfa_sayısı, kombo_basina_sayi).
     `max_pages`: kombo başına maksimum sayfa (bounded test koşusu için; None=tümü).
@@ -122,7 +129,7 @@ def fetch_k1(
     try:
         for puan_turu, birim_turu_id in combos:
             combo_ad = _combo_dir_name(puan_turu, birim_turu_id)
-            combo_dir = raw_dir / "k1" / combo_ad
+            combo_dir = k1_raw_dir(raw_dir) / combo_ad
             combo_dir.mkdir(parents=True, exist_ok=True)
             combo_count = 0
             page = 0
@@ -166,116 +173,3 @@ def fetch_k1(
         if own_http:
             http.close()
     return programs, pages_fetched, per_combo
-
-
-# --- K2 (ÖSYM 2026 kılavuz) — ARTIK KULLANILMIYOR (bkz. parse_kilavuz.py) ----
-# 2026-07-25: kılavuz OTORİTER kaynak oldu. run.py artık burayı çağırmıyor;
-# gerçek parser `OUTBOX/pipeline/parse_kilavuz.py::parse_kilavuz()`. Bu
-# fonksiyonlar (yalnız `raw/osym/`'a elle bırakılan XLS/PDF için, kod-only
-# taslak) geriye dönük referans olarak bırakıldı, ölü koddur.
-
-
-def fetch_k2(
-    raw_dir: str | Path,
-    *,
-    logf: Callable[[str], None] | None = None,
-) -> tuple[dict[int, dict[str, Any]], str]:
-    """K2: `raw/osym/` altındaki elle bırakılmış XLS/PDF'ten 2026 kontenjan/koşul
-    çapraz-kontrol verisi okur. Dosya yoksa boş döner (SERT bağımlılık değil).
-
-    Döndürür: ({kilavuz_kodu: {"kont2026": int, ...}}, açıklama_notu).
-    """
-    osym_dir = Path(raw_dir) / "osym"
-    osym_dir.mkdir(parents=True, exist_ok=True)
-    xls_files = sorted([*osym_dir.glob("*.xls"), *osym_dir.glob("*.xlsx")])
-    pdf_files = sorted(osym_dir.glob("*.pdf"))
-
-    if not xls_files and not pdf_files:
-        note = (
-            "K2 atlandı: raw/osym/ boş. K1'in 2026 (current) kaydı kont2026 + koşul "
-            "kodları + koşul açıklamaları + başarı sırası barajını inline sağladığı için "
-            "ÖSYM kılavuzu sert bağımlılık değildir."
-        )
-        _log(logf, f"  {note}")
-        return {}, note
-
-    result: dict[int, dict[str, Any]] = {}
-    try:
-        if xls_files:
-            result = _parse_osym_xls(xls_files, logf=logf)
-            note = f"K2 çapraz-kontrol: {len(result)} kayıt {len(xls_files)} XLS dosyasından okundu."
-        else:
-            result = _parse_osym_pdf(pdf_files, logf=logf)
-            note = f"K2 çapraz-kontrol: {len(result)} kayıt {len(pdf_files)} PDF dosyasından okundu."
-    except Exception as exc:  # noqa: BLE001 - K2 kritik değil, hata loglanır ve atlanır
-        note = f"K2 parse hatası (atlandı, K1 yeterli): {exc}"
-        _log(logf, f"  {note}")
-        return {}, note
-    _log(logf, f"  {note}")
-    return result, note
-
-
-def _parse_osym_xls(
-    files: list[Path], *, logf: Callable[[str], None] | None = None
-) -> dict[int, dict[str, Any]]:
-    """ÖSYM Tablo 3/4 XLS'ini okur. Program kodu ve 2026 kontenjan sütunlarını
-    başlık adlarından sezgisel olarak bulur (kılavuz formatı yıldan yıla değişir)."""
-    from openpyxl import load_workbook
-
-    out: dict[int, dict[str, Any]] = {}
-    for f in files:
-        wb = load_workbook(f, read_only=True, data_only=True)
-        for ws in wb.worksheets:
-            rows = ws.iter_rows(values_only=True)
-            header = None
-            code_idx = kont_idx = None
-            for row in rows:
-                cells = [str(c).strip().lower() if c is not None else "" for c in row]
-                if header is None:
-                    if any("program kodu" in c or "prog. kodu" in c or c == "kod" for c in cells):
-                        header = cells
-                        for i, c in enumerate(cells):
-                            if "program kodu" in c or "prog. kodu" in c or c == "kod":
-                                code_idx = i
-                            if "kontenjan" in c and kont_idx is None:
-                                kont_idx = i
-                    continue
-                if code_idx is None:
-                    continue
-                try:
-                    code = int(str(row[code_idx]).strip())
-                except (TypeError, ValueError):
-                    continue
-                kont = None
-                if kont_idx is not None and row[kont_idx] not in (None, ""):
-                    try:
-                        kont = int(float(str(row[kont_idx]).replace(".", "").replace(",", ".")))
-                    except (TypeError, ValueError):
-                        kont = None
-                out[code] = {"kont2026": kont, "source": "osym-xls"}
-        wb.close()
-    return out
-
-
-def _parse_osym_pdf(
-    files: list[Path], *, logf: Callable[[str], None] | None = None
-) -> dict[int, dict[str, Any]]:
-    """ÖSYM PDF yedeği (pdfplumber). XLS bulunamazsa kullanılır."""
-    import pdfplumber
-
-    out: dict[int, dict[str, Any]] = {}
-    for f in files:
-        with pdfplumber.open(f) as pdf:
-            for page in pdf.pages:
-                for table in page.extract_tables() or []:
-                    for row in table:
-                        if not row:
-                            continue
-                        first = (row[0] or "").strip()
-                        if first.isdigit() and len(first) >= 8:
-                            try:
-                                code = int(first)
-                            except ValueError:
-                                continue
-                            out[code] = {"kont2026": None, "source": "osym-pdf"}
-    return out

@@ -5,8 +5,9 @@
 > Detaylı plan: `.omc/plans/2026-07-24-nos-veri-sqlite-plan.md` · Yayın raporu:
 > `OUTBOX/dist/validation_report.md`
 
-Son güncelleme: 2026-07-24 · Veri: YÖK Atlas (2026 kılavuz dönemi), 21.480 program
-· Şema: v2 (Net Sihirbazı + ek program alanları — bkz. §6)
+Son güncelleme: 2026-09-13 · Veri: YÖK Atlas (2026 yerleştirme sonuçları + 2022'ye kadar
+arşiv), ~21.5k program · Şema: v8 (DDL değişmedi; `yearly_stats.yil` CHECK kümesi 2022..2026)
+· Yıl modeli: `pipeline/years.py` (bkz. §1.2, §1.6)
 
 ---
 
@@ -21,21 +22,52 @@ sağlanır. **Dikkat:** uzaktan güncelleme verisi de aynı kaynaktan üretildi�
 sürece bu değişmez; farklı bir kaynak eklenirse `kont2026 IS NULL` filtresi
 motorda zaten mevcuttur.
 
-### 1.2 Yıl modeli: current = 2025 GERÇEK sonuç yılıdır (yıl-fix 2026-07-25)
-API'nin `current` (suffix'siz) kaydı **2025 gerçek yerleşme sonucudur** (taban
-puan + başarı sırası VAR); ancak kontenjan/yerleşen bu kayıtta YOKTUR → o
-yıl-satırında `kontenjan`/`yerlesen` **NULL**'dır. suffix1/2/3 = **2024/2023/2022**
-tam satırlardır (kontenjan+yerleşen+puan+sıra). Yerleşme verisi olan yıllar:
-**2022, 2023, 2024, 2025**. `son_yil/son_siralama` en güncel dolu yılı yansıtır
-(programların çoğunda artık gerçek 2025); trend **2022–2025** üzerinden hesaplanır.
-2026 hâlâ yalnız kontenjan/koşul/baraj kaynağıdır (`kont2026`), yerleşme sonucu değil.
+### 1.2 Yıl modeli: İKİ ÇAPA + arşiv (2026-09-13 geçişi; tek kaynak `pipeline/years.py`)
+YÖK Atlas kaydı 4 yıl taşır: `current` (suffix'siz) + `suffix1/2/3`. Ama alan
+grupları FARKLI yıllara çapalıdır (2026-09-13'te Temmuz ve Eylül ham verisi 300
+DİL programında karşılaştırılarak KANITLANDI — `gk1/gk2/gk3` iki anlık görüntüde
+birebir aynı, `minPuan/basariSirasi` tam bir suffix kaydı):
 
-> **DÜZELTME (Task #14):** Önceki faz "current=2026, config-only, yerleşme sonucu
-> yok; yıllar 2023/2024/2025; 2022 kaldırıldı" varsayıyordu — bu YANLIŞTI. Ham veri
-> karşılaştırmasında (net_profiles.taban_puan == yearly_stats.puan) `yearly_stats`
-> yıl etiketlerinin 1 yıl kaymış olduğu görüldü ve düzeltildi: current→2025,
-> suffix1→2024, suffix2→2023, suffix3→2022 (2022 geri geldi). Fix sonrası
-> net_profiles.yil ↔ yearly_stats.yil **%99.8** aynı takvimde.
+| Alan grubu | Çapa | 2026-09 eşlemesi |
+|---|---|---|
+| `minPuan{N}`, `basariSirasi{N}` (SONUÇ: puan/sıra) | `RESULT_YEAR - N` (en son yerleştirme) | current→2026, 1→2025, 2→2024, 3→2023 |
+| `kontenjan`,`gkY` (N=0), `gk{N}`,`gkY{N}` (KONTENJAN/YERLEŞEN) | `CATALOG_YEAR - N` (kılavuz yılı) | kontenjan/gkY→2026, gk1→2025, gk2→2024, gk3→2023 |
+
+Bugün `RESULT_YEAR == CATALOG_YEAR == 2026` olduğu için iki çapa çakışır; Temmuz'da
+(kılavuz çıkmış, yerleştirme yapılmamış) bir yıl ayrıktı ve **Temmuz build'i
+kontenjan/yerleşeni bir yıl eski etiketlemişti** ("2024" satırındaki k/z aslında
+2025'indi; `gkY1` = 2025 yerleşen). `merge._extract_years` artık iki çapayı ayrı
+ayrı uygular, Temmuz arşivi `--kz-year-shift 1` ile düzeltilerek üretildi (§1.6).
+
+**2026-09 API şema değişikliği:** `gkY` (current yerleşen), `sgyY`, `obkY`, `y34`
+eklendi; `gkY1`, `obk1`, `sgy1`, `y34_1`, `dprm1` (tarihsel yerleşen/alt kırılımlar)
+kaldırıldı. Dolayısıyla 2025 yerleşen yalnız ARŞİVDEN gelir (Temmuz gkY1); 2024/2023
+yerleşen hiçbir kaynakta yok (NULL). 2022 yalnız p/s taşır (k/z yok).
+
+Yerleşme verisi olan yıllar: **2022–2026** (`ALL_YEARS`). `son_yil/son_siralama`
+en güncel sırası dolu yıl (çoğunlukla 2026); trend `TREND_YEARS` = 2024–2026;
+`kont2026` = 2026 kılavuz kontenjanı = 2026 satırının `kontenjan`ı (aynı değer).
+
+2026-09-13 build'i (`yearly_stats`, 21.493 program; sıra/puan/kontenjan/yerleşen dolu satır):
+
+| yıl | satır | sıra | kontenjan | yerleşen | kaynak |
+|---|---|---|---|---|---|
+| 2026 | 21.493 | 18.251 | 21.493 | 20.737 | API current (`kontenjan`,`gkY`) |
+| 2025 | 20.254 | 17.325 | 20.242 | 19.649 | API suffix1 (p/s, `gk1`); yerleşen ARŞİV (Temmuz `gkY1`) |
+| 2024 | 18.688 | 16.895 | 18.493 | 0 | API suffix2 + `gk2` |
+| 2023 | 17.513 | 16.443 | 17.005 | 0 | API suffix3 + `gk3` |
+| 2022 | 15.801 | 15.801 | 0 | 0 | yalnız ARŞİV (Temmuz suffix3 p/s) |
+
+`son_yil` dağılımı: 2026 %84.9, 2025 374, 2024 848, 2023 518, 2022 174, NULL 1.328 (%6.2 —
+Temmuz'da %10.6'ydı). Arşiv↔API çakışması **0**. 2026'da elit SAY sıraları piyasa
+genelinde ~2x geriledi (İTÜ Bilg. 1435→2503, ODTÜ 1204→2989, Boğaziçi 1448→4560; aynı
+puanın sırası iki kat) — gerçek dağılım kayması; altın referans eşiği 3000→10000 alındı
+(`validate._GOLD_BOGAZICI_CS_MAX`, gerekçe kodda).
+
+> **Tarihçe (Task #14, 2026-07-25):** İlk fazda `current` atlanıp suffix1/2/3
+> 2025/2024/2023 sanılmıştı; net_profiles.taban_puan == yearly_stats.puan
+> çapraz kontrolüyle current→2025 olduğu görüldü (%99.8). Bu kontrol yalnız
+> p/s çapasını doğruluyordu; k/z çapası 2026-09-13'te ayrıca kanıtlandı.
 
 ### 1.3 ÖSYM kılavuz PDF — ARTIK OTORİTER kaynak (2026-07-25 kararı DEĞİŞTİ)
 Önceki not (2026-07 öncesi): 2026 kontenjanı, koşul kodları, koşul açıklamaları
@@ -146,6 +178,20 @@ etkilenmez.
   havuzlarıdır (ikisi de "Bk. 1" ile başlıyor, farklı içerikle!). Çakışmada
   1. Kısım kazanır (DB'nin mevcut doğrulanmış kod '1' metniyle eşleşiyor).
 
+**XLS çapraz kontrolü (2026-09-13):** ÖSYM aynı Tablo 3/4'ü XLS olarak da yayınlar
+(`docs/tablo-3-*.xls` önlisans, `tablo-4-*.xls` lisans; 21.493 program, filigran yok).
+`pipeline/parse_kilavuz_xls.py` bunları aynı `GuideProgram` yapısına çevirir;
+`merge.cross_check_guide_xls` PDF parse'ıyla alan bazında karşılaştırır
+(`discrepancy_report.md` "PDF ↔ XLS" bölümü; `validate` sayısal alanlarda >%2 farkta
+yumuşak uyarı). **Karar: XLS yalnız çapraz kontrol, PDF otoriter** (kullanıcı,
+2026-09-13). Bulgu: `sira/puan` (önceki yıl) %0 fark; `kosul` ~%15 fark ve
+`kontenjanY34`/`kontOkulBirincisi`/`akreditasyon` tekil farklar — örnekler PDF
+tarafında sarma satırının komşu programa yapışması ve filigran rakam/harf
+yapışması ("1479129" vs 1, "FEDEDK" vs FEDEK). Yani §1.3'teki "kosul ~%15 gerçek
+editöryal fark" yorumu büyük olasılıkla PDF parse hatasıydı. Tek bayrakla XLS
+otoriter yapılabilir: `run.py --kilavuz-tablo-kaynak xls` (PDF yine sözlük/Tablo
+1B/ücret/web sağlar; rapor PDF↔XLS karşılaştırmasını korur).
+
 ### 1.4 yokatlas-py tip modeli KKTC'de kırılıyor
 Kütüphanenin `Program` pydantic modeli `universite_turu`'nda KKTC/YURTDISI
 kabul etmiyor (ValidationError). Pipeline bu yüzden **ham JSON dict** işler;
@@ -157,12 +203,34 @@ basarisiralamalari.com ve kariyer.net programatik erişime kapalı. Otomatik
 kapıların tamamı + altın referans seti geçti; yine de tercih dönemi öncesi
 **20 programın elle karşılaştırılması** önerilir (brief §6.4).
 
+### 1.6 Yıl geçişi prosedürü (her yıl Ağustos/Eylül, yerleştirme sonuçları YÖK Atlas'a düşünce)
+1. Canlı API'de bir programın `minPuan`/`minPuan1` değerlerini önceki raw ile
+   karşılaştır: current yeni yılı taşıyorsa geçiş zamanı (`raw/k1/{eski yıl}/`
+   dokunulmaz; fetch yeni yıl dizinine yazar).
+2. **Önce arşivi üret** (dist/ hâlâ eski, doğrulanmış build):
+   `uv run python scripts/make_history_archive.py` → `archive/yearly_stats_*.json.gz`.
+   `--kz-year-shift` yalnız kaynak DB'nin k/z etiketleri kaymışsa (Temmuz 2026
+   build'i gibi) gerekir; iki çapalı `_extract_years` sonrası üretilen build'lerde 0.
+   Eski arşiv dosyasını silme; `run.py --history-archive` ile yol seçilir
+   (varsayılan `DEFAULT_HISTORY_ARCHIVE`, run.py). Birden çok arşiv birleştirmek
+   gerekirse yeni build'den tek arşiv üretip eski dosyayı kaldır.
+3. `pipeline/years.py` → `RESULT_YEAR` (ve yeni kılavuz geldiyse `CATALOG_YEAR`) +1.
+   `ARCHIVE_MIN_YEAR` sabit kalır (2022). Başka yerde yıl literal'i olmamalı.
+4. Yeni kılavuz: `run.py DEFAULT_KILAVUZ_PDF` + XLS glob'ları; `parse_kilavuz`
+   sütun x-konumları (`_T3_MARKERS/_T4_MARKERS`) yeniden ölçülür; `kont2026`
+   kolon adı tüketici sözleşmesidir (yeniden adlandırma = SCHEMA_VERSION artışı,
+   iki tüketici repoda koordinasyon).
+5. `uv run python run.py` → `validation_report.md` PASS; `discrepancy_report.md`
+   "Arşiv ↔ API" çakışması ~0 olmalı (değilse çapa/etiket hatası — DÜŞÜRME, araştır).
+6. Tüketici repolar: nos-academy `schema.ts` CHECK kümesi + `Yil` tipi +
+   `engine.ts` bayat-yıl eşiği; nostercih yıl metinleri; iki `nos-data.json` pin'i.
+
 ## 2. Veri içeriği tuzakları
 
 | Gerçek | Sayı | Anlamı |
 |---|---|---|
 | `yerlesen > kontenjan` satırları | 7.265 yıl-satırı | Hata DEĞİL — İÖ/ek kontenjan istisnası; loglanır, veri aynen korunur. |
-| NULL `son_siralama` | %10.65 | "Geçen yıl dolmadı" → motor bunları **Güven** bandına koyar, sıfır sanmaz. (Yıl-fix öncesi %15.95'ti; current=2025 gerçek sonucu eklenince düştü — Task #14.) |
+| NULL `son_siralama` | ~%10 | "Son yıllarda hiç dolmadı" → motor bunları **Güven** bandına koyar, sıfır sanmaz. (2026-09 build'inde `son_yil` 2026 olmayanlar bir önceki dolu yıla düşer; uygulama `son_yil < RESULT_YEAR`'ı "eski veri" rozetiyle gösterir.) |
 | Karma puan türü şüphesi (K-1) | 25 kayıt | Yıllar arası >5x sıra sıçraması; **trend hesabı dışı** bırakıldı. |
 | AÖF/Uzaktan programlar | 219 (113 Açıköğretim + 106 Uzaktan) | Varsayılan olarak sonuç dışı; kullanıcı filtreyle açar (K-7). **Not:** kaynak K1 `Açıköğretim` değerini hiç göndermez; AÖF programları `ogrenimTuruAdi='UOLP'` (id 188) kovasında gelir (113 kaydın 112'si birim adında "(Açıköğretim)", 1'i gerçek UOLP: Manas Tıp). YÖK Atlas açıköğretim filtresi bu kovayı birlikte filtrelediği için merge.py UOLP→`Açıköğretim`e normalize eder (önceki UOLP→Örgün eşlemesi AÖF'leri örgün sonuçlara karıştırıyordu — 2026-07-26'da düzeltildi). |
 | MTOK satırları | işaretli | Yalnız uygun lise türü profiline gösterilir (K-8). |

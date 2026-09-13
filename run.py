@@ -25,6 +25,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from pipeline.years import RESULT_YEAR
+
 HERE = Path(__file__).resolve().parent
 RAW_DIR = HERE / "raw"
 LOGS_DIR = HERE / "logs"
@@ -45,11 +47,19 @@ _PHASE_ORDER = ["fetch", "merge", "validate", "build", "test"]
 # 7→8: alias temizliği (K-13, bkz. build_sqlite.py ALIAS yorumu) — corpus
 # kelimesi kaçıran satırlar kaldırıldı; DDL değişmedi. Uygulama tarafındaki
 # CURRENT_SCHEMA_VERSION (src/lib/schema.ts) ile senkron tutulmalı.
+# 2026-09 (v8 KORUNDU): 2026 yerleştirme sonuçları eklendi; yearly_stats.yil
+# CHECK kümesi 2022..2026'ya GENİŞLEDİ (kolon/tip değişmedi -> sürüm artmaz;
+# uygulama yeni DB'yi OTA ile alır). Yıl konfigürasyonu: pipeline/years.py.
 SCHEMA_VERSION = 8
 
 # Kılavuz PDF'inin varsayılan konumu: bu reponun docs/ klasörü (git-izli, kanonik).
 # --kilavuz-pdf ile değiştirilebilir; --skip-kilavuz ile tamamen atlanabilir.
 DEFAULT_KILAVUZ_PDF = HERE / "docs" / "kontkilavuz_yktd21072026.pdf"
+# Kılavuz Tablo 3/4 XLS'leri (ÖSYM sitesinden; YALNIZ çapraz kontrol, PDF otoriter).
+DEFAULT_KILAVUZ_XLS_T3_GLOB = "docs/tablo-3-*.xls"
+DEFAULT_KILAVUZ_XLS_T4_GLOB = "docs/tablo-4-*.xls"
+# Tarihsel arşiv (git-izli): API'den düşen yıllar buradan dolar (years.py, merge.py).
+DEFAULT_HISTORY_ARCHIVE = HERE / "archive" / "yearly_stats_2022_2025.json.gz"
 
 
 class Logger:
@@ -71,19 +81,22 @@ class Logger:
 
 
 def _load_raw_k1(raw_dir: Path, log: Logger) -> list[dict[str, Any]]:
-    """--skip-fetch: raw/k1/**/*.json sayfalarını geri okuyup program listesi kurar.
+    """--skip-fetch: raw/k1/{RESULT_YEAR}/**/*.json sayfalarını geri okuyup program listesi kurar.
 
     Dizin düzeni: PT-tagli kombolar (SAY/EA/SOZ/DIL/TYT) + tamamlama taramaları
     (ALL46/ALL47 — puanTuru NULL kayıtlar için, bkz. fetch.SEARCH_COMBOS).
     PT-tagli dizinler ÖNCE yüklenir ki merge dedup'ında ("ilk kayıt kazanır")
     PT izi taşıyan kayıtlar kazansın — glob sıralaması buna yetmez (ALL46
     alfabetik olarak DIL'den önce gelir), açıkça sıralanır."""
-    from pipeline.fetch import _PT_DIR
+    from pipeline.fetch import _PT_DIR, k1_raw_dir
 
     programs: list[dict[str, Any]] = []
     inv = {v: k for k, v in _PT_DIR.items()}
     files = 0
-    dirs = [d for d in sorted((raw_dir / "k1").glob("*")) if d.is_dir()]
+    k1_dir = k1_raw_dir(raw_dir)
+    if not k1_dir.exists():
+        raise FileNotFoundError(f"{k1_dir} yok — bu sonuç yılı için önce ağdan fetch gerekir")
+    dirs = [d for d in sorted(k1_dir.glob("*")) if d.is_dir()]
     dirs.sort(key=lambda d: d.name.startswith("ALL"))  # ALL* dizinleri EN SONA
     for combo_dir in dirs:
         is_all = combo_dir.name.startswith("ALL")
@@ -135,6 +148,24 @@ def _load_raw_netler(raw_dir: Path, log: Logger) -> list[dict[str, Any]]:
                     rows.append(item)
     log(f"  raw/netler/'ten {files} sayfa, {len(rows)} net satırı yüklendi")
     return rows
+
+
+def _resolve_single(explicit: str | None, glob_pattern: str, log: Logger, label: str) -> Path | None:
+    """Açık yol verilmişse onu, yoksa HERE altındaki glob'un TEK eşleşmesini döner."""
+    if explicit:
+        p = Path(explicit)
+        if not p.exists():
+            log(f"  [uyarı] {label} bulunamadı: {p}")
+            return None
+        return p
+    matches = sorted(HERE.glob(glob_pattern))
+    if not matches:
+        log(f"  [uyarı] {label} yok ({glob_pattern}) — çapraz kontrol atlanır")
+        return None
+    if len(matches) > 1:
+        log(f"  [uyarı] {label} için {len(matches)} eşleşme, en yenisi kullanılıyor: {matches[-1].name}")
+        return max(matches, key=lambda m: m.stat().st_mtime)
+    return matches[0]
 
 
 def _iso_now() -> str:
@@ -190,6 +221,21 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--skip-kilavuz", action="store_true",
                         help="Kılavuz parse'ını tamamen atla (K1-only; dev iterasyonu, 793 "
                              "sayfa parse ~1dk sürer).")
+    parser.add_argument("--kilavuz-xls-t3", default=None,
+                        help=f"Kılavuz Tablo 3 (önlisans) XLS yolu (varsayılan glob: {DEFAULT_KILAVUZ_XLS_T3_GLOB}).")
+    parser.add_argument("--kilavuz-xls-t4", default=None,
+                        help=f"Kılavuz Tablo 4 (lisans) XLS yolu (varsayılan glob: {DEFAULT_KILAVUZ_XLS_T4_GLOB}).")
+    parser.add_argument("--skip-xls", action="store_true",
+                        help="Kılavuz XLS çapraz kontrolünü atla (yalnız rapor etkilenir).")
+    parser.add_argument("--kilavuz-tablo-kaynak", choices=("pdf", "xls"), default="pdf",
+                        help="Tablo 3/4 program alanları (kontenjan/koşul/süre/PT/ok.birincisi/şehit-gazi/"
+                             "34 yaş/TYÇ/akreditasyon/önceki yıl sıra-puan) için otoriter kaynak. "
+                             "Varsayılan pdf (karar 2026-09-13); xls seçilirse XLS yazılır, PDF yalnız "
+                             "koşul sözlüğü/Tablo 1B/ücret/web adresi sağlar ve PDF↔XLS raporu yine üretilir.")
+    parser.add_argument("--history-archive", default=None,
+                        help=f"Tarihsel yearly_stats arşivi (varsayılan: {DEFAULT_HISTORY_ARCHIVE}).")
+    parser.add_argument("--skip-archive", action="store_true",
+                        help="Arşiv doldurmasını atla (API'den düşen yıllar — ör. 2022 — DB'ye girmez).")
     args = parser.parse_args(argv)
 
     until_idx = _PHASE_ORDER.index(args.until)
@@ -251,7 +297,7 @@ def main(argv: list[str] | None = None) -> int:
                     log("  [HATA] Kılavuz PDF yok ve --allow-missing-k2 verilmedi.")
                     return 2
             else:
-                log(f"FETCH K2 (ÖSYM 2026 kılavuzu: {kilavuz_pdf})...")
+                log(f"FETCH K2 (ÖSYM kılavuzu: {kilavuz_pdf})...")
                 try:
                     guide = parse_kilavuz(kilavuz_pdf, logf=log)
                     k2_note = (f"K2 (OTORİTER): {guide.stats.get('guideProgramCount')} program, "
@@ -262,13 +308,48 @@ def main(argv: list[str] | None = None) -> int:
                     log(f"  [HATA] {k2_note}")
                     if not args.allow_missing_k2:
                         return 2
+        # K2 XLS — kılavuz Tablo 3/4'ün ÖSYM XLS sürümü, YALNIZ çapraz kontrol
+        # (PDF otoriter kalır; sonuç discrepancy_report.md + validate yumuşak uyarı).
+        xls_programs = None
+        if guide is not None and not args.skip_xls:
+            from pipeline.parse_kilavuz_xls import parse_kilavuz_xls
+            t3 = _resolve_single(args.kilavuz_xls_t3, DEFAULT_KILAVUZ_XLS_T3_GLOB, log, "Tablo 3 XLS")
+            t4 = _resolve_single(args.kilavuz_xls_t4, DEFAULT_KILAVUZ_XLS_T4_GLOB, log, "Tablo 4 XLS")
+            if t3 or t4:
+                try:
+                    xls_programs = parse_kilavuz_xls(t3, t4, logf=log)
+                except Exception as exc:  # noqa: BLE001 - çapraz kontrol kritik değil
+                    log(f"  [uyarı] kılavuz XLS parse hatası, çapraz kontrol atlandı: {exc}")
+        pdf_programs = guide.programs if guide is not None else None
+        if guide is not None and xls_programs and args.kilavuz_tablo_kaynak == "xls":
+            # XLS otoriter: kod bazında XLS kazanır; yalnız PDF'te olan kodlar korunur.
+            guide.programs = {**pdf_programs, **xls_programs}
+            guide.stats["tabloKaynak"] = "xls"
+            log(f"  [kilavuz] Tablo 3/4 kaynağı: XLS ({len(xls_programs)} program; PDF yalnız "
+                f"{len(set(pdf_programs) - set(xls_programs))} kodda kaldı)")
+            k2_note += " Tablo 3/4 alanları XLS'ten (PDF yalnız sözlük/1B/ücret/web)."
+        elif guide is not None:
+            guide.stats["tabloKaynak"] = "pdf"
         timings["fetch"] = time.time() - ts
 
+        # --- Tarihsel arşiv (API'den düşen yıllar için yalnız doldurma) ---
+        from pipeline.merge import (load_history_archive, merge, merge_netler,
+                                    write_programs_json, write_discrepancy_report)
+        history = None
+        if not args.skip_archive:
+            archive_path = Path(args.history_archive) if args.history_archive else DEFAULT_HISTORY_ARCHIVE
+            if archive_path.exists():
+                history, arch_meta = load_history_archive(archive_path)
+                log(f"  arşiv yüklendi: {archive_path.name} — {len(history)} program, "
+                    f"yıllar {arch_meta.get('years')}, kaynak {arch_meta.get('sourceExportedAt')}")
+            else:
+                log(f"  [uyarı] arşiv yok ({archive_path}); API'den düşen yıllar DB'ye girmeyecek")
+
         # --- MERGE ---
-        from pipeline.merge import merge, merge_netler, write_programs_json, write_discrepancy_report
         ts = time.time()
         log("MERGE + DEDUP...")
-        result = merge(k1_programs, guide=guide, logf=log)
+        result = merge(k1_programs, guide=guide, history=history, xls_programs=xls_programs,
+                       xls_check_base=pdf_programs, logf=log)
         write_discrepancy_report(result, DIST_TMP / "discrepancy_report.md")
         known_kilavuz_kodlari = {r["id"] for r in result.records}
         net_rows, net_stats = merge_netler(net_raw_rows, known_kilavuz_kodlari, logf=log)
@@ -281,7 +362,7 @@ def main(argv: list[str] | None = None) -> int:
                 "sha256_json": sha,
                 "schemaVersion": SCHEMA_VERSION,
                 "programCount": result.stats["programCount"],
-                "dataYear": 2025,
+                "dataYear": RESULT_YEAR,
                 "k2Note": k2_note,
                 "stats": result.stats,
                 "netStats": net_stats,
@@ -349,7 +430,7 @@ def main(argv: list[str] | None = None) -> int:
                 "sha256_db": db_sha_final,
                 "schemaVersion": SCHEMA_VERSION,
                 "programCount": result.stats["programCount"],
-                "dataYear": 2025,
+                "dataYear": RESULT_YEAR,
                 "k2Note": k2_note,
                 "stats": result.stats,
                 "netStats": net_stats,
@@ -378,7 +459,9 @@ def _summary(log: Logger, stats: dict[str, Any], timings: dict[str, float],
     log(f"  programCount: {stats.get('programCount')}")
     log(f"  duplicatesDropped: {stats.get('duplicatesDropped')}")
     log(f"  null sonSiralama: {stats.get('nullSonSiralama')} (%{stats.get('nullSonSiralamaPct')})")
-    log(f"  3-yıl dolu: {stats.get('full3YearCount')} (%{stats.get('full3YearPct')})")
+    log(f"  3-yıl dolu ({stats.get('trendYears')}): {stats.get('full3YearCount')} (%{stats.get('full3YearPct')}) | "
+        f"son_yil dağılımı: {stats.get('sonYilDist')} | arşiv: +{stats.get('archiveRowsAdded')} satır, "
+        f"{stats.get('archiveFieldsFilled')} alan, {stats.get('archiveConflicts')} çakışma")
     log(f"  karma-tür şüphesi: {stats.get('mixedSuspectCount')} | trend-yukselen: {stats.get('trendYukselenCount')}")
     log(f"  kosulSozluk: {stats.get('kosulSozlukCount')} | baraj: {stats.get('barajCount')}")
     log(f"  uniTur dağılımı: {stats.get('uniTurDist')}")

@@ -1,7 +1,10 @@
 """NOS veri pipeline paketi.
 
-Fazlar (bkz. .omc/plans/2026-07-24-nos-veri-sqlite-plan.md §5):
-  fetch  -> K1 (YÖK Atlas JSON API) + K2 (ÖSYM 2026 kılavuz, opsiyonel)
-  merge  -> dedup (kilavuz_kodu), türetmeler, Türkçe fold, programs.json
-  validate / build_sqlite / tests -> Faz 3–5 (Task #2)
+Fazlar:
+  fetch  -> K1 (YÖK Atlas JSON API, raw/k1/{RESULT_YEAR}/) + netler
+            K2 (ÖSYM kılavuzu PDF, otoriter; XLS yalnız çapraz kontrol)
+  merge  -> dedup (kilavuz_kodu), tarihsel arşiv doldurma (archive/), kılavuz
+            uygulaması, türetmeler, Türkçe fold, programs.json
+  validate / build_sqlite / tests -> yayın kapıları, nos.db, DB testleri
+Yıl konfigürasyonu TEK yerde: pipeline/years.py (literal yıl yazma).
 """

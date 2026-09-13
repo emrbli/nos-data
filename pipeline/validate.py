@@ -10,6 +10,9 @@ from __future__ import annotations
 from typing import Any, Callable
 
 from .merge import MergeResult
+from .years import GUIDE_RESULT_YEAR, RESULT_YEAR, TREND_YEARS
+
+_TREND_LABEL = "+".join(str(y) for y in TREND_YEARS)  # rapor metni, ör. "2024+2025+2026"
 
 _MIN_COUNT = 15000
 _MAX_COUNT = 40000
@@ -34,6 +37,10 @@ _GUIDE_DISCREPANCY_MAX = 0.10  # skaler alan başına üzerine-yazma oranı üst
 # %10 kapısında kalır — onlarda spike gerçek sütun-kayması işaretidir.
 _GUIDE_DISCREPANCY_MAX_BY_FIELD: dict[str, float] = {"kosul": 0.25}
 _FEE_MATCH_WARN_MIN = 0.50     # yumuşak: ücret eşleşmesi bunun altındaysa uyar
+_GOLD_BOGAZICI_CS_MAX = 10000  # altın ref üst sınırı (gerekçe: _golden_refs içindeki tarihçe)
+_XLS_MISMATCH_WARN = 0.02      # yumuşak: PDF↔XLS sayısal alan farkı bunun üstündeyse uyar
+_XLS_NUMERIC_FIELDS = {"kont2026", "sure", "puanTuru", f"sira{GUIDE_RESULT_YEAR}",
+                       f"puan{GUIDE_RESULT_YEAR}"}
 
 
 def _log(logf: Callable[[str], None] | None, msg: str) -> None:
@@ -79,7 +86,7 @@ def validate(
         if r["kont2026"] is not None:
             kont2026_present += 1
         years_present = {y["y"] for y in r["yillar"]}
-        if {2023, 2024, 2025} <= years_present:
+        if set(TREND_YEARS) <= years_present:
             year_present_3 += 1
         # boş string taraması (NOT NULL text alanları)
         for key in ("uni", "prog", "grup", "il", "puanTuru", "birimTur", "ogrTur",
@@ -95,30 +102,37 @@ def validate(
             if y["k"] is not None and y["z"] is not None and y["z"] > y["k"]:
                 yerlesen_gt_kont += 1
 
-    # --- SERT KAPILAR: 2025 sonuç bütünlüğü (2026-07-25 olayı sonrası) ---
-    # (a) son_siralama, yearly_stats(2025).sira ile BİREBİR aynı olmalı — ikisi de
-    #     aynı yerleşme sonucudur; fark = kılavuz-parse bulaşması (filigran sayı
-    #     bölmesi 154725'i 1 yapmıştı, sihirbaz sıralaması çökmüştü).
-    # (b) elit tutarlılık: sıra ≤ 2000 iken puan < 450 OLAMAZ (gerçek veride
+    # --- SERT KAPILAR: son sonuç bütünlüğü (2026-07-25 olayı sonrası) ---
+    # (a) son_yil = sırası dolu EN GÜNCEL yıl olmalı ve son_siralama o yılın
+    #     yearly_stats.sira'sıyla BİREBİR aynı olmalı — fark = kılavuz-parse
+    #     bulaşması (filigran sayı bölmesi 154725'i 1 yapmıştı, sihirbaz çökmüştü)
+    #     veya yıl geçişinde son* yeniden türetilmemesi.
+    # (b) elit tutarlılık: sıra ≤ 2000 iken puan < 400 OLAMAZ (gerçek veride
     #     sıra 2000 ⇒ puan ≥ ~429 (SÖZ tabanı) her puan türünde) — bölünmüş-rakam artığını yakalar.
     sira_mismatch = 0
     sira_mismatch_sample: list[str] = []
     elite_violation = 0
     elite_sample: list[str] = []
     for r in recs:
-        s2025 = next((row["s"] for row in r["yillar"] if row["y"] == 2025), None)
-        if r["sonSiralama"] is not None and s2025 is not None and r["sonSiralama"] != s2025:
+        filled_years = [row["y"] for row in r["yillar"] if row["s"] is not None]
+        expected_son_yil = max(filled_years) if filled_years else None
+        s_son = next((row["s"] for row in r["yillar"] if row["y"] == r["sonYil"]), None)
+        if r["sonYil"] != expected_son_yil or (
+            r["sonSiralama"] is not None and s_son is not None and r["sonSiralama"] != s_son
+        ):
             sira_mismatch += 1
             if len(sira_mismatch_sample) < 10:
-                sira_mismatch_sample.append(f"{r['id']}: son={r['sonSiralama']} != 2025={s2025}")
+                sira_mismatch_sample.append(
+                    f"{r['id']}: son_yil={r['sonYil']} (beklenen {expected_son_yil}) "
+                    f"son={r['sonSiralama']} yil.s={s_son}")
         if (r["sonSiralama"] is not None and r["sonSiralama"] <= 2000
                 and r["sonPuan"] is not None and r["sonPuan"] < 400.0):
             elite_violation += 1
             if len(elite_sample) < 10:
                 elite_sample.append(f"{r['id']}: sıra={r['sonSiralama']} puan={r['sonPuan']}")
     if sira_mismatch:
-        fails.append(f"2025 sıra tutarlılığı: {sira_mismatch} kayıtta son_siralama != "
-                     f"yearly_stats(2025).sira (kılavuz-parse bulaşması şüphesi). "
+        fails.append(f"Son sıra tutarlılığı: {sira_mismatch} kayıtta son_yil/son_siralama, "
+                     f"yearly_stats ile uyumsuz (kılavuz-parse bulaşması veya yıl geçişi hatası). "
                      f"Örnek: {sira_mismatch_sample}")
     if elite_violation:
         fails.append(f"Elit tutarlılık: {elite_violation} kayıtta sıra ≤ 2000 ama puan < 400 "
@@ -138,7 +152,7 @@ def validate(
         fails.append("Tekillik: kilavuz_kodu benzersizliği ihlal edildi.")
     yr_pct = _pct(year_present_3, n)
     if yr_pct < _YEAR_INTEGRITY_MIN * 100:
-        fails.append(f"Yıl bütünlüğü: 2023+2024+2025 dolu oran %{yr_pct} < %{int(_YEAR_INTEGRITY_MIN*100)}.")
+        fails.append(f"Yıl bütünlüğü: {_TREND_LABEL} dolu oran %{yr_pct} < %{int(_YEAR_INTEGRITY_MIN*100)}.")
     kont_pct = _pct(kont2026_present, n)
     if kont_pct < _KONT2026_MIN * 100 and not allow_missing_k2:
         fails.append(f"kont2026 kapsaması %{kont_pct} < %{int(_KONT2026_MIN*100)} "
@@ -160,6 +174,19 @@ def validate(
                 fails.append(f"Kılavuz sapma: alan '{field}' üzerine-yazma oranı %{pct} > "
                              f"%{int(threshold*100)} (sütun kayması şüphesi — "
                              f"--allow-missing-k2 ile rapor amaçlı geçilebilir).")
+        xls_fields = result.stats.get("xlsMismatchByField")
+        if xls_fields:
+            guide_lines.append(f"- Kılavuz PDF↔XLS çapraz kontrol: ortak {result.stats.get('xlsCommonCount')} program, "
+                               f"yalnız XLS {result.stats.get('xlsOnlyCount')}, yalnız PDF "
+                               f"{result.stats.get('xlsPdfOnlyCount')}; alan farkı % "
+                               f"{ {k: v['pct'] for k, v in xls_fields.items()} } (yumuşak eşik "
+                               f"%{_XLS_MISMATCH_WARN*100:g} sayısal alanlarda)")
+            for fname, d in xls_fields.items():
+                if fname in _XLS_NUMERIC_FIELDS and d["pct"] > _XLS_MISMATCH_WARN * 100:
+                    warns.append(f"PDF↔XLS sapma: alan '{fname}' %{d['pct']} > %{_XLS_MISMATCH_WARN*100:g} "
+                                 f"({d['mismatch']}/{d['compared']}; discrepancy_report.md 'PDF ↔ XLS' bölümü).")
+        elif "xlsProgramCount" in result.stats:
+            guide_lines.append("- Kılavuz PDF↔XLS çapraz kontrol: karşılaştırılabilir alan yok.")
         fee_pct = result.stats.get("guideFeeMatchPct")
         if fee_pct is not None:
             guide_lines.append(f"- Vakıf/KKTC ücret eşleşmesi: **%{fee_pct}** (yumuşak eşik ≥%{int(_FEE_MATCH_WARN_MIN*100)})")
@@ -212,14 +239,19 @@ def validate(
     lines.append(f"- Tekillik (kilavuz_kodu): {'OK' if unique_ok else 'İHLAL'} ({len(set(ids))}/{len(ids)})")
     lines.append("")
     lines.append("## Bütünlük")
-    lines.append(f"- 2023+2024+2025 üçü de dolu: {year_present_3} (**%{yr_pct}**, kapı ≥%70)")
+    lines.append(f"- {_TREND_LABEL} üçü de dolu: {year_present_3} (**%{yr_pct}**, kapı ≥%70)")
+    lines.append(f"- {RESULT_YEAR} sırası dolu: {result.stats.get('resultYearSiraCount')} "
+                 f"(%{result.stats.get('resultYearSiraPct')})  ·  son_yil dağılımı: {result.stats.get('sonYilDist')}")
+    lines.append(f"- Arşiv doldurma: +{result.stats.get('archiveRowsAdded', 0)} yıl satırı, "
+                 f"{result.stats.get('archiveFieldsFilled', 0)} alan, "
+                 f"{result.stats.get('archiveConflicts', 0)} çakışma (API korundu)")
     lines.append(f"- kont2026 kapsaması: {kont2026_present} (%{kont_pct})")
     lines.append(f"- null son_siralama: {result.stats.get('nullSonSiralama')} "
                  f"(%{result.stats.get('nullSonSiralamaPct')})")
     lines.append(f"- kosul_sozluk: {result.stats.get('kosulSozlukCount')} kod  ·  "
                  f"baraj: {result.stats.get('barajCount')} kayıt  ·  "
                  f"trend-yukselen: {result.stats.get('trendYukselenCount')}")
-    lines.append(f"- 2025 sıra tutarlılığı (son_siralama == yearly_stats.2025.sira): "
+    lines.append(f"- Son sıra tutarlılığı (son_yil = en güncel dolu yıl, son_siralama == yearly_stats[son_yil].sira): "
                  f"{'✅ 0 uyumsuz' if sira_mismatch == 0 else f'❌ {sira_mismatch} uyumsuz'}  ·  "
                  f"elit tutarlılık (sıra≤2000 ⇒ puan≥400): "
                  f"{'✅ 0 ihlal' if elite_violation == 0 else f'❌ {elite_violation} ihlal'}")
@@ -272,18 +304,23 @@ def _golden_refs(recs: list[dict[str, Any]]) -> tuple[list[str], list[str], list
     def find(pred) -> list[dict[str, Any]]:
         return [r for r in recs if pred(r)]
 
-    # Boğaziçi Bilgisayar Müh (SAY) -> son_siralama < 3000
+    # Boğaziçi Bilgisayar Müh (SAY) -> en iyi son_siralama < _GOLD_BOGAZICI_CS_MAX.
+    # Eşik tarihçesi: 2022=315, 2023=775, 2024=1008, 2025=1448, 2026=4560 (piyasa
+    # geneli: İTÜ 1435→2503, ODTÜ 1204→2989; aynı SAY puanının sırası 2026'da ~2x —
+    # gerçek dağılım kayması, parse hatası değil). Eski eşik 3000 bu yüzden 10000'e
+    # alındı; "bilgisayar" grubu Öğretim Teknolojileri Öğretmenliği'ni de yakalar
+    # (min() bu yüzden), asıl hedef parse bulaşmasıyla sıranın 6 haneye fırlamasıdır.
     bogazici_cs = find(lambda r: "bogazici" in r["uniNorm"] and "bilgisayar" in r["grupNorm"]
                         and r["puanTuru"] == "SAY")
     ranks = [r["sonSiralama"] for r in bogazici_cs if r["sonSiralama"] is not None]
     if not bogazici_cs:
         fails.append("Altın ref: Boğaziçi Bilgisayar Müh (SAY) BULUNAMADI.")
         lines.append("- ❌ Boğaziçi Bilgisayar Müh (SAY): bulunamadı")
-    elif ranks and min(ranks) < 3000:
-        lines.append(f"- ✅ Boğaziçi Bilgisayar Müh (SAY): en iyi sıra {min(ranks)} (<3000)")
+    elif ranks and min(ranks) < _GOLD_BOGAZICI_CS_MAX:
+        lines.append(f"- ✅ Boğaziçi Bilgisayar Müh (SAY): en iyi sıra {min(ranks)} (<{_GOLD_BOGAZICI_CS_MAX})")
     else:
         fails.append(f"Altın ref: Boğaziçi Bilgisayar Müh (SAY) sırası beklenmedik: {ranks}")
-        lines.append(f"- ❌ Boğaziçi Bilgisayar Müh (SAY): sıra {ranks} (<3000 bekleniyor)")
+        lines.append(f"- ❌ Boğaziçi Bilgisayar Müh (SAY): sıra {ranks} (<{_GOLD_BOGAZICI_CS_MAX} bekleniyor)")
 
     # Devlet Tıp (SAY) -> en iyi sıra < 60000
     devlet_tip = find(lambda r: r["uniTur"] == "DEVLET" and r["grupNorm"] == "tip"

@@ -12,6 +12,8 @@ import time
 from pathlib import Path
 from typing import Any, Callable
 
+from .years import ALL_YEARS, RESULT_YEAR, years_sql_in
+
 from .merge import MergeResult
 
 # Ana sihirbaz sorgusu (plan §4). :mtok_ok, :s parametreli.
@@ -98,17 +100,33 @@ def run_tests(db_path: str | Path, result: MergeResult,
             "WHERE p.id IS NULL").fetchone()["c"]
         ok("yearly_stats FK eksiksiz", orphan == 0, f"yetim={orphan}")
         bad_year = conn.execute(
-            "SELECT COUNT(*) c FROM yearly_stats WHERE yil NOT IN (2022,2023,2024,2025)").fetchone()["c"]
-        ok("yearly_stats yıl ∈ {2022..2025}", bad_year == 0, f"bad={bad_year}")
-        # 2026-07-25 olayı sonrası (bkz. VERI_NOTLARI §1.3): son_siralama, 2025
-        # yearly_stats sırasıyla birebir aynı olmalı; kılavuz-parse bulaşması
+            f"SELECT COUNT(*) c FROM yearly_stats WHERE yil NOT IN ({years_sql_in(ALL_YEARS)})").fetchone()["c"]
+        ok(f"yearly_stats yıl ∈ {{{ALL_YEARS[0]}..{ALL_YEARS[-1]}}}", bad_year == 0, f"bad={bad_year}")
+        # 2026-07-25 olayı sonrası (bkz. VERI_NOTLARI §1.3): son_siralama, son_yil
+        # yılının yearly_stats sırasıyla birebir aynı olmalı; kılavuz-parse bulaşması
         # (filigran sayı bölmesi) bunu bozmuştu (Erciyes Makine 154725 -> 1).
         sira_drift = conn.execute(
             "SELECT COUNT(*) c FROM programs p JOIN yearly_stats y "
-            "ON y.program_id = p.id AND y.yil = 2025 "
+            "ON y.program_id = p.id AND y.yil = p.son_yil "
             "WHERE p.son_siralama IS NOT NULL AND y.sira IS NOT NULL "
             "AND p.son_siralama != y.sira").fetchone()["c"]
-        ok("son_siralama == yearly_stats(2025).sira", sira_drift == 0, f"uyumsuz={sira_drift}")
+        ok("son_siralama == yearly_stats(son_yil).sira", sira_drift == 0, f"uyumsuz={sira_drift}")
+        # son_yil, sırası dolu en güncel yıl olmalı (yıl geçişinde son* yeniden türetildi mi?)
+        stale_son = conn.execute(
+            "SELECT COUNT(*) c FROM programs p WHERE p.son_yil IS NOT NULL AND EXISTS ("
+            "SELECT 1 FROM yearly_stats y WHERE y.program_id = p.id AND y.sira IS NOT NULL "
+            "AND y.yil > p.son_yil)").fetchone()["c"]
+        ok("son_yil = sırası dolu en güncel yıl", stale_son == 0, f"bayat={stale_son}")
+        ry = conn.execute(
+            "SELECT COUNT(*) c FROM yearly_stats WHERE yil = ? AND sira IS NOT NULL",
+            (RESULT_YEAR,)).fetchone()["c"]
+        ok(f"{RESULT_YEAR} sonuç satırı var (sira dolu > 10000)", ry > 10000, f"n={ry}")
+        ry_son = conn.execute(
+            "SELECT COUNT(*) c FROM programs WHERE son_yil = ?", (RESULT_YEAR,)).fetchone()["c"]
+        lines.append(f"- son_yil={RESULT_YEAR} olan program: {ry_son}/{db_n} "
+                     f"(%{round(100*ry_son/db_n, 2) if db_n else 0})")
+        meta_year = conn.execute("SELECT value FROM meta WHERE key='dataYear'").fetchone()["value"]
+        ok(f"meta.dataYear == {RESULT_YEAR}", meta_year == str(RESULT_YEAR), f"meta={meta_year}")
         elite_bad = conn.execute(
             "SELECT COUNT(*) c FROM programs WHERE son_siralama IS NOT NULL "
             "AND son_siralama <= 2000 AND son_puan IS NOT NULL AND son_puan < 400").fetchone()["c"]
@@ -230,7 +248,8 @@ def run_tests(db_path: str | Path, result: MergeResult,
                 "WHERE taban_puan IS NOT NULL AND taban_puan < 0").fetchone()["c"]
             ok("taban_puan negatif yok", bad_taban == 0, f"bad={bad_taban}")
 
-            # Altın örnek: Boğaziçi Bilgisayar Müh. 2025 (elle doğrulama referansı)
+            # Altın örnek: Boğaziçi Bilgisayar Müh., en güncel net yılı (elle doğrulama referansı)
+            net_primary = conn.execute("SELECT MAX(yil) y FROM net_profiles").fetchone()["y"]
             bogazici = conn.execute(
                 "SELECT id, prog, puan_turu FROM programs "
                 "WHERE uni_norm LIKE '%bogazici%' AND prog_norm LIKE '%bilgisayar muhendisligi%' "
@@ -239,18 +258,18 @@ def run_tests(db_path: str | Path, result: MergeResult,
                 lines.append("- ⚠️ Boğaziçi Bilgisayar Müh. (SAY) programs'ta bulunamadı — altın örnek atlandı")
             else:
                 np = conn.execute(
-                    "SELECT * FROM net_profiles WHERE kilavuz_kodu=? AND yil=2025 "
-                    "ORDER BY katsayi", (bogazici["id"],)).fetchall()
+                    "SELECT * FROM net_profiles WHERE kilavuz_kodu=? AND yil=? "
+                    "ORDER BY katsayi", (bogazici["id"], net_primary)).fetchall()
                 if not np:
-                    # 2025 yoksa herhangi bir yıl dene (bilgi amaçlı)
+                    # birincil yıl yoksa herhangi bir yıl dene (bilgi amaçlı)
                     np_any = conn.execute(
                         "SELECT * FROM net_profiles WHERE kilavuz_kodu=? ORDER BY yil DESC, katsayi",
                         (bogazici["id"],)).fetchall()
                     ok("altın örnek: Boğaziçi Bilgisayar net profili mevcut",
-                       len(np_any) > 0, f"kk={bogazici['id']} 2025 yok, toplam={len(np_any)} yıl-satırı")
+                       len(np_any) > 0, f"kk={bogazici['id']} {net_primary} yok, toplam={len(np_any)} yıl-satırı")
                     np = np_any
                 else:
-                    ok("altın örnek: Boğaziçi Bilgisayar 2025 net profili mevcut",
+                    ok(f"altın örnek: Boğaziçi Bilgisayar {net_primary} net profili mevcut",
                        len(np) > 0, f"kk={bogazici['id']} {len(np)} katsayi varyantı")
                 if np:
                     sample = np[0]
@@ -261,7 +280,7 @@ def run_tests(db_path: str | Path, result: MergeResult,
                        f"dolu_net={len(filled)}/16 örn: "
                        f"tyt_mat={sample['tyt_mat_net']} ayt_mat={sample['ayt_mat_net']}")
                     lines.append(f"  - ELLE DOĞRULAMA NOTU: Boğaziçi Bilgisayar (kk={bogazici['id']}) "
-                                 f"2025 → taban={sample['taban_puan']}, obp={sample['obp']}, "
+                                 f"{sample['yil']} → taban={sample['taban_puan']}, obp={sample['obp']}, "
                                  f"tyt(trk/sos/mat/fen)="
                                  f"{sample['tyt_trk_net']}/{sample['tyt_sos_net']}/"
                                  f"{sample['tyt_mat_net']}/{sample['tyt_fen_net']}, "

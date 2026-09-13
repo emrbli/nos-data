@@ -35,9 +35,10 @@ from .fetch import (
     _post_with_backoff,
 )
 
-# Yerleşme yılları (yeni → eski). 2026 (current) yerleşme SONUCU içermez; 2022
-# API'de yok. Bir yıl ilk sayfada boş dönerse atlanır + loglanır.
-NET_YEARS: tuple[int, ...] = (2025, 2024, 2023)
+from .years import NET_YEARS  # yeni → eski; en yeni yıl (netler henüz yayınlanmadıysa)
+# ilk sayfada boş dönerse atlanır + loglanır (bkz. years.py). Yeniden export:
+# run.py `--skip-fetch` yolu ve testler buradan okur.
+__all__ = ["NET_YEARS", "fetch_netler"]
 
 
 def _existing_net_pages(combo_dir: Path) -> dict[int, Path]:
@@ -71,6 +72,11 @@ def _load_cached_prefix(
     while page in existing:
         raw = json.loads(existing[page].read_text(encoding="utf-8"))
         content = raw.get("content") or []
+        if page == 0 and not content:
+            # Boş ilk sayfa = o yıl henüz YAYINLANMAMIŞTI (ör. yerleştirme sonrası
+            # netler aylar sonra çıkar). Bunu "tamamlandı" saymak cache'i sonsuza
+            # dek boş kilitler; ağdan yeniden denenmeli.
+            return [], 0, False
         for item in content:
             item.setdefault("_fetch_puan_turu", puan_turu)
             item.setdefault("_fetch_yil", yil)

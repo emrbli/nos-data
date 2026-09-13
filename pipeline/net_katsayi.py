@@ -23,6 +23,8 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
+from .years import NET_YEARS
+
 # Puan türü başına modele giren ders alanları (net_profiles kolonlarıyla `_net`
 # eki hariç eşleşir). src/lib/net-fields.ts NET_ALANLARI_BY_PUAN_TURU ile birebir.
 _ALANLAR_BY_PT: dict[str, list[str]] = {
@@ -43,7 +45,9 @@ _KATSAYI_STANDART = 0.12
 # Bu eşiğin altında örneklem sayısı olan (yıl,puan_türü) grubu güvenilmez kabul
 # edilip atlanır (satırları net_katsayi'de üretilmez).
 _MIN_SAMPLE = 30
-_YILLAR: tuple[int, ...] = (2023, 2024, 2025)
+# Fit yapılan yıllar (years.NET_YEARS): henüz net verisi olmayan yıl için grup boş
+# kalır ve _MIN_SAMPLE ile atlanır (satır üretilmez).
+_YILLAR: tuple[int, ...] = tuple(sorted(NET_YEARS))
 
 
 def _log(logf: Callable[[str], None] | None, msg: str) -> None:

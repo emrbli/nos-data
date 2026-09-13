@@ -16,3 +16,9 @@ dağıtım GitHub Releases. Ayrıntı ve tüketici akışı için `README.md`, v
 - Bağımlılık eklemeden önce `pyproject.toml`'a bak; `uv add` kullan, `uv.lock` commit edilir.
 - Türkçe büyük/küçük harf ve aksan katlama `pipeline/turkish.py` `fold()` ile yapılır;
   `fold_fixture.json` uygulamadaki TS eşdeğerinin sözleşmesidir, ikisi birlikte değişir.
+- Pipeline kodunda **literal yıl yazma**; tüm yıllar `pipeline/years.py`'den türetilir
+  (`RESULT_YEAR`, `CATALOG_YEAR`, `HISTORY_YEARS`, `ALL_YEARS`, `TREND_YEARS`, `NET_YEARS`).
+  Yıl geçişi prosedürü `docs/VERI_NOTLARI.md` §1.6. API'den düşen yıllar `archive/`'den
+  yalnız DOLDURULUR (API kazanır); arşivi `scripts/make_history_archive.py` üretir.
+- `gk{N}`/`gkY{N}` (kontenjan/yerleşen) KILAVUZ yılına, `minPuan{N}`/`basariSirasi{N}`
+  SONUÇ yılına çapalıdır (`merge._extract_years`). İkisini aynı yıla eşleme.

@@ -13,6 +13,8 @@ import sqlite3
 from pathlib import Path
 from typing import Any, Callable
 
+from .years import ALL_YEARS, RESULT_YEAR, years_sql_in
+
 from .merge import MergeResult
 from .net_katsayi import compute_net_katsayi
 
@@ -67,7 +69,7 @@ CREATE TABLE programs (
 );
 CREATE TABLE yearly_stats (
   program_id INTEGER NOT NULL REFERENCES programs(id),
-  yil        INTEGER NOT NULL CHECK (yil IN (2022,2023,2024,2025)),
+  yil        INTEGER NOT NULL CHECK (yil IN (__ALL_YEARS__)),
   puan_turu  TEXT NOT NULL,
   kontenjan INTEGER, yerlesen INTEGER,
   puan  REAL    CHECK (puan IS NULL OR (puan >= 100.0 AND puan <= 560.0)),
@@ -133,7 +135,7 @@ CREATE INDEX idx_grup  ON programs(grup);
 CREATE INDEX idx_yearly ON yearly_stats(program_id);
 CREATE INDEX idx_net_program ON net_profiles(kilavuz_kodu, yil);
 CREATE INDEX idx_net_katsayi_meta ON net_katsayi_meta(puan_turu, yil);
-"""
+""".replace("__ALL_YEARS__", years_sql_in(ALL_YEARS))  # yearly_stats.yil CHECK (years.py)
 
 # net_profiles insert kolon sırası (SCHEMA_SQL ile birebir; merge_netler dict
 # anahtarlarıyla aynı snake_case adlar).
@@ -329,7 +331,7 @@ def build(
                 ("sha256_json", json_sha),
                 ("programCount", str(len(result.records))),
                 ("schemaVersion", str(schema_version)),
-                ("dataYear", "2025"),
+                ("dataYear", str(RESULT_YEAR)),
             ],
         )
 
