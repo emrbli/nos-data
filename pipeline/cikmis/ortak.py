@@ -24,6 +24,15 @@ TESTLER: dict[str, list[tuple[str, int, str]]] = {
         ("mat", 40, r"TEMEL\s+MATEMAT[İI]K"),
         ("fen", 20, r"FEN\s+B[İI]L[İI]MLER[İI]?"),
     ],
+    "AYT": [
+        ("tde-sos1", 40, r"T[ÜU]RK\s+D[İI]L[İI]\s+(?:VE|ve)\s+EDEB[İI]YATI-SOSYAL\s+B[İI]L[İI]MLER-1"),
+        ("sos2", 46, r"SOSYAL\s+B[İI]L[İI]MLER-2"),
+        ("mat", 40, r"(?<!TEMEL )MATEMAT[İI]K"),
+        ("fen", 40, r"FEN\s+B[İI]L[İI]MLER[İI]?"),
+    ],
+    "YDT": [
+        ("ing", 80, r"[İI]NG[İI]L[İI]ZCE"),
+    ],
 }
 
 # Uygulamaya giden alanlar (nos-academy scripts/sync-db.mjs aynı listeyi denetler).

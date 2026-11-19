@@ -1,0 +1,32 @@
+{
+  "belge": "2022-tyt",
+  "test": "sos",
+  "etiketleme": {"tarih": "2026-11-19", "yontem": "iki bağımsız etiketleme; uyuşmayanlar soru görselinden üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 1, "sayfa": 17, "konu": "tyt_trh.ilk-turk", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 2, "sayfa": 17, "konu": "tyt_trh.turk-islam", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 3, "sayfa": 17, "konu": "tyt_trh.osmanli-kurulus", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 4, "sayfa": 17, "konu": "tyt_trh.milli-mucadele", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 5, "sayfa": 18, "konu": "tyt_trh.ataturk", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 6, "sayfa": 18, "konu": "tyt_cog.harita", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 7, "sayfa": 18, "konu": "tyt_cog.doga-insan", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 8, "sayfa": 18, "konu": "tyt_cog.iklim", "altKonu": null, "ekKonu": "tyt_cog.bolge", "cevap": "B", "iptal": false, "etiket": "hakem"},
+    {"no": 9, "sayfa": 19, "konu": "tyt_cog.ekonomi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 10, "sayfa": 19, "konu": "tyt_cog.afet", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 11, "sayfa": 19, "konu": "tyt_fel.giris", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 12, "sayfa": 20, "konu": "tyt_fel.bilgi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 13, "sayfa": 20, "konu": "tyt_fel.din", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 14, "sayfa": 20, "konu": "tyt_fel.bilgi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
+    {"no": 15, "sayfa": 20, "konu": "tyt_fel.bilgi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 16, "sayfa": 21, "konu": "tyt_din.inanc", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 17, "sayfa": 21, "konu": "tyt_din.ibadet", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 18, "sayfa": 21, "konu": "tyt_din.dusunce", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 19, "sayfa": 22, "konu": "tyt_din.inanc", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 20, "sayfa": 22, "konu": "tyt_din.inanc", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 21, "sayfa": 23, "konu": "tyt_fel.giris", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 22, "sayfa": 23, "konu": "tyt_fel.din", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 23, "sayfa": 23, "konu": "tyt_fel.giris", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 24, "sayfa": 24, "konu": "tyt_fel.siyaset", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 25, "sayfa": 24, "konu": "tyt_fel.bilgi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

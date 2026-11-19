@@ -1,0 +1,228 @@
+{
+ "kaynak": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari",
+ "tarih": "2026-11-19",
+ "sorular": {
+  "2": {
+   "url": "https://meb.ai/xRvqsM",
+   "skor": 0.955,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 4
+  },
+  "3": {
+   "url": "https://meb.ai/rmsbGZ",
+   "skor": 0.874,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 5
+  },
+  "4": {
+   "url": "https://meb.ai/uCgYXp",
+   "skor": 0.947,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 52
+  },
+  "5": {
+   "url": "https://meb.ai/BbHRfn",
+   "skor": 0.911,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 6
+  },
+  "6": {
+   "url": "https://meb.ai/UX9UQTa",
+   "skor": 0.975,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 45
+  },
+  "7": {
+   "url": "https://meb.ai/wvQcXL",
+   "skor": 0.737,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 180
+  },
+  "8": {
+   "url": "https://meb.ai/h8bK0F",
+   "skor": 0.81,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 63
+  },
+  "9": {
+   "url": "https://meb.ai/rriAq0",
+   "skor": 0.849,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 80
+  },
+  "10": {
+   "url": "https://meb.ai/zKZ9pI",
+   "skor": 0.869,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 7
+  },
+  "11": {
+   "url": "https://meb.ai/UvFvuvp",
+   "skor": 0.892,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 8
+  },
+  "12": {
+   "url": "https://meb.ai/paBLAG",
+   "skor": 0.944,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 87
+  },
+  "13": {
+   "url": "https://meb.ai/1QJLxJ",
+   "skor": 0.88,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 88
+  },
+  "14": {
+   "url": "https://meb.ai/4pfIET",
+   "skor": 0.909,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 181
+  },
+  "15": {
+   "url": "https://meb.ai/U4gDOQ9",
+   "skor": 0.927,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 182
+  },
+  "16": {
+   "url": "https://meb.ai/g6OklV",
+   "skor": 0.849,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 200
+  },
+  "17": {
+   "url": "https://meb.ai/UJ6yCpC",
+   "skor": 0.888,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 81
+  },
+  "18": {
+   "url": "https://meb.ai/UepQG8o",
+   "skor": 0.826,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 53
+  },
+  "19": {
+   "url": "https://meb.ai/BXKnAL",
+   "skor": 0.953,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 115
+  },
+  "21": {
+   "url": "https://meb.ai/UFg36wy",
+   "skor": 0.693,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 212
+  },
+  "22": {
+   "url": "https://meb.ai/7r9fq9",
+   "skor": 0.804,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 213
+  },
+  "23": {
+   "url": "https://meb.ai/UXZYlVd",
+   "skor": 0.858,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 227
+  },
+  "24": {
+   "url": "https://meb.ai/UtjCozs",
+   "skor": 0.914,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 228
+  },
+  "25": {
+   "url": "https://meb.ai/xcPDIB",
+   "skor": 0.824,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 229
+  },
+  "26": {
+   "url": "https://meb.ai/o0Ga32",
+   "skor": 0.834,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 230
+  },
+  "27": {
+   "url": "https://meb.ai/ohPLKx",
+   "skor": 0.783,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 250
+  },
+  "28": {
+   "url": "https://meb.ai/UsJiaaD",
+   "skor": 0.888,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 251
+  },
+  "29": {
+   "url": "https://meb.ai/UVz7jIQ",
+   "skor": 0.805,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 252
+  },
+  "30": {
+   "url": "https://meb.ai/U4UzlDY",
+   "skor": 0.954,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 253
+  },
+  "31": {
+   "url": "https://meb.ai/aUmp7d",
+   "skor": 0.609,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 140
+  },
+  "32": {
+   "url": "https://meb.ai/UH03KuR",
+   "skor": 0.551,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 141
+  },
+  "33": {
+   "url": "https://meb.ai/UolmyZl",
+   "skor": 0.825,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 142
+  },
+  "34": {
+   "url": "https://meb.ai/UbIP2I3",
+   "skor": 0.663,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 305
+  },
+  "35": {
+   "url": "https://meb.ai/hGBCP9",
+   "skor": 0.833,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 274
+  },
+  "36": {
+   "url": "https://meb.ai/gvmvCa",
+   "skor": 0.879,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 275
+  },
+  "37": {
+   "url": "https://meb.ai/UZGjP2S",
+   "skor": 0.874,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 324
+  },
+  "38": {
+   "url": "https://meb.ai/08rzIT",
+   "skor": 0.897,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 287
+  },
+  "40": {
+   "url": "https://meb.ai/S3XNTC",
+   "skor": 0.885,
+   "kitap": "CS_AYT_SAY_2018_2026.pdf",
+   "kitapNo": 341
+  }
+ }
+}

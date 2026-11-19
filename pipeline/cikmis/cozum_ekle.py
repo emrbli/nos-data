@@ -13,6 +13,7 @@ eklendi (nos-data'da yalnız yeni dosya kuralı, 2026-11-19).
 
 from __future__ import annotations
 
+import datetime
 import hashlib
 import json
 import os
@@ -25,11 +26,9 @@ def main() -> None:
     yol = DIST / "cikmis.json"
     veri = json.loads(yol.read_text(encoding="utf-8"))
     baglantilar: dict[str, str] = {}
-    tarihler: list[str] = []
     for dosya in sorted(COZUM_DIZINI.glob("*.json")):
         on_ek = dosya.stem  # 2025-tyt-mat
         cozum = json.loads(dosya.read_text(encoding="utf-8"))
-        tarihler.append(cozum["tarih"])
         for no, kayit in cozum["sorular"].items():
             if str(kayit.get("url", "")).startswith("https://"):
                 baglantilar[f"{on_ek}-{no}"] = kayit["url"]
@@ -40,12 +39,10 @@ def main() -> None:
         if url:
             s["cozumUrl"] = url
             eklenen += 1
-    # Uygulamanın uzak güncellemesi yalnız daha yeni `veriSurumu`'nu alır: bağlantı eklenince
-    # sürüm ilerler. Aynı gün ise "+cozum" eki ("2026-11-19+cozum" > "2026-11-19").
-    if eklenen and tarihler:
-        son = max(tarihler)
-        eski = veri.get("veriSurumu") or ""
-        veri["veriSurumu"] = f"{son}+cozum" if son <= eski[:10] else son
+    # Uygulamanın uzak güncellemesi yalnız daha yeni `veriSurumu`'nu alır (dizgi karşılaştırması).
+    # Aynı gün birden çok yayım olabildiği için sürüm paketleme anıdır: "2026-11-19T17:20"
+    # ("+cozum" ekli eski biçimden ve gün biçiminden büyüktür).
+    veri["veriSurumu"] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M")
     icerik = (json.dumps(veri, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
     gecici = DIST / "cikmis.json.swap"
     gecici.write_bytes(icerik)

@@ -1,0 +1,27 @@
+{
+  "belge": "2020-tyt",
+  "test": "fen",
+  "etiketleme": {"tarih": "2026-11-19", "yontem": "iki bağımsız etiketleme; uyuşmayanlar soru görselinden üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 1, "sayfa": 36, "konu": "tyt_fiz.fizik-bilimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 2, "sayfa": 36, "konu": "tyt_fiz.hareket", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 3, "sayfa": 37, "konu": "tyt_fiz.basinc", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 4, "sayfa": 37, "konu": "tyt_fiz.basinc", "altKonu": null, "ekKonu": "tyt_fiz.isi", "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 5, "sayfa": 37, "konu": "tyt_fiz.elektrik", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 6, "sayfa": 38, "konu": "tyt_fiz.dalgalar", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 7, "sayfa": 38, "konu": "tyt_fiz.optik", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 8, "sayfa": 39, "konu": "tyt_kim.kimya-bilimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 9, "sayfa": 39, "konu": "tyt_kim.atom", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 10, "sayfa": 39, "konu": "tyt_kim.etkilesim", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 11, "sayfa": 40, "konu": "tyt_kim.hal", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 12, "sayfa": 40, "konu": "tyt_kim.asit-baz", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 13, "sayfa": 40, "konu": "tyt_kim.asit-baz", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 14, "sayfa": 40, "konu": "tyt_kim.karisim", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 15, "sayfa": 41, "konu": "tyt_bio.hucre", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 16, "sayfa": 41, "konu": "tyt_bio.bilesen", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 17, "sayfa": 41, "konu": "tyt_bio.siniflandirma", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 18, "sayfa": 42, "konu": "tyt_bio.bolunme", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 19, "sayfa": 42, "konu": "tyt_bio.kalitim", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 20, "sayfa": 42, "konu": "tyt_bio.cevre", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

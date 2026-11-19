@@ -1,0 +1,108 @@
+{
+ "kaynak": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari",
+ "tarih": "2026-11-19",
+ "sorular": {
+  "1": {
+   "url": "https://meb.ai/UZjNrjR",
+   "skor": 0.979,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 16
+  },
+  "3": {
+   "url": "https://meb.ai/gY5N6E",
+   "skor": 0.973,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 7
+  },
+  "5": {
+   "url": "https://meb.ai/zxQkNh",
+   "skor": 0.986,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 31
+  },
+  "6": {
+   "url": "https://meb.ai/Wk8KPa",
+   "skor": 0.985,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 48
+  },
+  "8": {
+   "url": "https://meb.ai/kKJNrj",
+   "skor": 0.898,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 5
+  },
+  "9": {
+   "url": "https://meb.ai/Ux7CQj7",
+   "skor": 0.974,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 17
+  },
+  "10": {
+   "url": "https://meb.ai/UeyRhX4",
+   "skor": 0.756,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 26
+  },
+  "11": {
+   "url": "https://meb.ai/WBz22P",
+   "skor": 0.97,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 33
+  },
+  "12": {
+   "url": "https://meb.ai/Trr6iz",
+   "skor": 0.958,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 41
+  },
+  "13": {
+   "url": "https://meb.ai/UvavG9P",
+   "skor": 0.918,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 49
+  },
+  "14": {
+   "url": "https://meb.ai/3rzcdJ",
+   "skor": 0.969,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 59
+  },
+  "15": {
+   "url": "https://meb.ai/Ijo7KV",
+   "skor": 0.978,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 17
+  },
+  "16": {
+   "url": "https://meb.ai/bg33yd",
+   "skor": 0.967,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 1
+  },
+  "17": {
+   "url": "https://meb.ai/UT2VS54",
+   "skor": 0.966,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 27
+  },
+  "18": {
+   "url": "https://meb.ai/yf5FNO",
+   "skor": 0.97,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 32
+  },
+  "19": {
+   "url": "https://meb.ai/UvFOiWl",
+   "skor": 0.858,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 44
+  },
+  "20": {
+   "url": "https://meb.ai/cvflj9",
+   "skor": 0.969,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 52
+  }
+ }
+}

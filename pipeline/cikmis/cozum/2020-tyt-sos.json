@@ -1,0 +1,96 @@
+{
+ "kaynak": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari",
+ "tarih": "2026-11-19",
+ "sorular": {
+  "1": {
+   "url": "https://meb.ai/UDRlp2G",
+   "skor": 0.984,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 3
+  },
+  "2": {
+   "url": "https://meb.ai/UE44Y3m",
+   "skor": 0.985,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 17
+  },
+  "3": {
+   "url": "https://meb.ai/ULiMCDW",
+   "skor": 0.977,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 25
+  },
+  "4": {
+   "url": "https://meb.ai/1iumxY",
+   "skor": 0.983,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 30
+  },
+  "5": {
+   "url": "https://meb.ai/UMrSnjM",
+   "skor": 0.975,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 31
+  },
+  "6": {
+   "url": "https://meb.ai/Uwd33A1",
+   "skor": 0.979,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 7
+  },
+  "7": {
+   "url": "https://meb.ai/VaNU2Y",
+   "skor": 0.98,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 14
+  },
+  "11": {
+   "url": "https://meb.ai/7QGwwf",
+   "skor": 0.989,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 37
+  },
+  "12": {
+   "url": "https://meb.ai/zziDSY",
+   "skor": 0.988,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 57
+  },
+  "14": {
+   "url": "https://meb.ai/UTuCoB2",
+   "skor": 0.988,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 75
+  },
+  "15": {
+   "url": "https://meb.ai/UGaytWy",
+   "skor": 0.989,
+   "kitap": "CS_TYT_2018_2026.pdf",
+   "kitapNo": 34
+  },
+  "16": {
+   "url": "https://meb.ai/UDIcjot",
+   "skor": 0.985,
+   "kitap": "CS_DIIN_TYT_2018_2026.pdf",
+   "kitapNo": 25
+  },
+  "18": {
+   "url": "https://meb.ai/829MTE",
+   "skor": 0.992,
+   "kitap": "CS_DIIN_TYT_2018_2026.pdf",
+   "kitapNo": 31
+  },
+  "19": {
+   "url": "https://meb.ai/LJBGU0",
+   "skor": 0.99,
+   "kitap": "CS_DIIN_TYT_2018_2026.pdf",
+   "kitapNo": 3
+  },
+  "20": {
+   "url": "https://meb.ai/U666PQ9",
+   "skor": 0.988,
+   "kitap": "CS_DIIN_TYT_2018_2026.pdf",
+   "kitapNo": 29
+  }
+ }
+}

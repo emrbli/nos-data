@@ -18,7 +18,7 @@ Yöntem (2019-2026 TYT sayfa düzeni: iki sütun, sütun ayırıcı dikey çizgi
   * bölgede başka soru etiketi olmamalı (iki soru içeren kırpma);
   * sütundaki hiçbir kelime kutunun sağından ya da solundan taşmamalı (kesik kenar);
   * bölgede "A)" ve "E)" seçenek etiketleri bulunmalı (şıkları kesilmiş kırpma);
-  * bölge yüksekliği en az 60 pt olmalı.
+  * bölge yüksekliği en az 45 pt olmalı (tek satırlık YDT kelime soruları ~55 pt).
 
 Çıktı (yerel, gitignore): pipeline/cikmis/yerel/gorsel/<soru kimliği>.webp ve
 pipeline/cikmis/yerel/kirp.json (denetim raporu).
@@ -28,12 +28,13 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 
 import pdfplumber
 import pypdfium2 as pdfium
 from PIL import Image, ImageOps
 
-from .ortak import HAM, PDF_DIZINI, belgeler, etiket_dosyalari, oku
+from .ortak import HAM, METIN_DIZINI, PDF_DIZINI, belgeler, oku
 
 GORSEL_DIZINI = HAM / "gorsel"
 RAPOR = HAM / "kirp.json"
@@ -116,7 +117,7 @@ def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim) -> dict[int, 
             hatalar.append(f"kenardan taşan {len(tasan)} kelime")
         if not {"A)", "E)"} <= seceneklar:
             hatalar.append(f"seçenek etiketi eksik ({''.join(sorted(seceneklar)) or 'yok'})")
-        if y1 - y0 < 60:
+        if y1 - y0 < 45:
             hatalar.append(f"bölge çok kısa ({y1 - y0:.0f} pt)")
         kutu = [round(x0, 1), round(y0, 1), round(x1, 1), round(y1, 1)]
         if hatalar:
@@ -134,35 +135,118 @@ def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim) -> dict[int, 
     return sonuc
 
 
+ORTAK = re.compile(r"(\d{1,2})\s*\.?\s*(?:-|–|ve|ile)\s*(\d{1,2})\s*\.?\s*sorular(?:ı|i|da)", re.I)
+ORTAK_GEREK = re.compile(r"aşağıda|asagida|parçaya göre|parcaya gore|metne göre|bilgilere göre", re.I)
+ARA_PX = 18
+
+
+def ortak_parcalar(pdf_yolu, sayfa_no: int) -> list[dict]:
+    """Sayfadaki ortak parçalar ("35. - 36. soruları aşağıdaki parçaya göre cevaplayınız"):
+    aralık, sütun ve parçanın kutusu (yönergenin üstünden aralığın ilk sorusunun etiketine)."""
+    sonuc = []
+    with pdfplumber.open(str(pdf_yolu)) as pdf:
+        sayfa = pdf.pages[sayfa_no - 1]
+        ayirici, ust, alt = icerik_alani(sayfa)
+        tum = etiketler(sayfa.extract_words(), ayirici, ust, alt)
+        for sutun, (x0, x1) in enumerate(((SOL_KENAR, ayirici - 3), (ayirici + 3, SAG_KENAR))):
+            satirlar = sayfa.crop((x0, ust, x1, alt)).extract_text_lines()
+            for i, satir in enumerate(satirlar):
+                metin = " ".join(x["text"] for x in satirlar[i : i + 3])
+                m = ORTAK.search(satir["text"])
+                if not m or not ORTAK_GEREK.search(metin):
+                    continue
+                a, b = int(m.group(1)), int(m.group(2))
+                ilk = [e for e in tum if e["no"] == a and e["sutun"] == sutun and e["top"] > satir["top"]]
+                if not ilk or b < a or b - a > 6:
+                    continue
+                y0, y1 = satir["top"] - 4, min(e["top"] for e in ilk) - 6
+                sonuc.append({"aralik": (a, b), "sutun": sutun, "kutu": (x0, y0, x1, y1), "sayfa": sayfa_no})
+    return sonuc
+
+
+def kirp_gorsel(cizim, kutu) -> Image.Image | None:
+    x0, y0, x1, y1 = kutu
+    gri = cizim.crop((int(x0 * OLCEK), int(y0 * OLCEK), int(x1 * OLCEK), int(y1 * OLCEK))).convert("L")
+    sinir = ImageOps.invert(gri).point(lambda v: 255 if v > 24 else 0).getbbox()
+    if not sinir:
+        return None
+    l, t, r, b = sinir
+    return gri.crop((max(0, l - KENAR_PX), max(0, t - KENAR_PX), min(gri.width, r + KENAR_PX), min(gri.height, b + KENAR_PX)))
+
+
+def ust_uste(ust: Image.Image, alt: Image.Image) -> Image.Image:
+    """Ortak parça üstte, soru altta; arada boşluk (sola yaslı)."""
+    g = max(ust.width, alt.width)
+    tuval = Image.new("L", (g, ust.height + ARA_PX + alt.height), 255)
+    tuval.paste(ust, (0, 0))
+    tuval.paste(alt, (0, ust.height + ARA_PX))
+    return tuval
+
+
 def main() -> None:
+    """Bütün belgelerin etiketlenen testleri (`belgeler.json` `testler`) için kırpma.
+
+    Kaynak `metin.py` çıktısıdır (soru, sayfa); konu etiketinden bağımsız koşar.
+    `--belge 2026-ayt` yalnız bir belgeyi yeniden kırpar (öteki raporlar korunur).
+    """
     GORSEL_DIZINI.mkdir(parents=True, exist_ok=True)
-    for eski in GORSEL_DIZINI.glob("*.webp"):
-        eski.unlink()
-    bler = {b["id"]: b for b in belgeler()}
-    rapor: dict[str, dict] = {}
-    for yol in etiket_dosyalari():
-        e = oku(yol)
-        belge = bler[e["belge"]]
-        pdf_yolu = PDF_DIZINI / f"{belge['id']}.pdf"
-        sayfalar: dict[int, list[int]] = {}
-        for s in e["sorular"]:
-            sayfalar.setdefault(s["sayfa"], []).append(s["no"])
+    tek = sys.argv[sys.argv.index("--belge") + 1] if "--belge" in sys.argv else None
+    rapor: dict[str, dict] = json.loads(RAPOR.read_text(encoding="utf-8")) if tek and RAPOR.exists() else {}
+    for b in belgeler():
+        if tek and b["id"] != tek:
+            continue
+        for eski in GORSEL_DIZINI.glob(f"{b['id']}-*.webp"):
+            eski.unlink()
+        for k in [k for k in rapor if k.startswith(f"{b['id']}-")]:
+            del rapor[k]
+        metin = oku(METIN_DIZINI / f"{b['id']}.json")
+        pdf_yolu = PDF_DIZINI / f"{b['id']}.pdf"
         belge_pdf = pdfium.PdfDocument(str(pdf_yolu))
-        for sayfa_no, nolar in sorted(sayfalar.items()):
-            cizim = belge_pdf[sayfa_no - 1].render(scale=OLCEK, grayscale=True).to_pil()
-            for no, r in kirp_sayfa(pdf_yolu, sayfa_no, nolar, cizim).items():
-                kimlik = f"{e['belge']}-{e['test']}-{no}"
-                gorsel = r.pop("gorsel", None)
-                if gorsel is not None:
-                    dosya = GORSEL_DIZINI / f"{kimlik}.webp"
-                    gorsel.save(dosya, "WEBP", quality=WEBP_KALITE, method=6)
-                    r.update({"genislik": gorsel.width, "yukseklik": gorsel.height, "bayt": dosya.stat().st_size})
-                rapor[kimlik] = {"sayfa": sayfa_no, **r}
+        cizimler: dict[int, Image.Image] = {}
+
+        def cizim(sayfa_no: int) -> Image.Image:
+            if sayfa_no not in cizimler:
+                cizimler[sayfa_no] = belge_pdf[sayfa_no - 1].render(scale=OLCEK, grayscale=True).to_pil()
+            return cizimler[sayfa_no]
+
+        for test in b["testler"]:
+            sorular = metin["sorular"].get(test, [])
+            sayfalar: dict[int, list[int]] = {}
+            for q in sorular:
+                sayfalar.setdefault(q["sayfa"], []).append(q["no"])
+            # Ortak parçalar: testin sayfalarında, aralığın ilk sorusu o sayfadaysa.
+            parcalar: dict[int, dict] = {}
+            for sayfa_no, nolar in sayfalar.items():
+                for p in ortak_parcalar(pdf_yolu, sayfa_no):
+                    a, b2 = p["aralik"]
+                    if a not in nolar:
+                        continue
+                    gorsel = kirp_gorsel(cizim(sayfa_no), p["kutu"])
+                    for n in range(a, b2 + 1):
+                        parcalar[n] = {**p, "gorsel": gorsel}
+            for sayfa_no, nolar in sorted(sayfalar.items()):
+                for no, r in kirp_sayfa(pdf_yolu, sayfa_no, nolar, cizim(sayfa_no)).items():
+                    kimlik = f"{b['id']}-{test}-{no}"
+                    gorsel = r.pop("gorsel", None)
+                    parca = parcalar.get(no)
+                    if gorsel is not None and parca:
+                        if parca["gorsel"] is None:
+                            r["durum"] = "ortak parça boş"
+                            gorsel = None
+                        else:
+                            gorsel = ust_uste(parca["gorsel"], gorsel)
+                            r["ortak"] = [parca["aralik"][0], parca["aralik"][1], parca["sayfa"]]
+                    if gorsel is not None:
+                        dosya = GORSEL_DIZINI / f"{kimlik}.webp"
+                        gorsel.save(dosya, "WEBP", quality=WEBP_KALITE, method=6)
+                        r.update({"genislik": gorsel.width, "yukseklik": gorsel.height, "bayt": dosya.stat().st_size})
+                    rapor[kimlik] = {"sayfa": sayfa_no, **r}
         belge_pdf.close()
     RAPOR.write_text(json.dumps(rapor, ensure_ascii=False, indent=1), encoding="utf-8")
     tamam = [k for k, r in rapor.items() if r["durum"] == "tamam"]
     toplam = sum(r.get("bayt", 0) for r in rapor.values())
-    print(f"kirp: {len(tamam)}/{len(rapor)} soru kırpıldı, {toplam / 1024:.0f} KB")
+    ortak = sum(1 for r in rapor.values() if r.get("ortak"))
+    print(f"kirp: {len(tamam)}/{len(rapor)} soru kırpıldı ({ortak} ortak parçalı), {toplam / 1024 / 1024:.1f} MB")
     for k, r in rapor.items():
         if r["durum"] != "tamam":
             print(f"  YAYIMLANMAZ {k}: {r['durum']}")

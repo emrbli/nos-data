@@ -1,53 +1,29 @@
 {
-  "_not": "Elle: ÖSYM 'Sınav Soru ve Cevapları' (osym.gov.tr/SinavGrubu/Menu/323) yayım sayfalarından. cozumUrl: MEB OGM Materyal çözüm videolu YKS çıkmış soru kitapları (MEB duyurusu 06.03.2025: 2018-2024); kapsamadığı yılda null. testler: bu belgede etiketlenen testler.",
+  "_not": "Elle: ÖSYM 'Sınav Soru ve Cevapları' (osym.gov.tr/SinavGrubu/Menu/323) yayım sayfalarından. cozumUrl: MEB OGM Materyal çözüm videolu YKS çıkmış soru kitapları (MEB duyurusu 06.03.2025: 2018-2024); kapsamadığı yılda null. testler: bu belgede etiketlenen testler. 2026-11-19: 2019-2026 TYT (dört test), AYT (dört test) ve YDT İngilizce.",
   "belgeler": [
-    {
-      "id": "2019-tyt", "yil": 2019, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
-      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2019/YKS/TSK/tyt_yks_2019_web.pdf",
-      "yayimUrl": "https://www.osym.gov.tr/2019yks-tyt-ayt-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
-      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
-    },
-    {
-      "id": "2020-tyt", "yil": 2020, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
-      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/YKS/TSK/tyt_yks_2020.pdf",
-      "yayimUrl": "https://www.osym.gov.tr/2020yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
-      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
-    },
-    {
-      "id": "2021-tyt", "yil": 2021, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
-      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2021/YKS/TSK/tyt_yks_2021.pdf",
-      "yayimUrl": "https://www.osym.gov.tr/2021yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
-      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
-    },
-    {
-      "id": "2022-tyt", "yil": 2022, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
-      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/YKS/TSK/yks_2022_tyt.pdf",
-      "yayimUrl": "https://www.osym.gov.tr/2022yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
-      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
-    },
-    {
-      "id": "2023-tyt", "yil": 2023, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
-      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2023/YKS/TSK/yks_tyt_2023_kitapcik_T23ky.pdf",
-      "yayimUrl": "https://www.osym.gov.tr/2023yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
-      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
-    },
-    {
-      "id": "2024-tyt", "yil": 2024, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
-      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/YKS/TSK/yks_tyt_2024_kitapcik_T24kt.pdf",
-      "yayimUrl": "https://www.osym.gov.tr/2024yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
-      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
-    },
-    {
-      "id": "2025-tyt", "yil": 2025, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
-      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2025/YKS/TSK/yks_tyt_2025_kitapcik_d250.pdf",
-      "yayimUrl": "https://www.osym.gov.tr/2025yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
-      "cozumUrl": null
-    },
-    {
-      "id": "2026-tyt", "yil": 2026, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
-      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2026/YKS/TSK/yks_tyt_2026_kitapcik_d350.pdf",
-      "yayimUrl": "https://www.osym.gov.tr/2026yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
-      "cozumUrl": null
-    }
+    {"id": "2019-tyt", "yil": 2019, "oturum": "TYT", "kapsam": "tam", "testler": ["trk", "sos", "mat", "fen"], "dersler": ["tyt_trk", "tyt_trh", "tyt_cog", "tyt_fel", "tyt_din", "tyt_mat", "tyt_geo", "tyt_fiz", "tyt_kim", "tyt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2019/YKS/TSK/tyt_yks_2019_web.pdf", "yayimUrl": "https://www.osym.gov.tr/2019yks-tyt-ayt-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2019-ayt", "yil": 2019, "oturum": "AYT", "kapsam": "tam", "testler": ["tde-sos1", "sos2", "mat", "fen"], "dersler": ["ayt_tde", "ayt_trh1", "ayt_cog1", "ayt_trh2", "ayt_cog2", "ayt_fel", "ayt_psi", "ayt_sosy", "ayt_man", "ayt_din", "ayt_mat", "ayt_geo", "ayt_fiz", "ayt_kim", "ayt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2019/YKS/TSK/ayt_yks_2019_web.pdf", "yayimUrl": "https://www.osym.gov.tr/2019yks-tyt-ayt-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2019-ydt-ing", "yil": 2019, "oturum": "YDT", "kapsam": "tam", "testler": ["ing"], "dersler": ["ydt_ydil"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2019/YKS/TSK/ydt_ingilizce_yks_2019_web.pdf", "yayimUrl": "https://www.osym.gov.tr/2019yks-tyt-ayt-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2020-tyt", "yil": 2020, "oturum": "TYT", "kapsam": "tam", "testler": ["trk", "sos", "mat", "fen"], "dersler": ["tyt_trk", "tyt_trh", "tyt_cog", "tyt_fel", "tyt_din", "tyt_mat", "tyt_geo", "tyt_fiz", "tyt_kim", "tyt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/YKS/TSK/tyt_yks_2020.pdf", "yayimUrl": "https://www.osym.gov.tr/2020yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2020-ayt", "yil": 2020, "oturum": "AYT", "kapsam": "tam", "testler": ["tde-sos1", "sos2", "mat", "fen"], "dersler": ["ayt_tde", "ayt_trh1", "ayt_cog1", "ayt_trh2", "ayt_cog2", "ayt_fel", "ayt_psi", "ayt_sosy", "ayt_man", "ayt_din", "ayt_mat", "ayt_geo", "ayt_fiz", "ayt_kim", "ayt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/YKS/TSK/ayt_yks_2020.pdf", "yayimUrl": "https://www.osym.gov.tr/2020yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2020-ydt-ing", "yil": 2020, "oturum": "YDT", "kapsam": "tam", "testler": ["ing"], "dersler": ["ydt_ydil"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/YKS/TSK/ydt_ingilizce_yks_2020.pdf", "yayimUrl": "https://www.osym.gov.tr/2020yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2021-tyt", "yil": 2021, "oturum": "TYT", "kapsam": "tam", "testler": ["trk", "sos", "mat", "fen"], "dersler": ["tyt_trk", "tyt_trh", "tyt_cog", "tyt_fel", "tyt_din", "tyt_mat", "tyt_geo", "tyt_fiz", "tyt_kim", "tyt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2021/YKS/TSK/tyt_yks_2021.pdf", "yayimUrl": "https://www.osym.gov.tr/2021yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2021-ayt", "yil": 2021, "oturum": "AYT", "kapsam": "tam", "testler": ["tde-sos1", "sos2", "mat", "fen"], "dersler": ["ayt_tde", "ayt_trh1", "ayt_cog1", "ayt_trh2", "ayt_cog2", "ayt_fel", "ayt_psi", "ayt_sosy", "ayt_man", "ayt_din", "ayt_mat", "ayt_geo", "ayt_fiz", "ayt_kim", "ayt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2021/YKS/TSK/ayt_yks_2021.pdf", "yayimUrl": "https://www.osym.gov.tr/2021yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2021-ydt-ing", "yil": 2021, "oturum": "YDT", "kapsam": "tam", "testler": ["ing"], "dersler": ["ydt_ydil"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2021/YKS/TSK/ydt_ingilizce_yks_2021.pdf", "yayimUrl": "https://www.osym.gov.tr/2021yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2022-tyt", "yil": 2022, "oturum": "TYT", "kapsam": "tam", "testler": ["trk", "sos", "mat", "fen"], "dersler": ["tyt_trk", "tyt_trh", "tyt_cog", "tyt_fel", "tyt_din", "tyt_mat", "tyt_geo", "tyt_fiz", "tyt_kim", "tyt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/YKS/TSK/yks_2022_tyt.pdf", "yayimUrl": "https://www.osym.gov.tr/2022yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2022-ayt", "yil": 2022, "oturum": "AYT", "kapsam": "tam", "testler": ["tde-sos1", "sos2", "mat", "fen"], "dersler": ["ayt_tde", "ayt_trh1", "ayt_cog1", "ayt_trh2", "ayt_cog2", "ayt_fel", "ayt_psi", "ayt_sosy", "ayt_man", "ayt_din", "ayt_mat", "ayt_geo", "ayt_fiz", "ayt_kim", "ayt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/YKS/TSK/yks_2022_ayt.pdf", "yayimUrl": "https://www.osym.gov.tr/2022yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2022-ydt-ing", "yil": 2022, "oturum": "YDT", "kapsam": "tam", "testler": ["ing"], "dersler": ["ydt_ydil"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/YKS/TSK/yks_2022_ydt_ingilizce.pdf", "yayimUrl": "https://www.osym.gov.tr/2022yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2023-tyt", "yil": 2023, "oturum": "TYT", "kapsam": "tam", "testler": ["trk", "sos", "mat", "fen"], "dersler": ["tyt_trk", "tyt_trh", "tyt_cog", "tyt_fel", "tyt_din", "tyt_mat", "tyt_geo", "tyt_fiz", "tyt_kim", "tyt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2023/YKS/TSK/yks_tyt_2023_kitapcik_T23ky.pdf", "yayimUrl": "https://www.osym.gov.tr/2023yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2023-ayt", "yil": 2023, "oturum": "AYT", "kapsam": "tam", "testler": ["tde-sos1", "sos2", "mat", "fen"], "dersler": ["ayt_tde", "ayt_trh1", "ayt_cog1", "ayt_trh2", "ayt_cog2", "ayt_fel", "ayt_psi", "ayt_sosy", "ayt_man", "ayt_din", "ayt_mat", "ayt_geo", "ayt_fiz", "ayt_kim", "ayt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2023/YKS/TSK/yks_ayt_2023_kitapcik_g5A2H.pdf", "yayimUrl": "https://www.osym.gov.tr/2023yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2023-ydt-ing", "yil": 2023, "oturum": "YDT", "kapsam": "tam", "testler": ["ing"], "dersler": ["ydt_ydil"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2023/YKS/TSK/yks_ydt_ing_2023_kitapcik_Sp72a.pdf", "yayimUrl": "https://www.osym.gov.tr/2023yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2024-tyt", "yil": 2024, "oturum": "TYT", "kapsam": "tam", "testler": ["trk", "sos", "mat", "fen"], "dersler": ["tyt_trk", "tyt_trh", "tyt_cog", "tyt_fel", "tyt_din", "tyt_mat", "tyt_geo", "tyt_fiz", "tyt_kim", "tyt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/YKS/TSK/yks_tyt_2024_kitapcik_T24kt.pdf", "yayimUrl": "https://www.osym.gov.tr/2024yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2024-ayt", "yil": 2024, "oturum": "AYT", "kapsam": "tam", "testler": ["tde-sos1", "sos2", "mat", "fen"], "dersler": ["ayt_tde", "ayt_trh1", "ayt_cog1", "ayt_trh2", "ayt_cog2", "ayt_fel", "ayt_psi", "ayt_sosy", "ayt_man", "ayt_din", "ayt_mat", "ayt_geo", "ayt_fiz", "ayt_kim", "ayt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/YKS/TSK/yks_ayt_2024_kitapcik_ts85k.pdf", "yayimUrl": "https://www.osym.gov.tr/2024yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2024-ydt-ing", "yil": 2024, "oturum": "YDT", "kapsam": "tam", "testler": ["ing"], "dersler": ["ydt_ydil"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/YKS/TSK/yks_ydt_ing_2024_kitapcik_Sp865a.pdf", "yayimUrl": "https://www.osym.gov.tr/2024yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"},
+    {"id": "2025-tyt", "yil": 2025, "oturum": "TYT", "kapsam": "tam", "testler": ["trk", "sos", "mat", "fen"], "dersler": ["tyt_trk", "tyt_trh", "tyt_cog", "tyt_fel", "tyt_din", "tyt_mat", "tyt_geo", "tyt_fiz", "tyt_kim", "tyt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2025/YKS/TSK/yks_tyt_2025_kitapcik_d250.pdf", "yayimUrl": "https://www.osym.gov.tr/2025yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": null},
+    {"id": "2025-ayt", "yil": 2025, "oturum": "AYT", "kapsam": "tam", "testler": ["tde-sos1", "sos2", "mat", "fen"], "dersler": ["ayt_tde", "ayt_trh1", "ayt_cog1", "ayt_trh2", "ayt_cog2", "ayt_fel", "ayt_psi", "ayt_sosy", "ayt_man", "ayt_din", "ayt_mat", "ayt_geo", "ayt_fiz", "ayt_kim", "ayt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2025/YKS/TSK/yks_ayt_2025_kitapcik_st12.pdf", "yayimUrl": "https://www.osym.gov.tr/2025yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": null},
+    {"id": "2025-ydt-ing", "yil": 2025, "oturum": "YDT", "kapsam": "tam", "testler": ["ing"], "dersler": ["ydt_ydil"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2025/YKS/TSK/yks_ydt_ing_2025_kitapcik_Si42.pdf", "yayimUrl": "https://www.osym.gov.tr/2025yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": null},
+    {"id": "2026-tyt", "yil": 2026, "oturum": "TYT", "kapsam": "tam", "testler": ["trk", "sos", "mat", "fen"], "dersler": ["tyt_trk", "tyt_trh", "tyt_cog", "tyt_fel", "tyt_din", "tyt_mat", "tyt_geo", "tyt_fiz", "tyt_kim", "tyt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2026/YKS/TSK/yks_tyt_2026_kitapcik_d350.pdf", "yayimUrl": "https://www.osym.gov.tr/2026yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": null},
+    {"id": "2026-ayt", "yil": 2026, "oturum": "AYT", "kapsam": "tam", "testler": ["tde-sos1", "sos2", "mat", "fen"], "dersler": ["ayt_tde", "ayt_trh1", "ayt_cog1", "ayt_trh2", "ayt_cog2", "ayt_fel", "ayt_psi", "ayt_sosy", "ayt_man", "ayt_din", "ayt_mat", "ayt_geo", "ayt_fiz", "ayt_kim", "ayt_bio"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2026/YKS/TSK/yks_ayt_2026_kitapcik_kt12.pdf", "yayimUrl": "https://www.osym.gov.tr/2026yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": null},
+    {"id": "2026-ydt-ing", "yil": 2026, "oturum": "YDT", "kapsam": "tam", "testler": ["ing"], "dersler": ["ydt_ydil"], "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2026/YKS/TSK/ydt_ing_2026_kitapcik_Di55.pdf", "yayimUrl": "https://www.osym.gov.tr/2026yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari", "cozumUrl": null}
   ]
 }

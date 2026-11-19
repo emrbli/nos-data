@@ -41,7 +41,11 @@ def kur() -> dict:
                 "cevapDegisti": s.get("cevapDegisti"),
                 "etiket": s["etiket"],
             }
-            sorular.append({k: kayit[k] for k in SORU_ALANLARI})
+            # Boyut için varsayılanlar yazılmaz (null, iptal false, etiket); uygulama eksik alanı varsayılanla okur.
+            sorular.append({
+                k: kayit[k] for k in SORU_ALANLARI
+                if kayit[k] is not None and k != "etiket" and not (k == "iptal" and kayit[k] is False)
+            })
     sorular.sort(key=lambda s: (sira[s["belge"]], s["test"], s["no"]))
     return {
         "surum": 1,

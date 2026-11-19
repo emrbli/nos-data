@@ -12,12 +12,14 @@ Konu kimliğinin katalogda olduğunu nos-academy `pnpm test` denetler (katalog o
 
 from __future__ import annotations
 
+import json
 import sys
 import time
 
 import httpx
 
 from .ortak import (
+    BURASI,
     ALT_KONULAR,
     ETIKET_TURLERI,
     HARFLER,
@@ -34,6 +36,7 @@ ETIKET_SORU_ALANLARI = {"no", "sayfa", "konu", "altKonu", "ekKonu", "cevap", "ip
 
 def denetle() -> list[str]:
     hatalar: list[str] = []
+    duzeltme = json.loads((BURASI / "duzeltmeler.json").read_text(encoding="utf-8"))["sorular"]
     bler = {}
     for b in belgeler():
         if b["id"] in bler:
@@ -92,7 +95,10 @@ def denetle() -> list[str]:
                 hatalar.append(f"{ad}: cevap {s.get('cevap')}")
             if metin:
                 kitapcik = metin["anahtar"][test].get(str(s["no"]), "yok")
-                if kitapcik != s.get("cevap"):
+                # ÖSYM'nin sonradan yaptığı değişiklik (duzeltmeler.json) kitapçık anahtarına üstün gelir.
+                if f"{b['id']}-{test}-{s['no']}" in duzeltme:
+                    pass
+                elif kitapcik != s.get("cevap"):
                     hatalar.append(f"{ad}: cevap {s.get('cevap')}, kitapçık anahtarı {kitapcik}")
                 sf = next((q["sayfa"] for q in metin["sorular"].get(test, []) if q["no"] == s["no"]), None)
                 if sf != s.get("sayfa"):
