@@ -11,3 +11,6 @@ dist/
 dist.tmp/
 
 .DS_Store
+
+# Çıkmış soru dizini: ÖSYM PDF'leri, çıkarılan metin ve ham etiketleme (yalnız yerel; telif ÖSYM'de).
+pipeline/cikmis/yerel/

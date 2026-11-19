@@ -1,0 +1,53 @@
+{
+  "_not": "Elle: ÖSYM 'Sınav Soru ve Cevapları' (osym.gov.tr/SinavGrubu/Menu/323) yayım sayfalarından. cozumUrl: MEB OGM Materyal çözüm videolu YKS çıkmış soru kitapları (MEB duyurusu 06.03.2025: 2018-2024); kapsamadığı yılda null. testler: bu belgede etiketlenen testler.",
+  "belgeler": [
+    {
+      "id": "2019-tyt", "yil": 2019, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
+      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2019/YKS/TSK/tyt_yks_2019_web.pdf",
+      "yayimUrl": "https://www.osym.gov.tr/2019yks-tyt-ayt-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
+      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
+    },
+    {
+      "id": "2020-tyt", "yil": 2020, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
+      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/YKS/TSK/tyt_yks_2020.pdf",
+      "yayimUrl": "https://www.osym.gov.tr/2020yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
+      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
+    },
+    {
+      "id": "2021-tyt", "yil": 2021, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
+      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2021/YKS/TSK/tyt_yks_2021.pdf",
+      "yayimUrl": "https://www.osym.gov.tr/2021yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
+      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
+    },
+    {
+      "id": "2022-tyt", "yil": 2022, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
+      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/YKS/TSK/yks_2022_tyt.pdf",
+      "yayimUrl": "https://www.osym.gov.tr/2022yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
+      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
+    },
+    {
+      "id": "2023-tyt", "yil": 2023, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
+      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2023/YKS/TSK/yks_tyt_2023_kitapcik_T23ky.pdf",
+      "yayimUrl": "https://www.osym.gov.tr/2023yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
+      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
+    },
+    {
+      "id": "2024-tyt", "yil": 2024, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
+      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/YKS/TSK/yks_tyt_2024_kitapcik_T24kt.pdf",
+      "yayimUrl": "https://www.osym.gov.tr/2024yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
+      "cozumUrl": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari"
+    },
+    {
+      "id": "2025-tyt", "yil": 2025, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
+      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2025/YKS/TSK/yks_tyt_2025_kitapcik_d250.pdf",
+      "yayimUrl": "https://www.osym.gov.tr/2025yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
+      "cozumUrl": null
+    },
+    {
+      "id": "2026-tyt", "yil": 2026, "oturum": "TYT", "kapsam": "tam", "testler": ["mat"], "dersler": ["tyt_mat", "tyt_geo"],
+      "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2026/YKS/TSK/yks_tyt_2026_kitapcik_d350.pdf",
+      "yayimUrl": "https://www.osym.gov.tr/2026yks-tyt-ayt-ve-ydt-temel-soru-kitapciklari-ve-cevap-anahtarlari",
+      "cozumUrl": null
+    }
+  ]
+}
