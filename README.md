@@ -56,6 +56,7 @@ git geçmişine binary girmez; `archive/` git-izlidir.
 ```bash
 scripts/release.sh --dry-run   # tag ve hash'i göster
 scripts/release.sh             # gh release create, --latest
+scripts/release.sh --cikmis    # yalnız dist/cikmis.json → latest release (nos.db değişmez)
 ```
 
 Tag biçimi `v{schemaVersion}-{exportedAt tarihi}`, örn. `v8-2026-07-26`. Release'e beş dosya
