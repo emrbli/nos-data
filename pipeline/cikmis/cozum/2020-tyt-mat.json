@@ -1,0 +1,206 @@
+{
+ "kaynak": "https://ogmmateryal.eba.gov.tr/yks-cikmis-soru-kitaplari",
+ "tarih": "2026-11-19",
+ "sorular": {
+  "1": {
+   "url": "https://meb.ai/bCv1Py",
+   "skor": 0.921,
+   "kitapNo": 12
+  },
+  "2": {
+   "url": "https://meb.ai/6sBPwa",
+   "skor": 0.906,
+   "kitapNo": 94
+  },
+  "3": {
+   "url": "https://meb.ai/Ywc044",
+   "skor": 0.852,
+   "kitapNo": 95
+  },
+  "4": {
+   "url": "https://meb.ai/7Iyadl",
+   "skor": 0.903,
+   "kitapNo": 13
+  },
+  "5": {
+   "url": "https://meb.ai/jsl7Zx",
+   "skor": 0.975,
+   "kitapNo": 71
+  },
+  "6": {
+   "url": "https://meb.ai/iYianq",
+   "skor": 0.93,
+   "kitapNo": 72
+  },
+  "7": {
+   "url": "https://meb.ai/UvyrUfg",
+   "skor": 0.878,
+   "kitapNo": 14
+  },
+  "8": {
+   "url": "https://meb.ai/N5xboK",
+   "skor": 0.915,
+   "kitapNo": 73
+  },
+  "9": {
+   "url": "https://meb.ai/wr7Mjr",
+   "skor": 0.883,
+   "kitapNo": 129
+  },
+  "10": {
+   "url": "https://meb.ai/j9GDKV",
+   "skor": 0.975,
+   "kitapNo": 52
+  },
+  "11": {
+   "url": "https://meb.ai/jAVESy",
+   "skor": 0.951,
+   "kitapNo": 15
+  },
+  "12": {
+   "url": "https://meb.ai/Uobu6iG",
+   "skor": 0.848,
+   "kitapNo": 216
+  },
+  "13": {
+   "url": "https://meb.ai/NiFjVQ",
+   "skor": 0.822,
+   "kitapNo": 244
+  },
+  "14": {
+   "url": "https://meb.ai/UPuaCrs",
+   "skor": 0.782,
+   "kitapNo": 245
+  },
+  "15": {
+   "url": "https://meb.ai/Vs1f3Z",
+   "skor": 0.982,
+   "kitapNo": 259
+  },
+  "16": {
+   "url": "https://meb.ai/oyl3iR",
+   "skor": 0.975,
+   "kitapNo": 130
+  },
+  "17": {
+   "url": "https://meb.ai/wKFlSd",
+   "skor": 0.824,
+   "kitapNo": 131
+  },
+  "18": {
+   "url": "https://meb.ai/U5eAilM",
+   "skor": 0.98,
+   "kitapNo": 132
+  },
+  "19": {
+   "url": "https://meb.ai/q4fMZg",
+   "skor": 0.978,
+   "kitapNo": 133
+  },
+  "20": {
+   "url": "https://meb.ai/U70JRYA",
+   "skor": 0.988,
+   "kitapNo": 134
+  },
+  "21": {
+   "url": "https://meb.ai/a1XBxQ",
+   "skor": 0.979,
+   "kitapNo": 135
+  },
+  "22": {
+   "url": "https://meb.ai/UvrlxcQ",
+   "skor": 0.974,
+   "kitapNo": 136
+  },
+  "23": {
+   "url": "https://meb.ai/U3jCWzg",
+   "skor": 0.878,
+   "kitapNo": 260
+  },
+  "24": {
+   "url": "https://meb.ai/LunuIO",
+   "skor": 0.919,
+   "kitapNo": 137
+  },
+  "25": {
+   "url": "https://meb.ai/RcaVSW",
+   "skor": 0.969,
+   "kitapNo": 138
+  },
+  "26": {
+   "url": "https://meb.ai/UaZJyuj",
+   "skor": 0.906,
+   "kitapNo": 139
+  },
+  "27": {
+   "url": "https://meb.ai/UTj8KS9",
+   "skor": 0.969,
+   "kitapNo": 140
+  },
+  "28": {
+   "url": "https://meb.ai/UpFxbu7",
+   "skor": 0.981,
+   "kitapNo": 141
+  },
+  "29": {
+   "url": "https://meb.ai/UKAcKQ1",
+   "skor": 0.972,
+   "kitapNo": 225
+  },
+  "30": {
+   "url": "https://meb.ai/O7CJob",
+   "skor": 0.843,
+   "kitapNo": 234
+  },
+  "31": {
+   "url": "https://meb.ai/UZ3SNdM",
+   "skor": 0.968,
+   "kitapNo": 274
+  },
+  "32": {
+   "url": "https://meb.ai/URIy9DG",
+   "skor": 0.948,
+   "kitapNo": 304
+  },
+  "33": {
+   "url": "https://meb.ai/UvSNuIC",
+   "skor": 0.949,
+   "kitapNo": 290
+  },
+  "34": {
+   "url": "https://meb.ai/UkOOFf0",
+   "skor": 0.954,
+   "kitapNo": 326
+  },
+  "35": {
+   "url": "https://meb.ai/UzVUU7o",
+   "skor": 0.901,
+   "kitapNo": 327
+  },
+  "36": {
+   "url": "https://meb.ai/69eHIJ",
+   "skor": 0.97,
+   "kitapNo": 328
+  },
+  "37": {
+   "url": "https://meb.ai/UIZFYaD",
+   "skor": 0.871,
+   "kitapNo": 329
+  },
+  "38": {
+   "url": "https://meb.ai/U5cBJ4U",
+   "skor": 0.929,
+   "kitapNo": 314
+  },
+  "39": {
+   "url": "https://meb.ai/SWjJ5l",
+   "skor": 0.98,
+   "kitapNo": 346
+  },
+  "40": {
+   "url": "https://meb.ai/03tj6H",
+   "skor": 0.98,
+   "kitapNo": 347
+  }
+ }
+}

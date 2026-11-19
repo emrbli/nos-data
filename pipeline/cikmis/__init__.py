@@ -26,6 +26,7 @@ Hat (nos-data kökünden):
   # etiketleme: pipeline/cikmis/yerel/metin/<belge>.json okunur, pipeline/cikmis/etiket/<belge>-<test>.json yazılır
   uv run --with pypdf python -m pipeline.cikmis.denetle [--baglanti]
   uv run --with pypdf python -m pipeline.cikmis.paketle    # denetim -> dist/cikmis.json + sha256
+  uv run python -m pipeline.cikmis.cozum_ekle              # MEB çözüm videosu bağlantıları -> dist/cikmis.json (cozumUrl)
   uv run python -m pipeline.cikmis.kirp                    # soru görselleri -> pipeline/cikmis/yerel/gorsel
   uv run python -m pipeline.cikmis.gorsel_paketle          # -> dist/cikmis-gorsel.{bin,json}
 
