@@ -3,11 +3,11 @@
 #
 #   scripts/release.sh            # tag: v{schemaVersion}-{exportedAt tarihi}
 #   scripts/release.sh --dry-run  # yalnız ne yapılacağını yazdır
-#   scripts/release.sh --cikmis   # nos.db değişmeden yalnız dist/cikmis.json'ı
+#   scripts/release.sh --cikmis   # nos.db değişmeden yalnız dist/cikmis*.json/.bin'i
 #                                 # son (latest) release'e yükle/değiştir
 #   scripts/release.sh --cikmis --dry-run
 #
-# dist/cikmis.json (çıkmış soru dizini; pipeline/cikmis/paketle) varsa yeni
+# dist/cikmis.json ve cikmis-gorsel.{json,bin} (pipeline/cikmis) varsa yeni
 # release'e de eklenir. Uygulama onu releases/latest/download/cikmis.json'dan alır.
 #
 # Kapılar: dist/validation_report.md "PASS" içermeli; dist/nos.db sha256'sı
@@ -35,14 +35,24 @@ if [[ $CIKMIS_ONLY -eq 1 ]]; then
   [[ -f "$CIKMIS" ]] || die "dist/cikmis.json yok — önce 'uv run --with pypdf python -m pipeline.cikmis.paketle'."
   python3 -c "import json,sys;d=json.load(open(sys.argv[1]));assert d['sorular'] and d['belgeler']" "$CIKMIS" \
     || die "dist/cikmis.json geçersiz (sorular/belgeler boş ya da JSON bozuk)."
+  UPLOAD=("$CIKMIS")
+  GBIN="$DIST/cikmis-gorsel.bin"; GJSON="$DIST/cikmis-gorsel.json"
+  if [[ -f "$GBIN" || -f "$GJSON" ]]; then
+    [[ -f "$GBIN" && -f "$GJSON" ]] || die "cikmis-gorsel.bin ve .json birlikte olmalı."
+    GSHA=$(shasum -a 256 "$GBIN" | cut -d' ' -f1)
+    python3 -c "import json,sys;d=json.load(open(sys.argv[1]));assert d['sha256']==sys.argv[2], 'sha'" "$GJSON" "$GSHA" \
+      || die "cikmis-gorsel.json sha256'sı cikmis-gorsel.bin ($GSHA) ile uyuşmuyor."
+    UPLOAD+=("$GJSON" "$GBIN")
+  fi
   TAG=$(gh release view --repo "$REPO" --json tagName -q .tagName) || die "latest release bulunamadı."
   SHA=$(shasum -a 256 "$CIKMIS" | cut -d' ' -f1)
   echo "tag:    $TAG (latest; nos.db değişmez)"
   echo "dosya:  cikmis.json sha256 $SHA"
+  [[ ${#UPLOAD[@]} -gt 1 ]] && echo "dosya:  cikmis-gorsel.bin sha256 $GSHA (+ cikmis-gorsel.json)"
   if [[ $DRY_RUN -eq 1 ]]; then echo "(dry-run, yüklenmedi)"; exit 0; fi
-  gh release upload "$TAG" "$CIKMIS" --repo "$REPO" --clobber
+  gh release upload "$TAG" "${UPLOAD[@]}" --repo "$REPO" --clobber
   echo
-  echo "Yüklendi: https://github.com/$REPO/releases/latest/download/cikmis.json"
+  for a in "${UPLOAD[@]}"; do echo "Yüklendi: https://github.com/$REPO/releases/latest/download/$(basename "$a")"; done
   echo "Pin için: \"sha256_cikmis\": \"$SHA\" (tag $TAG)"
   exit 0
 fi
@@ -73,7 +83,9 @@ if [[ $DRY_RUN -eq 1 ]]; then echo "(dry-run, release oluşturulmadı)"; exit 0;
 
 ASSETS=("$DIST/nos.db" "$DIST/meta.json" "$DIST/fold_fixture.json"
         "$DIST/validation_report.md" "$DIST/programs.json")
-[[ -f "$DIST/cikmis.json" ]] && ASSETS+=("$DIST/cikmis.json")
+for f in cikmis.json cikmis-gorsel.json cikmis-gorsel.bin; do
+  [[ -f "$DIST/$f" ]] && ASSETS+=("$DIST/$f")
+done
 
 gh release create "$TAG" "${ASSETS[@]}" \
   --repo "$REPO" --title "$TITLE" --notes-file "$DIST/validation_report.md" --latest

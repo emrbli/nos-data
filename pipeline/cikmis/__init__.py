@@ -4,9 +4,12 @@ Tüketici: nos-academy (`assets/db/cikmis.json`, `pnpm sync-db`; tasarım
 `nos-academy/docs/CIKMIS-SORULAR.md`). Çıktı `dist/cikmis.json`, release varlığı.
 
 Kurallar (değişmez):
-- Soru metni, şık ve görsel HİÇBİR yere girmez: telif ÖSYM'de, yazılı izin yok
+- Soru metni ve şık METİN olarak hiçbir yere girmez: telif ÖSYM'de, yazılı izin yok
   (ÖSYM 29.08.2013 duyurusu; 2026-YKS duyurusu). Etiket dosyalarında ve
   `cikmis.json`'da yalnız numara, sayfa, konu, cevap harfi ve bayraklar durur.
+- İstisna, soru görselleri (proje sahibinin kararı, 2026-11-19; telif riski onda):
+  `kirp` + `gorsel_paketle` → `dist/cikmis-gorsel.{bin,json}`, yalnız release
+  varlığı olarak yayınlanır (`scripts/release.sh --cikmis`); repoya ve nos.db'ye girmez.
 - PDF'ler, çıkarılan metin ve ham etiketleme yalnız yerelde, `pipeline/cikmis/yerel/` (gitignore);
   etiketleme için okunur, commit ve release edilmez.
 - Cevap yalnız ÖSYM'nin kitapçık sonundaki anahtarından gelir; elle yazılmaz.
@@ -23,6 +26,8 @@ Hat (nos-data kökünden):
   # etiketleme: pipeline/cikmis/yerel/metin/<belge>.json okunur, pipeline/cikmis/etiket/<belge>-<test>.json yazılır
   uv run --with pypdf python -m pipeline.cikmis.denetle [--baglanti]
   uv run --with pypdf python -m pipeline.cikmis.paketle    # denetim -> dist/cikmis.json + sha256
+  uv run python -m pipeline.cikmis.kirp                    # soru görselleri -> pipeline/cikmis/yerel/gorsel
+  uv run python -m pipeline.cikmis.gorsel_paketle          # -> dist/cikmis-gorsel.{bin,json}
 
 run.py ile birleştirilmedi: tam koşu bu hattı çağırmaz, release.sh dist/cikmis.json'ı
 yüklemez (öneriler nos-academy docs/CIKMIS-SORULAR.md "Yayın adımları").
