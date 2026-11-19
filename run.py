@@ -12,6 +12,7 @@ Kullanım:
   uv run python run.py --max-pages 2    # kombo başına 2 sayfa (bounded test)
   uv run python run.py --skip-fetch     # raw/'tan yeniden merge (idempotans testi)
   uv run python run.py --skip-netler    # net çekimini atla (net_profiles boş, hızlı dev)
+  uv run python run.py --fetch-netler-only  # K1 raw'dan, ağdan yalnız eksik net yılları
 """
 
 from __future__ import annotations
@@ -213,6 +214,11 @@ def main(argv: list[str] | None = None) -> int:
                         help="Ağ yerine raw/'tan yükle (idempotans testi).")
     parser.add_argument("--skip-netler", action="store_true",
                         help="Net çekimini atla (net_profiles boş kalır; dev iterasyonu).")
+    parser.add_argument("--fetch-netler-only", action="store_true",
+                        help="K1'i raw/'tan yükle, ağdan YALNIZ eksik net yıllarını çek "
+                             "(tamamlanmış yıllar önbellekten gelir). Yerleştirme yılı aynı kalıp "
+                             "netler sonradan yayınlandığında kullanılır; YÖK Atlas'a en az istek "
+                             "(netler hâlâ yoksa puan türü başına 1).")
     parser.add_argument("--allow-missing-k2", action="store_true",
                         help="K2 (ÖSYM kılavuzu) yoksa/parse hata verirse rapor amaçlı devam "
                              "(guideCoveragePct kapısı atlanır; dist yine gerçek PASS ile üretilir).")
@@ -265,9 +271,22 @@ def main(argv: list[str] | None = None) -> int:
             if not combos:
                 log(f"  [HATA] --only {args.only!r} geçersiz. Seçenekler: SAY/EA/SÖZ/DİL/TYT")
                 return 2
+        if args.fetch_netler_only and (args.skip_fetch or args.skip_netler):
+            log("  [HATA] --fetch-netler-only, --skip-fetch/--skip-netler ile birlikte kullanılamaz.")
+            return 2
         if args.skip_fetch:
             k1_programs = _load_raw_k1(RAW_DIR, log)
             net_raw_rows = [] if args.skip_netler else _load_raw_netler(RAW_DIR, log)
+        elif args.fetch_netler_only:
+            k1_programs = _load_raw_k1(RAW_DIR, log)
+            if args.only:
+                # K1 raw'dan tümü yüklendiği için net tarafı da tüm puan türlerini kapsar.
+                log("  [uyarı] --fetch-netler-only ile --only yok sayıldı (K1 raw'dan tam yüklenir).")
+            log("FETCH NETLER (yalnız eksik yıllar; K1 raw'dan)...")
+            net_raw_rows, net_pages, net_per_combo = fetch_netler(
+                RAW_DIR, combos=SEARCH_COMBOS, max_pages=args.max_pages, logf=log)
+            log(f"  Net toplam: {len(net_raw_rows)} satır, {net_pages} sayfa (ağ), "
+                f"kombo={net_per_combo}")
         else:
             log("FETCH (K1: YÖK Atlas)...")
             k1_programs, pages, per_combo = fetch_k1(
