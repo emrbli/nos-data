@@ -164,6 +164,42 @@ def ortak_parcalar(pdf_yolu, sayfa_no: int) -> list[dict]:
     return sonuc
 
 
+# ÖSYM filigranı SOLUKLAŞTIRILIR, silinmez (kullanıcı kararı 2026-11-19): telif bildirimi
+# taşır. Gri tonlu görselde filigran ~179, metin 0. Tek ton eşlemesi, kırpma kutusu ve ölçü
+# eşlemeden ÖNCE belirlenir (görselin boyutu değişmez); 140 ve altı (metin, çizgi, koyu
+# dolgu) hiç değişmez.
+# - "standart" (onaylanan eşleme): 140 ile 250 arası üslü eğriyle açılır, 250 ve üstü beyaz;
+#   filigran ~212'ye çıkar.
+# - "dolgu" (Matematik ve Fen testleri): anlam taşıyan çok açık gri dolgular (taralı alan
+#   ~239, Venn bölgeleri ~205/227) standart eşlemede beyaza karışıyordu (2021 AYT Mat 24,
+#   2019 TYT Fen 7). Filigranı aynı yere (~212) taşıyan, ama 225 üstünü beyazdan ayrı tutan
+#   parçalı doğru: 239 -> 242, 246 -> 247.
+SOLUK_ALT, SOLUK_UST, SOLUK_US = 140, 250, 0.45
+SOLUK_DOLGU_DUGUMLERI = [(0, 0), (140, 140), (179, 212), (200, 224), (230, 236), (250, 250), (255, 255)]
+SOLUK_TEST_EGRISI: dict[str, str] = {"mat": "dolgu", "fen": "dolgu"}
+
+
+def soluk_tablosu(egri: str = "standart") -> list[int]:
+    tablo = []
+    for v in range(256):
+        if egri == "dolgu":
+            for (a, fa), (b, fb) in zip(SOLUK_DOLGU_DUGUMLERI, SOLUK_DOLGU_DUGUMLERI[1:]):
+                if a <= v <= b:
+                    tablo.append(round(fa + (fb - fa) * (v - a) / (b - a)))
+                    break
+        elif v <= SOLUK_ALT:
+            tablo.append(v)
+        elif v >= SOLUK_UST:
+            tablo.append(255)
+        else:
+            tablo.append(round(SOLUK_ALT + (255 - SOLUK_ALT) * ((v - SOLUK_ALT) / (SOLUK_UST - SOLUK_ALT)) ** SOLUK_US))
+    return tablo
+
+
+def soluklastir(gri: Image.Image, test: str = "") -> Image.Image:
+    return gri.point(soluk_tablosu(SOLUK_TEST_EGRISI.get(test, "standart")))
+
+
 def kirp_gorsel(cizim, kutu) -> Image.Image | None:
     x0, y0, x1, y1 = kutu
     gri = cizim.crop((int(x0 * OLCEK), int(y0 * OLCEK), int(x1 * OLCEK), int(y1 * OLCEK))).convert("L")
@@ -238,6 +274,7 @@ def main() -> None:
                             r["ortak"] = [parca["aralik"][0], parca["aralik"][1], parca["sayfa"]]
                     if gorsel is not None:
                         dosya = GORSEL_DIZINI / f"{kimlik}.webp"
+                        gorsel = soluklastir(gorsel, test)
                         gorsel.save(dosya, "WEBP", quality=WEBP_KALITE, method=6)
                         r.update({"genislik": gorsel.width, "yukseklik": gorsel.height, "bayt": dosya.stat().st_size})
                     rapor[kimlik] = {"sayfa": sayfa_no, **r}

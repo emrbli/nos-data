@@ -3,7 +3,7 @@
 - `cikmis-gorsel-<ders>.bin` (ör. `cikmis-gorsel-tyt_mat.bin`): o dersin webp'leri uç uca
   (başlık yok). Ders, sorunun konu kimliğinin önekidir (`tyt_mat.problem` -> `tyt_mat`).
 - `cikmis-gorsel.json` (dizin, surum 2):
-  {"surum": 2, "veriSurumu", "paketler": {"<ders>": {"dosya", "sha256", "bayt",
+  {"surum": 2, "veriSurumu" (paketleme anı), "paketler": {"<ders>": {"dosya", "sha256", "bayt",
    "sorular": {"<soru kimliği>": [ofset, uzunluk, genişlik, yükseklik]}}}}
   Uygulama modüle ilk girişte bu küçük dizini, öğrenci bir derse girince o dersin paketini
   indirir; paketin sha256'sı dizindekiyle aynı değilse reddeder ve sonra yeniden dener.
@@ -16,6 +16,7 @@ Release varlık adları: `cikmis-gorsel.json` ve her ders için `cikmis-gorsel-<
 
 from __future__ import annotations
 
+import datetime
 import hashlib
 import json
 import os
@@ -58,7 +59,10 @@ def main() -> None:
         paketler[ders] = {"dosya": dosya, "sha256": hashlib.sha256(paket).hexdigest(), "bayt": len(paket), "sorular": dizin}
         toplam += len(paket)
         print(f"{dosya}: {len(dizin)} görsel, {len(paket) / 1024 / 1024:.1f} MB")
-    ozet = {"surum": 2, "veriSurumu": cikmis["veriSurumu"], "paketler": paketler}
+    # Görsel dizininin sürümü paketleme anıdır (künye dizininden bağımsız): görseller yeniden
+    # üretilince (ör. filigran soluklaştırma) sürüm ilerler; uygulama daha eski dizini (CDN'in
+    # bayat kopyası) cihazdakinin üstüne yazmaz. Paketlerin yenilenmesini sha256 belirler.
+    ozet = {"surum": 2, "veriSurumu": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M"), "paketler": paketler}
     yaz("cikmis-gorsel.json", (json.dumps(ozet, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8"))
     print(f"dist/cikmis-gorsel.json: {len(paketler)} paket, toplam {toplam / 1024 / 1024:.1f} MB, dizin {(DIST / 'cikmis-gorsel.json').stat().st_size / 1024:.0f} KB")
     if eksik:
