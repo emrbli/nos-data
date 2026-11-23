@@ -1,0 +1,13 @@
+{
+  "belge": "2026-ortaogretim",
+  "test": "gk",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 13, "sayfa": 22, "konu": "kpss_tar.kurtulus-savasi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 26, "sayfa": 24, "konu": "kpss_tar.osmanli-dagilma", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 29, "sayfa": 25, "konu": "kpss_cog.cografi-konum", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 41, "sayfa": 27, "konu": "kpss_cog.cografi-konum", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 46, "sayfa": 28, "konu": "kpss_vat.yasama-yurutme-yargi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 56, "sayfa": 30, "konu": "kpss_gun.guncel-dunya", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "belge": "2024-onlisans",
+  "test": "gk",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 2, "sayfa": 19, "konu": "kpss_tar.turk-islam-devletleri", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 17, "sayfa": 22, "konu": "kpss_tar.kurtulus-savasi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 31, "sayfa": 26, "konu": "kpss_cog.cografi-konum", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 37, "sayfa": 27, "konu": "kpss_cog.ekonomik-cografya", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 54, "sayfa": 31, "konu": "kpss_vat.idare-hukuku", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "hakem"},
+    {"no": 59, "sayfa": 32, "konu": "kpss_gun.guncel-bilim-spor-kultur", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

@@ -6,6 +6,9 @@
 #   scripts/release.sh --cikmis   # nos.db değişmeden yalnız dist/cikmis*.json/.bin'i
 #                                 # son (latest) release'e yükle/değiştir
 #   scripts/release.sh --cikmis --dry-run
+#   scripts/release.sh --cikmis-kpss [--dry-run]
+#                                 # KPSS: yalnız dist/cikmis-kpss.json, cikmis-kpss-gorsel.json ve
+#                                 # cikmis-kpss-gorsel-<ders>.bin'i son (latest) release'e EKLER (YKS ve nos.db'ye dokunmaz)
 #
 # dist/cikmis.json ve cikmis-gorsel.{json,bin} (pipeline/cikmis) varsa yeni
 # release'e de eklenir. Uygulama onu releases/latest/download/cikmis.json'dan alır.
@@ -20,15 +23,58 @@ DIST="$ROOT/dist"
 REPO="emrbli/nos-data"
 DRY_RUN=0
 CIKMIS_ONLY=0
+KPSS_ONLY=0
 for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY_RUN=1 ;;
     --cikmis) CIKMIS_ONLY=1 ;;
+    --cikmis-kpss) KPSS_ONLY=1 ;;
     *) echo "release HATA: bilinmeyen argüman $arg" >&2; exit 1 ;;
   esac
 done
 
 die() { echo "release HATA: $*" >&2; exit 1; }
+
+if [[ $KPSS_ONLY -eq 1 ]]; then
+  [[ $CIKMIS_ONLY -eq 0 ]] || die "--cikmis ile --cikmis-kpss birlikte verilmez."
+  KIDX="$DIST/cikmis-kpss.json"
+  [[ -f "$KIDX" ]] || die "dist/cikmis-kpss.json yok — önce 'uv run --with pypdf python -m pipeline.cikmis.kpss.paketle'."
+  python3 -c "import json,sys;d=json.load(open(sys.argv[1]));assert d['sorular'] and d['belgeler']" "$KIDX" \
+    || die "dist/cikmis-kpss.json geçersiz (sorular/belgeler boş ya da JSON bozuk)."
+  KG="$DIST/cikmis-kpss-gorsel.json"
+  [[ -f "$KG" ]] || die "dist/cikmis-kpss-gorsel.json yok — önce 'python -m pipeline.cikmis.kpss.gorsel_paketle'."
+  KBINS=()
+  while IFS=$'\t' read -r dosya bayt sha; do
+    [[ -n "$dosya" && "$dosya" != */* && "$dosya" == cikmis-kpss-gorsel-*.bin ]] || die "dizinde geçersiz paket adı: $dosya"
+    [[ -f "$DIST/$dosya" ]] || die "dist/$dosya yok (dizinde var)."
+    [[ "$(wc -c < "$DIST/$dosya" | tr -d ' ')" == "$bayt" ]] || die "$dosya boyu dizinle uyuşmuyor."
+    [[ "$(shasum -a 256 "$DIST/$dosya" | cut -d' ' -f1)" == "$sha" ]] || die "$dosya sha256'sı dizinle uyuşmuyor."
+    KBINS+=("$DIST/$dosya")
+  done < <(python3 -c "
+import json,sys
+for k,v in sorted(json.load(open(sys.argv[1]))['paketler'].items()):
+    print(v['dosya'],v['bayt'],v['sha256'],sep='\t')" "$KG")
+  [[ ${#KBINS[@]} -gt 0 ]] || die "cikmis-kpss-gorsel.json paket içermiyor."
+  TAG=$(gh release view --repo "$REPO" --json tagName -q .tagName) || die "latest release bulunamadı."
+  SHA=$(shasum -a 256 "$KIDX" | cut -d' ' -f1)
+  echo "tag:    $TAG (latest; nos.db ve YKS dosyaları değişmez)"
+  echo "dosya:  cikmis-kpss.json sha256 $SHA"
+  echo "dosya:  cikmis-kpss-gorsel.json + ${#KBINS[@]} paket"
+  if [[ $DRY_RUN -eq 1 ]]; then echo "(dry-run, yüklenmedi)"; exit 0; fi
+  for f in "${KBINS[@]}"; do gh release upload "$TAG" "$f" --repo "$REPO"; done
+  gh release upload "$TAG" "$KG" --repo "$REPO"
+  gh release upload "$TAG" "$KIDX" --repo "$REPO"
+  FAIL=0
+  for a in "$KIDX" "$KG" "${KBINS[@]}"; do
+    n=$(basename "$a"); want=$(shasum -a 256 "$a" | cut -d' ' -f1)
+    url="https://github.com/$REPO/releases/latest/download/$n"
+    code=$(curl -sL -o /dev/null -w '%{http_code}' "$url")
+    got=$(curl -sL "$url" | shasum -a 256 | cut -d' ' -f1)
+    if [[ "$code" == 200 && "$got" == "$want" ]]; then echo "OK    $n  $url"; else echo "FARKLI $n  http=$code"; FAIL=1; fi
+  done
+  echo "Pin için: \"sha256_cikmis_kpss\": \"$SHA\" (tag $TAG)"
+  exit $FAIL
+fi
 
 if [[ $CIKMIS_ONLY -eq 1 ]]; then
   CIKMIS="$DIST/cikmis.json"

@@ -1,0 +1,93 @@
+{
+ "_not": "KPSS konu kimliği: kpss_<ders>.<konu>. Kaynak: nosakademi-web data/kpss/konu-anahtarlari.ts (GY-GK ders konu listesi, EB: 2024 Lisans Başvuru Kılavuzu Tablo-1); 11.512 soruluk orada etiketli dizinle aynı slug'lar, kalıcıdır. Düzey (lisans/ön lisans/ortaöğretim) kimliğe girmez: GY-GK düzeni üç düzeyde aynı, düzey belgenin oturumundadır.",
+ "dersler": {
+  "kpss_tur": {
+   "ad": "Türkçe",
+   "test": "gy",
+   "konular": {
+    "paragraf": "Paragraf",
+    "cumlede-anlam": "Cümlede anlam",
+    "sozcukte-anlam": "Sözcükte anlam",
+    "sozel-mantik": "Sözel mantık ve akıl yürütme",
+    "anlatim-bozuklugu": "Anlatım bozuklukları",
+    "yazim-kurallari": "Yazım kuralları",
+    "noktalama": "Noktalama işaretleri",
+    "ses-yapi-sozcuk-turleri": "Ses bilgisi, yapı bilgisi ve sözcük türleri",
+    "cumle-ogeleri": "Cümle ögeleri ve cümle türleri"
+   }
+  },
+  "kpss_mat": {
+   "ad": "Matematik",
+   "test": "gy",
+   "konular": {
+    "temel-kavramlar": "Temel kavramlar ve sayılar",
+    "problemler": "Problemler",
+    "sayisal-mantik": "Sayısal mantık ve muhakeme",
+    "cebir": "Üslü ve köklü sayılar, çarpanlara ayırma, denklem ve eşitsizlik",
+    "oran-oranti": "Oran-orantı, mutlak değer, basit eşitsizlikler",
+    "kumeler-fonksiyonlar": "Kümeler, fonksiyonlar, işlem, modüler aritmetik",
+    "olasilik": "Permütasyon, kombinasyon, olasılık",
+    "geometri": "Geometri"
+   }
+  },
+  "kpss_tar": {
+   "ad": "Tarih",
+   "test": "gk",
+   "konular": {
+    "islamiyet-oncesi": "İslamiyet öncesi Türk tarihi",
+    "turk-islam-devletleri": "İlk Türk-İslam devletleri ve Türkiye Selçukluları",
+    "osmanli-kurulus-gerileme": "Osmanlı kuruluş, yükselme, duraklama ve gerileme dönemleri",
+    "osmanli-dagilma": "Osmanlı dağılma dönemi ve 20. yüzyıl başı",
+    "kurtulus-savasi": "Kurtuluş Savaşı hazırlık dönemi ve cepheler",
+    "ataturk-donemi": "Atatürk ilke ve inkılapları, Atatürk dönemi iç ve dış politika",
+    "cagdas-tarih": "Çağdaş Türk ve dünya tarihi"
+   }
+  },
+  "kpss_cog": {
+   "ad": "Coğrafya",
+   "test": "gk",
+   "konular": {
+    "cografi-konum": "Türkiye'nin coğrafi konumu, yer şekilleri ve jeomorfoloji",
+    "iklim-bitki": "İklim ve bitki örtüsü",
+    "nufus-yerlesme": "Nüfus ve yerleşme",
+    "ekonomik-cografya": "Ekonomik coğrafya",
+    "ulasim-ticaret-turizm": "Ulaşım, ticaret ve turizm",
+    "bolgeler": "Bölgeler ve bölgesel kalkınma projeleri"
+   }
+  },
+  "kpss_vat": {
+   "ad": "Vatandaşlık",
+   "test": "gk",
+   "konular": {
+    "hukuk-temel": "Hukukun temel kavramları ve kaynakları",
+    "anayasa-temel-haklar": "Anayasa: temel ilkeler, temel hak ve hürriyetler",
+    "yasama-yurutme-yargi": "Yasama, yürütme ve yargı organları",
+    "idare-hukuku": "İdare hukuku: merkezi ve yerinden yönetim",
+    "uluslararasi-kuruluslar": "Uluslararası kuruluşlar ve Türkiye"
+   }
+  },
+  "kpss_gun": {
+   "ad": "Güncel Bilgiler",
+   "test": "gk",
+   "konular": {
+    "guncel-turkiye": "Türkiye gündemi",
+    "guncel-dunya": "Dünya gündemi ve uluslararası kuruluşlar",
+    "guncel-bilim-spor-kultur": "Bilim, teknoloji, spor ve kültür-sanat"
+   }
+  },
+  "kpss_eb": {
+   "ad": "Eğitim Bilimleri",
+   "test": "eb",
+   "konular": {
+    "ogretim-ilke-ve-yontemleri": "Öğretim ilke ve yöntemleri",
+    "sinif-yonetimi": "Sınıf yönetimi",
+    "ogretim-teknolojileri": "Öğretim teknolojileri ve materyal tasarımı",
+    "program-gelistirme": "Program geliştirme",
+    "olcme-ve-degerlendirme": "Ölçme ve değerlendirme",
+    "ogrenme-psikolojisi": "Öğrenme psikolojisi",
+    "gelisim-psikolojisi": "Gelişim psikolojisi",
+    "rehberlik-ve-ozel-egitim": "Rehberlik ve özel eğitim"
+   }
+  }
+ }
+}

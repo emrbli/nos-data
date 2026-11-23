@@ -1,0 +1,15 @@
+{
+  "belge": "2023-egitim-bilimleri",
+  "test": "eb",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 3, "sayfa": 3, "konu": "kpss_eb.ogretim-ilke-ve-yontemleri", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 23, "sayfa": 8, "konu": "kpss_eb.sinif-yonetimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 30, "sayfa": 10, "konu": "kpss_eb.ogretim-teknolojileri", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 35, "sayfa": 11, "konu": "kpss_eb.program-gelistirme", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 37, "sayfa": 12, "konu": "kpss_eb.olcme-ve-degerlendirme", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 51, "sayfa": 15, "konu": "kpss_eb.ogrenme-psikolojisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 62, "sayfa": 18, "konu": "kpss_eb.gelisim-psikolojisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 71, "sayfa": 20, "konu": "kpss_eb.rehberlik-ve-ozel-egitim", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

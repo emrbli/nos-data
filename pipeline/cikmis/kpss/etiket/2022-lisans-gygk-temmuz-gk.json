@@ -1,0 +1,13 @@
+{
+  "belge": "2022-lisans-gygk-temmuz",
+  "test": "gk",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 1, "sayfa": 21, "konu": "kpss_tar.islamiyet-oncesi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 20, "sayfa": 24, "konu": "kpss_tar.ataturk-donemi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 31, "sayfa": 27, "konu": "kpss_cog.cografi-konum", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 37, "sayfa": 28, "konu": "kpss_cog.nufus-yerlesme", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 48, "sayfa": 30, "konu": "kpss_vat.anayasa-temel-haklar", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 56, "sayfa": 31, "konu": "kpss_gun.guncel-bilim-spor-kultur", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

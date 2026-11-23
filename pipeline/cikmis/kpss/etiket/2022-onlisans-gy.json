@@ -1,0 +1,13 @@
+{
+  "belge": "2022-onlisans",
+  "test": "gy",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 4, "sayfa": 4, "konu": "kpss_tur.cumlede-anlam", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
+    {"no": 13, "sayfa": 6, "konu": "kpss_tur.paragraf", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 15, "sayfa": 6, "konu": "kpss_tur.paragraf", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 39, "sayfa": 14, "konu": "kpss_mat.temel-kavramlar", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 45, "sayfa": 15, "konu": "kpss_mat.problemler", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 58, "sayfa": 19, "konu": "kpss_mat.geometri", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "belge": "2024-ortaogretim",
+  "test": "gk",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 8, "sayfa": 21, "konu": "kpss_tar.osmanli-dagilma", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 17, "sayfa": 23, "konu": "kpss_tar.kurtulus-savasi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 27, "sayfa": 24, "konu": "kpss_tar.cagdas-tarih", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 28, "sayfa": 25, "konu": "kpss_cog.cografi-konum", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 38, "sayfa": 27, "konu": "kpss_cog.ulasim-ticaret-turizm", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 50, "sayfa": 29, "konu": "kpss_vat.idare-hukuku", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

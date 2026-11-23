@@ -1,0 +1,333 @@
+{
+ "_not": "Elle: ÖSYM KPSS 'Sınav Soru ve Cevapları' (osym.gov.tr/SinavGrubu/Menu/344) yayım sayfalarından; belge kimlikleri nosakademi-web data/kpss/cikmis-sorular-arsivi.ts kayıt kimlikleriyle aynıdır. 2022'den beri ÖSYM yalnız yüzde 10'u yayımlar (kapsam yuzde10): GY ve GK testlerinden 6'şar, EB'den 8 soru; soru numarası kitapçıktaki özgün numaradır. 2025 ve 2026'da Eğitim Bilimleri KPSS'de yok. cozumUrl: MEB çözüm bağlantısı KPSS için yok (null). sinavTarihi yalnız kaynaktır, cikmis-kpss.json'a girmez.",
+ "belgeler": [
+  {
+   "id": "2022-lisans-gygk-temmuz",
+   "yil": 2022,
+   "oturum": "LISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/L%C4%B0SANS/gy-gk_31072022.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10-20260508155709736",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-07-31"
+  },
+  {
+   "id": "2022-egitim-bilimleri-temmuz",
+   "yil": 2022,
+   "oturum": "EB",
+   "kapsam": "yuzde10",
+   "testler": [
+    "eb"
+   ],
+   "dersler": [
+    "kpss_eb"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/L%C4%B0SANS/egitimbilimleri31072022.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10-20260508155709736",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-07-31"
+  },
+  {
+   "id": "2022-lisans-gygk-eylul",
+   "yil": 2022,
+   "oturum": "LISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/LISANS/kpss_lisans_gygk_18092022.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-09-18"
+  },
+  {
+   "id": "2022-egitim-bilimleri-eylul",
+   "yil": 2022,
+   "oturum": "EB",
+   "kapsam": "yuzde10",
+   "testler": [
+    "eb"
+   ],
+   "dersler": [
+    "kpss_eb"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/LISANS/kpss_lisans_egitim_18092022.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-09-18"
+  },
+  {
+   "id": "2022-onlisans",
+   "yil": 2022,
+   "oturum": "ONLISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ONL/internetk09102022.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-on-lisans-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-10-09"
+  },
+  {
+   "id": "2022-ortaogretim",
+   "yil": 2022,
+   "oturum": "ORTAOGRETIM",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ORTAOGRETIM/tsk06112022.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-ortaogretim-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-11-06"
+  },
+  {
+   "id": "2023-lisans-gygk",
+   "yil": 2023,
+   "oturum": "LISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/LISANS/gygk_23072023nfy.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2023kpss-a-grubu-ve-ogretmenlik-sinavigenel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2023-07-23"
+  },
+  {
+   "id": "2023-egitim-bilimleri",
+   "yil": 2023,
+   "oturum": "EB",
+   "kapsam": "yuzde10",
+   "testler": [
+    "eb"
+   ],
+   "dersler": [
+    "kpss_eb"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/LISANS/eb_23072023qcu.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2023kpss-a-grubu-ve-ogretmenlik-sinavigenel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2023-07-23"
+  },
+  {
+   "id": "2024-lisans-gygk",
+   "yil": 2024,
+   "oturum": "LISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/LISANS/GYGK14072024.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2024kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2024-07-14"
+  },
+  {
+   "id": "2024-egitim-bilimleri",
+   "yil": 2024,
+   "oturum": "EB",
+   "kapsam": "yuzde10",
+   "testler": [
+    "eb"
+   ],
+   "dersler": [
+    "kpss_eb"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/LISANS/EB14072024.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2024kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2024-07-14"
+  },
+  {
+   "id": "2024-onlisans",
+   "yil": 2024,
+   "oturum": "ONLISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ONL/kitapcik01092024.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2024kpss-on-lisans-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2024-09-01"
+  },
+  {
+   "id": "2024-ortaogretim",
+   "yil": 2024,
+   "oturum": "ORTAOGRETIM",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ORTAOGRETIM/tsk15092024.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2024kpss-ortaogretim-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2024-09-15"
+  },
+  {
+   "id": "2025-lisans-gygk",
+   "yil": 2025,
+   "oturum": "LISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/GY-GK/gygk_07092025lsy.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2025kpss-a-grubu-sinavi-genel-yetenekgenel-kultur-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2025-09-07"
+  },
+  {
+   "id": "2026-lisans-gygk",
+   "yil": 2026,
+   "oturum": "LISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/web/2026/9/2026-kpss-lisansgenel-yetenek-genel-kultur-temel-soru-kitapcigi-ve-cevap-anahtari-10-9dh155-06125847.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2026-kpss-lisansgenel-yetenek-genel-kultur-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2026-09-06"
+  },
+  {
+   "id": "2026-onlisans",
+   "yil": 2026,
+   "oturum": "ONLISANS",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/web/2026/10/2026-kpss-on-lisans-temel-soru-kitapcigi-ve-cevap-anahtari-10-le3c9n-04123429.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2026-kpss-on-lisans-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2026-10-04"
+  },
+  {
+   "id": "2026-ortaogretim",
+   "yil": 2026,
+   "oturum": "ORTAOGRETIM",
+   "kapsam": "yuzde10",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/web/2026/10/2026-kpss-ortaogretim-sinavi-temel-soru-kitapcigi-ve-cevap-anahtari-10-b671sx-25124536.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2026-kpss-ortaogretim-sinavi-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2026-10-25"
+  }
+ ]
+}
