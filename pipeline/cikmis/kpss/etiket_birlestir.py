@@ -1,7 +1,7 @@
 """İki bağımsız etiketleme ve hakem kararlarından KPSS etiket dosyaları (YKS `etiket_birlestir.py`'nin karşılığı).
 
 Girdi (yerel, yerel/kpss/etiketleme/):
-  A.json       bu hattaki etiketleme: {soru kimliği: konu anahtarı}
+  A.json, tam-<belge>-A.json   bu hattaki etiketleme: {soru kimliği: konu anahtarı} / {kimlik: {"konu", "ek"}}
   B (kardeş)   nosakademi-web `data/kpss/cikmis-dizin/<belge>/<test>.json` (bağımsız ayrı etiketleme; varsa)
   B2.json      kardeş dizinde bulunmayan sorular için ikinci bağımsız etiketleme: {kimlik: {"konu", "ek"}}
   hakem.json   uyuşmayanlar için sayfa/metin üzerinden üçüncü karar: {kimlik: {"konu", "ekKonu"?}}
@@ -45,6 +45,11 @@ def main() -> None:
     kardes = Path(sys.argv[sys.argv.index("--kardes") + 1]) if "--kardes" in sys.argv else KARDES
     ders_of = anahtar_ders()
     A, B2, hakem = yukle("A.json"), yukle("B2.json"), yukle("hakem.json")
+    for yol in sorted(ETIKETLEME.glob("tam-*-A.json")):  # 2019-2021 tam kitapçıklar: belge başına ayrı etiketleme dosyası
+        A.update({k: v["konu"] for k, v in json.loads(yol.read_text(encoding="utf-8")).items()})
+    for yol in sorted(ETIKETLEME.glob("tam-hakem-*.json")):
+        if "girdi" not in yol.name:
+            hakem.update(json.loads(yol.read_text(encoding="utf-8")))
     bugun = datetime.date.today().isoformat()
     for b in belgeler():
         metin = json.loads((METIN_DIZINI / f"{b['id']}.json").read_text(encoding="utf-8"))

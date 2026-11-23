@@ -1,6 +1,164 @@
 {
- "_not": "Elle: ÖSYM KPSS 'Sınav Soru ve Cevapları' (osym.gov.tr/SinavGrubu/Menu/344) yayım sayfalarından; belge kimlikleri nosakademi-web data/kpss/cikmis-sorular-arsivi.ts kayıt kimlikleriyle aynıdır. 2022'den beri ÖSYM yalnız yüzde 10'u yayımlar (kapsam yuzde10): GY ve GK testlerinden 6'şar, EB'den 8 soru; soru numarası kitapçıktaki özgün numaradır. 2025 ve 2026'da Eğitim Bilimleri KPSS'de yok. cozumUrl: MEB çözüm bağlantısı KPSS için yok (null). sinavTarihi yalnız kaynaktır, cikmis-kpss.json'a girmez.",
+ "_not": "Elle: ÖSYM KPSS 'Sınav Soru ve Cevapları' (osym.gov.tr/SinavGrubu/Menu/344) yayım sayfalarından; belge kimlikleri nosakademi-web data/kpss/cikmis-sorular-arsivi.ts kayıt kimlikleriyle aynıdır. 2019-2021 TAM kitapçık (kapsam tam: GY ve GK 60'ar, EB 80 soru, cevaplar sondaki anahtar sayfasında); 2022'den beri ÖSYM yalnız yüzde 10'u yayımlar (kapsam yuzde10): GY ve GK testlerinden 6'şar, EB'den 8 soru; soru numarası kitapçıktaki özgün numaradır. 2025 ve 2026'da Eğitim Bilimleri KPSS'de yok. cozumUrl: MEB çözüm bağlantısı KPSS için yok (null). sinavTarihi yalnız kaynaktır, cikmis-kpss.json'a girmez.",
  "belgeler": [
+  {
+   "id": "2019-lisans-gygk",
+   "yil": 2019,
+   "oturum": "LISANS",
+   "kapsam": "tam",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_Lisans_GYGK.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2019kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2019-07-14"
+  },
+  {
+   "id": "2019-egitim-bilimleri",
+   "yil": 2019,
+   "oturum": "EB",
+   "kapsam": "tam",
+   "testler": [
+    "eb"
+   ],
+   "dersler": [
+    "kpss_eb"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_Lisans_Egitimbilimleri.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2019kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2019-07-14"
+  },
+  {
+   "id": "2020-lisans-gygk",
+   "yil": 2020,
+   "oturum": "LISANS",
+   "kapsam": "tam",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_GYGK.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2020kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2020-09-06"
+  },
+  {
+   "id": "2020-egitim-bilimleri",
+   "yil": 2020,
+   "oturum": "EB",
+   "kapsam": "tam",
+   "testler": [
+    "eb"
+   ],
+   "dersler": [
+    "kpss_eb"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_Egitimbilimleri.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2020kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2020-09-06"
+  },
+  {
+   "id": "2020-onlisans",
+   "yil": 2020,
+   "oturum": "ONLISANS",
+   "kapsam": "tam",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Onlisans.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2020kpss-on-lisans-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2020-10-25"
+  },
+  {
+   "id": "2020-ortaogretim",
+   "yil": 2020,
+   "oturum": "ORTAOGRETIM",
+   "kapsam": "tam",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Ortaogretim.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2020kpss-ortaogretim-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2020-11-22"
+  },
+  {
+   "id": "2021-lisans-gygk",
+   "yil": 2021,
+   "oturum": "LISANS",
+   "kapsam": "tam",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_GYGK.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2021kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2021-08-01"
+  },
+  {
+   "id": "2021-egitim-bilimleri",
+   "yil": 2021,
+   "oturum": "EB",
+   "kapsam": "tam",
+   "testler": [
+    "eb"
+   ],
+   "dersler": [
+    "kpss_eb"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_Egitimbilimleri.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2021kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2021-08-01"
+  },
   {
    "id": "2022-lisans-gygk-temmuz",
    "yil": 2022,

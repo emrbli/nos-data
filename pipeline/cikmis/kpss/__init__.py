@@ -4,7 +4,7 @@
 `dist/cikmis-kpss-gorsel.json` + `dist/cikmis-kpss-gorsel-<ders>.bin` (soru görselleri).
 Adlar YKS'nin `cikmis*.{json,bin}` adlarıyla çakışmaz; YKS dosyalarına ve nos.db'ye dokunulmaz.
 
-Kapsam: ÖSYM'nin yayımladığı son 5 KPSS yılı (2022-2026). ÖSYM 2022'den beri yalnız yüzde 10'unu
+Kapsam: 2019-2026. 2019-2021 TAM kitapçıklar (`kapsam: tam`; GY/GK 60, EB 80 soru; cevap sondaki anahtar tablosunda). 2022-2026: ÖSYM 2022'den beri yalnız yüzde 10'unu
 yayımlar: GY ve GK testlerinden 6'şar, Eğitim Bilimleri'nden 8 soru, özgün soru numarasıyla; yayımlanan
 soruların cevabı sayfada "DOĞRU CEVAP: X" satırındadır (ayrı anahtar sayfası yok). Bu yüzden kapsam
 `yuzde10`, etiket dosyalarında yalnız yayımlanan numaralar bulunur.

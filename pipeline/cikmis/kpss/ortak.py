@@ -24,13 +24,17 @@ GORSEL_PAKET_ON_EKI = "cikmis-kpss-gorsel-"
 
 # Oturum başına testler: (kod, basılı soru sayısı, sayfa üstbilgisindeki test deseni).
 TESTLER: dict[str, list[tuple[str, int, str]]] = {
-    "LISANS": [("gy", 60, r"KPSS[^\n/]*/GY\b"), ("gk", 60, r"KPSS[^\n/]*/GK\b")],
-    "ONLISANS": [("gy", 60, r"KPSS[^\n/]*/GY\b"), ("gk", 60, r"KPSS[^\n/]*/GK\b")],
-    "ORTAOGRETIM": [("gy", 60, r"KPSS[^\n/]*/GY\b"), ("gk", 60, r"KPSS[^\n/]*/GK\b")],
-    "EB": [("eb", 80, r"KPSS[^\n/]*/EB\b")],
+    "LISANS": [("gy", 60, r"KPSS[^\n]*?/GY\b"), ("gk", 60, r"KPSS[^\n]*?/GK\b")],
+    "ONLISANS": [("gy", 60, r"KPSS[^\n]*?/GY\b"), ("gk", 60, r"KPSS[^\n]*?/GK\b")],
+    "ORTAOGRETIM": [("gy", 60, r"KPSS[^\n]*?/GY\b"), ("gk", 60, r"KPSS[^\n]*?/GK\b")],
+    "EB": [("eb", 80, r"KPSS[^\n]*?/EB\b")],
 }
-# Yayımlanan soru sayısı (yüzde 10): test başına.
+# Yayımlanan soru sayısı (yüzde 10): test başına. Tam kapsamda (2019-2021) basılı adetin tamamı.
 YAYIMLANAN = {"gy": 6, "gk": 6, "eb": 8}
+
+
+def beklenen(belge: dict, test: str, adet: int) -> int:
+    return adet if belge["kapsam"] == "tam" else YAYIMLANAN[test]
 
 BELGE_ALANLARI = ("id", "yil", "oturum", "kapsam", "dersler", "kitapcikUrl", "yayimUrl", "cozumUrl")
 SORU_ALANLARI = ("id", "belge", "test", "no", "sayfa", "konu", "altKonu", "ekKonu", "cevap", "iptal", "cevapDegisti", "etiket")

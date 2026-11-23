@@ -4,7 +4,7 @@ Aynı sayfa düzeni (iki sütun, ayırıcı, alt çizgi) ve aynı denetimler; fa
 - Alt sınır sorunun "DOĞRU CEVAP: X" satırının ÜSTÜdür: cevap görsele GİRMEZ.
 - Yalnız yayımlanan sorular kırpılır (metin.py çıktısı); yayımlanmayan sorunun boş etiketi sonraki
   etiket olarak bölgeyi sınırlar.
-- Ortak parça (aralığın ilk sorusu yayımlanmamışsa) eklenmez: ÖSYM o parçayı da yayımlamıyor.
+- Tam kapsamda (2019-2021) cevap satırı yoktur, alt sınır sonraki etikettir ve ortak parçalar ("N. ve M. soruları") YKS gibi üste eklenir; yüzde 10'da ortak parça eklenmez (ÖSYM o parçayı da yayımlamıyor).
 Filigran soluklaştırma YKS ile aynı (`kirp.soluklastir`, standart eğri; `dolgu` eğrisi KPSS test kodlarına uygulanmaz).
 Çıktı (yerel): yerel/kpss/gorsel/<soru kimliği>.webp ve yerel/kpss/kirp.json.
 """
@@ -18,13 +18,13 @@ import pdfplumber
 import pypdfium2 as pdfium
 
 from ..kirp import (
-    KENAR_PX, OLCEK, SAG_KENAR, SOL_KENAR, WEBP_KALITE, etiketler, icerik_alani, kirp_gorsel, soluklastir,
+    KENAR_PX, OLCEK, SAG_KENAR, SOL_KENAR, WEBP_KALITE, etiketler, icerik_alani, kirp_gorsel, ortak_parcalar, soluklastir, ust_uste,
 )
 from .metin import CEVAP
 from .ortak import GORSEL_DIZINI, METIN_DIZINI, PDF_DIZINI, RAPOR, belgeler, oku
 
 
-def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim) -> dict[int, dict]:
+def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim, cevapli: bool = True) -> dict[int, dict]:
     sonuc: dict[int, dict] = {}
     with pdfplumber.open(str(pdf_yolu)) as pdf:
         sayfa = pdf.pages[sayfa_no - 1]
@@ -41,12 +41,13 @@ def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim) -> dict[int, 
         e = adaylar[0]
         sonraki = sorted(x["top"] for x in tum if x["sutun"] == e["sutun"] and x["top"] > e["top"] + 1)
         x0, x1 = (SOL_KENAR, ayirici - 3) if e["sutun"] == 0 else (ayirici + 3, SAG_KENAR)
-        benim = [c for c in cevaplar if (c["x0"] < ayirici) == (e["sutun"] == 0) and c["top"] > e["top"]]
-        if not benim:
-            sonuc[no] = {"durum": "cevap satırı bulunamadı"}
-            continue
-        cevap_ust = min(c["top"] for c in benim)
-        y0, y1 = e["top"] - 4, min(cevap_ust - 2, (sonraki[0] - 6) if sonraki else alt - 3)
+        y0, y1 = e["top"] - 4, (sonraki[0] - 6) if sonraki else alt - 3
+        if cevapli:  # yüzde 10 kitapçık: "DOĞRU CEVAP" satırının üstünde kes
+            benim = [c for c in cevaplar if (c["x0"] < ayirici) == (e["sutun"] == 0) and c["top"] > e["top"]]
+            if not benim:
+                sonuc[no] = {"durum": "cevap satırı bulunamadı"}
+                continue
+            y1 = min(y1, min(c["top"] for c in benim) - 2)
         icerik = [w for w in kelimeler if x0 <= w["x0"] and w["x1"] <= x1 + 2 and y0 <= w["top"] and w["bottom"] <= y1 + 2]
         if icerik:
             son = max(w["bottom"] for w in icerik)
@@ -70,7 +71,7 @@ def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim) -> dict[int, 
             hatalar.append(f"seçenek etiketi eksik ({''.join(sorted(seceneklar)) or 'yok'})")
         if any(CEVAP.search(w["text"]) or w["text"].startswith("DOĞRU") for w in icerik):
             hatalar.append("cevap satırı bölgeye girdi")
-        if y1 - y0 < 45:
+        if y1 - y0 < 40:  # tek satırlık kısa sorular ~44 pt
             hatalar.append(f"bölge çok kısa ({y1 - y0:.0f} pt)")
         kutu = [round(x0, 1), round(y0, 1), round(x1, 1), round(y1, 1)]
         if hatalar:
@@ -109,10 +110,30 @@ def main() -> None:
             sayfalar: dict[int, list[int]] = {}
             for q in metin["sorular"].get(test, []):
                 sayfalar.setdefault(q["sayfa"], []).append(q["no"])
+            tam = b["kapsam"] == "tam"
+            # Ortak parçalar yalnız tam kapsamda ("N. ve M. soruları aşağıdaki parçaya göre"): YKS ile aynı.
+            parcalar: dict[int, dict] = {}
+            if tam:
+                for sayfa_no, nolar in sayfalar.items():
+                    for p in ortak_parcalar(pdf_yolu, sayfa_no):
+                        a, b2 = p["aralik"]
+                        if a not in nolar:
+                            continue
+                        g = kirp_gorsel(cizim(sayfa_no), p["kutu"])
+                        for n in range(a, b2 + 1):
+                            parcalar[n] = {**p, "gorsel": g}
             for sayfa_no, nolar in sorted(sayfalar.items()):
-                for no, r in kirp_sayfa(pdf_yolu, sayfa_no, nolar, cizim(sayfa_no)).items():
+                for no, r in kirp_sayfa(pdf_yolu, sayfa_no, nolar, cizim(sayfa_no), cevapli=not tam).items():
                     kimlik = f"{b['id']}-{test}-{no}"
                     gorsel = r.pop("gorsel", None)
+                    parca = parcalar.get(no)
+                    if gorsel is not None and parca:
+                        if parca["gorsel"] is None:
+                            r["durum"] = "ortak parça boş"
+                            gorsel = None
+                        else:
+                            gorsel = ust_uste(parca["gorsel"], gorsel)
+                            r["ortak"] = [parca["aralik"][0], parca["aralik"][1], parca["sayfa"]]
                     if gorsel is not None:
                         dosya = GORSEL_DIZINI / f"{kimlik}.webp"
                         gorsel = soluklastir(gorsel, test)

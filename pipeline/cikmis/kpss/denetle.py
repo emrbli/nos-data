@@ -1,9 +1,8 @@
 """KPSS çıkmış soru dizininin denetimi; hata varsa çıkış kodu 1 ve paketleme durur (YKS `denetle.py` ile aynı kurallar).
 
 Denetlenen:
-- belgeler.json: kimlik tekil, kapsam yuzde10, https adresler, testin TESTLER'de olması.
-- etiket dosyası: belgesi var; numaralar tekil, 1..basılı adet aralığında ve YAYIMLANAN sayıda (ÖSYM yalnız
-  yüzde 10'u yayımlar); konu kimliği katalogda (`konular.json`), dersi belgenin `dersler`'inde ve testin
+- belgeler.json: kimlik tekil, kapsam tam (2019-2021) ya da yuzde10, https adresler, testin TESTLER'de olması.
+- etiket dosyası: belgesi var; numaralar tekil, 1..basılı adet aralığında ve beklenen sayıda (tam: basılı adedin tamamı 1..N; yuzde10: test başına 6/6/8); konu kimliği katalogda (`konular.json`), dersi belgenin `dersler`'inde ve testin
   dersi; etiket türü; cevap A-E; yalnız izinli alanlar (soru metni olamaz).
 - yerel metin varsa: yayımlanan numaralar, sayfa ve cevap kitapçıkla (sayfadaki "DOĞRU CEVAP") aynı.
 - --baglanti: kitapçık PDF'leri (`%PDF` imzası) ve yayım sayfaları yanıt veriyor mu.
@@ -20,7 +19,7 @@ from .ortak import (
     KONU_DESENI,
     METIN_DIZINI,
     TESTLER,
-    YAYIMLANAN,
+    beklenen,
     belgeler,
     etiket_dosyalari,
     konu_katalogu,
@@ -36,7 +35,7 @@ def denetle() -> list[str]:
         if b["id"] in bler:
             hatalar.append(f"{b['id']}: belge kimliği iki kez")
         bler[b["id"]] = b
-        if b["kapsam"] != "yuzde10":
+        if b["kapsam"] not in ("tam", "yuzde10"):
             hatalar.append(f"{b['id']}: kapsam")
         for alan in ("kitapcikUrl", "yayimUrl"):
             if not str(b.get(alan, "")).startswith("https://"):
@@ -64,8 +63,8 @@ def denetle() -> list[str]:
             hatalar.append(f"{yol.name}: {test} belgede etiketlenen testlerde yok")
         adet = next((a for k, a, _ in TESTLER[b["oturum"]] if k == test), None)
         nolar = [s["no"] for s in e["sorular"]]
-        if adet is None or len(set(nolar)) != len(nolar) or not all(1 <= n <= adet for n in nolar) or len(nolar) != YAYIMLANAN.get(test):
-            hatalar.append(f"{yol.name}: numaralar tekil, 1..{adet} ve {YAYIMLANAN.get(test)} adet olmalı ({sorted(nolar)})")
+        if adet is None or len(set(nolar)) != len(nolar) or not all(1 <= n <= adet for n in nolar) or len(nolar) != beklenen(b, test, adet):
+            hatalar.append(f"{yol.name}: numaralar tekil, 1..{adet} ve {beklenen(b, test, adet) if adet else '?'} adet olmalı ({sorted(nolar)})")
         metin = None
         mp = METIN_DIZINI / f"{b['id']}.json"
         if mp.exists():
