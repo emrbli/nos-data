@@ -39,7 +39,7 @@
     {"no": 34, "sayfa": 10, "konu": "kpss_kamu.kentlesme-ve-cevre-sorunlari", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 35, "sayfa": 10, "konu": "kpss_kamu.kentlesme-ve-cevre-sorunlari", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 36, "sayfa": 10, "konu": "kpss_kamu.kentlesme-ve-cevre-sorunlari", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
-    {"no": 37, "sayfa": 10, "konu": "kpss_kamu.turk-siyasi-hayati", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"},
+    {"no": 37, "sayfa": 10, "konu": "kpss_kamu.anayasa", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 38, "sayfa": 11, "konu": "kpss_kamu.turk-siyasi-hayati", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 39, "sayfa": 11, "konu": "kpss_kamu.turk-siyasi-hayati", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 40, "sayfa": 11, "konu": "kpss_kamu.turk-siyasi-hayati", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"}

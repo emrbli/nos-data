@@ -19,7 +19,7 @@
     {"no": 14, "sayfa": 6, "konu": "kpss_kamu.anayasa", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 15, "sayfa": 6, "konu": "kpss_kamu.yonetim-bilimleri", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 16, "sayfa": 6, "konu": "kpss_kamu.yonetim-bilimleri", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
-    {"no": 17, "sayfa": 6, "konu": "kpss_kamu.yonetim-bilimleri", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "hakem"},
+    {"no": 17, "sayfa": 6, "konu": "kpss_kamu.siyaset-bilimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 18, "sayfa": 7, "konu": "kpss_kamu.yonetim-hukuku", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 19, "sayfa": 7, "konu": "kpss_kamu.yonetim-bilimleri", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 20, "sayfa": 7, "konu": "kpss_kamu.yonetim-hukuku", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},

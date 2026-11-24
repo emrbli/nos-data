@@ -3,7 +3,7 @@
   "test": "ikt",
   "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
   "sorular": [
-    {"no": 1, "sayfa": 3, "konu": "kpss_ikt.iktisadi-doktrinler-tarihi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "hakem"},
+    {"no": 1, "sayfa": 3, "konu": "kpss_ikt.iktisadi-doktrinler-tarihi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 2, "sayfa": 3, "konu": "kpss_ikt.iktisadi-doktrinler-tarihi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 3, "sayfa": 3, "konu": "kpss_ikt.mikro-iktisat", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 4, "sayfa": 3, "konu": "kpss_ikt.mikro-iktisat", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},

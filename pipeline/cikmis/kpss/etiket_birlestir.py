@@ -52,8 +52,13 @@ def main() -> None:
     for yol in sorted(ETIKETLEME.glob("tam-*-A.json")):  # 2019-2021 tam kitapçıklar: belge başına ayrı etiketleme dosyası
         A.update({k: v["konu"] for k, v in json.loads(yol.read_text(encoding="utf-8")).items()})
     for yol in sorted(ETIKETLEME.glob("tam-hakem-*.json")):
-        if "girdi" not in yol.name:
+        if "girdi" not in yol.name and "-kor-" not in yol.name:
             hakem.update(json.loads(yol.read_text(encoding="utf-8")))
+    # Kör (numarasız, içerik tabanlı) yeniden etiketleme kapsamı: eski A ve eski hakem kararları geçersiz, yalnız tam-hakem-kor-*.json geçerli.
+    kapsam = tuple(f"{b}-" for b in json.loads((ETIKETLEME / "kor-kapsam.json").read_text(encoding="utf-8"))) if (ETIKETLEME / "kor-kapsam.json").exists() else ()
+    hakem = {k: v for k, v in hakem.items() if not k.startswith(kapsam)}
+    for yol in sorted(ETIKETLEME.glob("tam-hakem-kor-*.json")):
+        hakem.update(json.loads(yol.read_text(encoding="utf-8")))
     bugun = datetime.date.today().isoformat()
     yeniden = "--yeniden" in sys.argv
     uyusmayan: dict[str, dict] = {}

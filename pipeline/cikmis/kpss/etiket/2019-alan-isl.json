@@ -6,7 +6,7 @@
     {"no": 1, "sayfa": 3, "konu": "kpss_isl.temel-kavramlar", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
     {"no": 2, "sayfa": 3, "konu": "kpss_isl.temel-kavramlar", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 3, "sayfa": 3, "konu": "kpss_isl.isletme-yonetimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
-    {"no": 4, "sayfa": 3, "konu": "kpss_isl.uretim-yonetimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 4, "sayfa": 3, "konu": "kpss_isl.uretim-yonetimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
     {"no": 5, "sayfa": 3, "konu": "kpss_isl.isletme-yonetimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 6, "sayfa": 4, "konu": "kpss_isl.isletme-yonetimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 7, "sayfa": 4, "konu": "kpss_isl.isletme-yonetimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
