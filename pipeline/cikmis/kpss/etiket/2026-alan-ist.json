@@ -1,0 +1,11 @@
+{
+  "belge": "2026-alan",
+  "test": "ist",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 10, "sayfa": 5, "konu": "kpss_ist.matematiksel-istatistik", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 18, "sayfa": 7, "konu": "kpss_ist.cok-degiskenli-analizler", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 36, "sayfa": 11, "konu": "kpss_ist.ornekleme", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 39, "sayfa": 12, "konu": "kpss_ist.regresyon-analizi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

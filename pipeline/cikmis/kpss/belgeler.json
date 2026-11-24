@@ -486,6 +486,1175 @@
    "yayimUrl": "https://www.osym.gov.tr/2026-kpss-ortaogretim-sinavi-temel-soru-kitapcigi-ve-cevap-anahtari-10",
    "cozumUrl": null,
    "sinavTarihi": "2026-10-25"
+  },
+  {
+   "id": "2018-alan",
+   "yil": 2018,
+   "oturum": "ALAN",
+   "kapsam": "tam",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANHukuk12112019.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANIktisat12112019.pdf",
+    "isl": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANIsletme12112019.pdf",
+    "ist": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANIstatistik12112019.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANKamuYonetimi12112019.pdf",
+    "mal": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANMaliye12112019.pdf",
+    "muh": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANMuhasebe12112019.pdf",
+    "ui": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANUluslararasi12112019.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANCalismaEkonomisi12112019.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2018-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2018-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2018-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2018-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2018-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2018-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2018-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2018-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2018-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2018kpss-lisans-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2018-07-28"
+  },
+  {
+   "id": "2018-dhbt",
+   "yil": 2018,
+   "oturum": "DHBT",
+   "kapsam": "tam",
+   "testler": [
+    "dhbt1",
+    "dhbt2-lisans",
+    "dhbt2-onlisans",
+    "dhbt2-ortaogretim"
+   ],
+   "dersler": [
+    "kpss_dhbt1",
+    "kpss_dhbt2"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "dhbt1": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018-KPSSDHBTLisans12112019.pdf",
+    "dhbt2-lisans": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018-KPSSDHBTLisans12112019.pdf",
+    "dhbt2-onlisans": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018-KPSSDHBTOnLisans12112019.pdf",
+    "dhbt2-ortaogretim": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018-KPSSDHBTOrtaogretim12112019.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2018-dhbt/lisans.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-lisans"
+     ]
+    },
+    {
+     "pdf": "2018-dhbt/on-lisans.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-onlisans"
+     ]
+    },
+    {
+     "pdf": "2018-dhbt/ortaogretim.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-ortaogretim"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2018kpss-din-hizmetleri-alan-bilgisi-dhbt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2018-12-09"
+  },
+  {
+   "id": "2018-egitim-bilimleri",
+   "yil": 2018,
+   "oturum": "EB",
+   "kapsam": "tam",
+   "testler": [
+    "eb"
+   ],
+   "dersler": [
+    "kpss_eb"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANEgitimBilimleri12112019.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2018kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2018-07-22"
+  },
+  {
+   "id": "2018-lisans-gygk",
+   "yil": 2018,
+   "oturum": "LISANS",
+   "kapsam": "tam",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSALANGKGY12112019.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2018kpss-lisans-genel-yetenekgenel-kultur-ve-egitim-bilimleri-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2018-07-22"
+  },
+  {
+   "id": "2018-onlisans",
+   "yil": 2018,
+   "oturum": "ONLISANS",
+   "kapsam": "tam",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018-KPSS-OnLisans12112019.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2018kpss-on-lisans-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2018-11-04"
+  },
+  {
+   "id": "2018-ortaogretim",
+   "yil": 2018,
+   "oturum": "ORTAOGRETIM",
+   "kapsam": "tam",
+   "testler": [
+    "gy",
+    "gk"
+   ],
+   "dersler": [
+    "kpss_tur",
+    "kpss_mat",
+    "kpss_tar",
+    "kpss_cog",
+    "kpss_vat",
+    "kpss_gun"
+   ],
+   "kitapcikUrl": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018-KPSS-Ortaogretim12112019.pdf",
+   "yayimUrl": "https://www.osym.gov.tr/2018kpss-ortaogretim-temel-soru-kitapcigi-ve-cevap-anahtari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2018-10-07"
+  },
+  {
+   "id": "2019-alan",
+   "yil": 2019,
+   "oturum": "ALAN",
+   "kapsam": "tam",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_Hukuk.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_İktisat.pdf",
+    "isl": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_İsletme.pdf",
+    "ist": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_İstatistik.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_Kamuyonetimi.pdf",
+    "mal": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_Maliye.pdf",
+    "muh": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_Muhasebe.pdf",
+    "ui": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_Uluslararasi_iliskiler.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_KPSS_calismaekonomisi.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2019-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2019-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2019-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2019-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2019-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2019-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2019-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2019-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2019-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2019kpss-lisans-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2019-07-20"
+  },
+  {
+   "id": "2020-alan",
+   "yil": 2020,
+   "oturum": "ALAN",
+   "kapsam": "tam",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_Hukuk.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_İktisat.pdf",
+    "isl": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_İsletme.pdf",
+    "ist": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_İstatistik.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_Kamu.pdf",
+    "mal": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_Maliye.pdf",
+    "muh": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_Muhasebe.pdf",
+    "ui": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_Uluslararası_İliskiler.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_KPSS_Lisans_calismaekonomisi.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2020-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2020-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2020-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2020-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2020-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2020-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2020-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2020-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2020-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2020kpss-lisans-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2020-09-12"
+  },
+  {
+   "id": "2020-dhbt",
+   "yil": 2020,
+   "oturum": "DHBT",
+   "kapsam": "tam",
+   "testler": [
+    "dhbt1",
+    "dhbt2-lisans",
+    "dhbt2-onlisans",
+    "dhbt2-ortaogretim"
+   ],
+   "dersler": [
+    "kpss_dhbt1",
+    "kpss_dhbt2"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "dhbt1": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_DHBT_lisans.pdf",
+    "dhbt2-lisans": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_DHBT_lisans.pdf",
+    "dhbt2-onlisans": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_DHBT_onlisans.pdf",
+    "dhbt2-ortaogretim": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_DHBT_ortaogretim.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2020-dhbt/lisans.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-lisans"
+     ]
+    },
+    {
+     "pdf": "2020-dhbt/on-lisans.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-onlisans"
+     ]
+    },
+    {
+     "pdf": "2020-dhbt/ortaogretim.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-ortaogretim"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2020kpss-din-hizmetleri-alan-bilgisi-dhbt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2021-04-11"
+  },
+  {
+   "id": "2021-alan",
+   "yil": 2021,
+   "oturum": "ALAN",
+   "kapsam": "tam",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_Hukuk.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_İktisat.pdf",
+    "isl": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_İsletme.pdf",
+    "ist": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_İstatistik.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_Kamu.pdf",
+    "mal": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_Maliye.pdf",
+    "muh": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_Muhasebe.pdf",
+    "ui": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_Uluslararası_İliskiler.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_KPSS_Lisans_calismaekonomisi.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2021-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2021-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2021-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2021-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2021-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2021-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2021-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2021-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2021-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2021kpss-a-grubu-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2021-08-07"
+  },
+  {
+   "id": "2022-alan",
+   "yil": 2022,
+   "oturum": "ALAN",
+   "kapsam": "yuzde10",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_hukuk_25092022.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_iktisat_25092022.pdf",
+    "isl": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_isletme_25092022.pdf",
+    "ist": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_istatistik_25092022.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_kamu_yonetimi_25092022.pdf",
+    "mal": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_maliye_25092022.pdf",
+    "muh": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_muhasebe_25092022.pdf",
+    "ui": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_uluslararasi_iliskiler_25092022.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ALAN/kpss_alan_ceko_25092022.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2022-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2022-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2022-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2022-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2022-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2022-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2022-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2022-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2022-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-a-grubu-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-09-24"
+  },
+  {
+   "id": "2022-dhbt",
+   "yil": 2022,
+   "oturum": "DHBT",
+   "kapsam": "yuzde10",
+   "testler": [
+    "dhbt1",
+    "dhbt2-lisans",
+    "dhbt2-onlisans",
+    "dhbt2-ortaogretim"
+   ],
+   "dersler": [
+    "kpss_dhbt1",
+    "kpss_dhbt2"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "dhbt1": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/DHBT/dhbt_lisans_27112022.pdf",
+    "dhbt2-lisans": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/DHBT/dhbt_lisans_27112022.pdf",
+    "dhbt2-onlisans": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/DHBT/dhbt_onlisans_27112022.pdf",
+    "dhbt2-ortaogretim": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/DHBT/dhbt_ortaogretim_27112022.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2022-dhbt/lisans.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-lisans"
+     ]
+    },
+    {
+     "pdf": "2022-dhbt/on-lisans.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-onlisans"
+     ]
+    },
+    {
+     "pdf": "2022-dhbt/ortaogretim.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-ortaogretim"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-din-hizmetleri-alan-bilgisi-dhbt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-11-27"
+  },
+  {
+   "id": "2023-alan",
+   "yil": 2023,
+   "oturum": "ALAN",
+   "kapsam": "yuzde10",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/hukuk_30072023.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/iktisat_30072023.pdf",
+    "isl": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/isletme_30072023.pdf",
+    "ist": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/istatistik_30072023.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/kamuy_30072023.pdf",
+    "mal": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/maliye_30072023.pdf",
+    "muh": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/muhasebe_30072023.pdf",
+    "ui": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/uliliskiler_30072023.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/ALAN/ceko_30072023.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2023-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2023-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2023-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2023-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2023-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2023-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2023-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2023-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2023-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2023kpss-a-grubu-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2023-07-29"
+  },
+  {
+   "id": "2024-alan",
+   "yil": 2024,
+   "oturum": "ALAN",
+   "kapsam": "yuzde10",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/hukuk_21072024.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/iktisat_21072024.pdf",
+    "isl": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/isletme_21072024.pdf",
+    "ist": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/istatistik_21072024.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/kamuy_21072024.pdf",
+    "mal": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/maliye_21072024.pdf",
+    "muh": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/muhasebe_21072024.pdf",
+    "ui": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/uliliskiler_21072024.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ALAN/ceko_21072024.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2024-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2024-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2024-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2024-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2024-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2024-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2024-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2024-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2024-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2024kpss-a-grubu-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2024-07-20"
+  },
+  {
+   "id": "2024-dhbt",
+   "yil": 2024,
+   "oturum": "DHBT",
+   "kapsam": "yuzde10",
+   "testler": [
+    "dhbt1",
+    "dhbt2-lisans",
+    "dhbt2-onlisans",
+    "dhbt2-ortaogretim"
+   ],
+   "dersler": [
+    "kpss_dhbt1",
+    "kpss_dhbt2"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "dhbt1": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/DHBT/dhbt_lisans_22092024.pdf",
+    "dhbt2-lisans": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/DHBT/dhbt_lisans_22092024.pdf",
+    "dhbt2-onlisans": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/DHBT/dhbt_onlisans_22092024.pdf",
+    "dhbt2-ortaogretim": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/DHBT/dhbt_ortaogretim_22092024.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2024-dhbt/lisans.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-lisans"
+     ]
+    },
+    {
+     "pdf": "2024-dhbt/on-lisans.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-onlisans"
+     ]
+    },
+    {
+     "pdf": "2024-dhbt/ortaogretim.pdf",
+     "testler": [
+      "dhbt1",
+      "dhbt2-ortaogretim"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2024kpss-din-hizmetleri-alan-bilgisi-dhbt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2024-09-22"
+  },
+  {
+   "id": "2025-alan",
+   "yil": 2025,
+   "oturum": "ALAN",
+   "kapsam": "yuzde10",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/hukuk_kpad14092025.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/iktisat_kpad14092025.pdf",
+    "isl": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/isletme_kpad14092025.pdf",
+    "ist": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/istatistik_kpad14092025.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/ky_kpad14092025.pdf",
+    "mal": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/maliye_kpad14092025.pdf",
+    "muh": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/muhasebe_kpad14092025.pdf",
+    "ui": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/ui_kpad14092025.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/pdfdokuman/2025/KPSS/ALAN/ceko_kpad14092025.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2025-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2025-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2025-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2025-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2025-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2025-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2025-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2025-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2025-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2025kpss-a-grubu-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2025-09-13"
+  },
+  {
+   "id": "2026-alan",
+   "yil": 2026,
+   "oturum": "ALAN",
+   "kapsam": "yuzde10",
+   "testler": [
+    "huk",
+    "ikt",
+    "isl",
+    "ist",
+    "kamu",
+    "mal",
+    "muh",
+    "ui",
+    "ceei"
+   ],
+   "dersler": [
+    "kpss_huk",
+    "kpss_ikt",
+    "kpss_isl",
+    "kpss_ist",
+    "kpss_kamu",
+    "kpss_mal",
+    "kpss_muh",
+    "kpss_ui",
+    "kpss_ceei"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "huk": "https://dokuman.osym.gov.tr/web/2026/9/hukuk-i3rv1i-13135237.pdf",
+    "ikt": "https://dokuman.osym.gov.tr/web/2026/9/ktisat-7zyiu4-13135237.pdf",
+    "isl": "https://dokuman.osym.gov.tr/web/2026/9/sletme-p4h2it-13135237.pdf",
+    "ist": "https://dokuman.osym.gov.tr/web/2026/9/statistik-m3t0cl-13135237.pdf",
+    "kamu": "https://dokuman.osym.gov.tr/web/2026/9/kamu-yonetimi-abuck9-13135237.pdf",
+    "mal": "https://dokuman.osym.gov.tr/web/2026/9/maliye-9ucjrj-13135237.pdf",
+    "muh": "https://dokuman.osym.gov.tr/web/2026/9/muhasebe-mue8u4-13135237.pdf",
+    "ui": "https://dokuman.osym.gov.tr/web/2026/9/uluslararasi-liskiler-0171kr-13135237.pdf",
+    "ceei": "https://dokuman.osym.gov.tr/web/2026/9/calisma-ekonomisi-ve-endustri-liskileri-q52ben-13135237.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2026-alan/hukuk.pdf",
+     "testler": [
+      "huk"
+     ]
+    },
+    {
+     "pdf": "2026-alan/iktisat.pdf",
+     "testler": [
+      "ikt"
+     ]
+    },
+    {
+     "pdf": "2026-alan/isletme.pdf",
+     "testler": [
+      "isl"
+     ]
+    },
+    {
+     "pdf": "2026-alan/istatistik.pdf",
+     "testler": [
+      "ist"
+     ]
+    },
+    {
+     "pdf": "2026-alan/kamu-yonetimi.pdf",
+     "testler": [
+      "kamu"
+     ]
+    },
+    {
+     "pdf": "2026-alan/maliye.pdf",
+     "testler": [
+      "mal"
+     ]
+    },
+    {
+     "pdf": "2026-alan/muhasebe.pdf",
+     "testler": [
+      "muh"
+     ]
+    },
+    {
+     "pdf": "2026-alan/uluslararas-iliskiler.pdf",
+     "testler": [
+      "ui"
+     ]
+    },
+    {
+     "pdf": "2026-alan/calsma-ekonomisi-ve-endustri-iliskileri.pdf",
+     "testler": [
+      "ceei"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2026-kpss-a-grubu-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2026-09-12"
   }
  ]
 }

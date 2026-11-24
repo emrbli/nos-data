@@ -20,8 +20,8 @@ import pypdfium2 as pdfium
 from ..kirp import (
     KENAR_PX, OLCEK, SAG_KENAR, SOL_KENAR, WEBP_KALITE, etiketler, icerik_alani, kirp_gorsel, ortak_parcalar, soluklastir, ust_uste,
 )
-from .metin import CEVAP
-from .ortak import GORSEL_DIZINI, METIN_DIZINI, PDF_DIZINI, RAPOR, belgeler, oku
+from .metin import CEVAP, cevap_satirlari
+from .ortak import GORSEL_DIZINI, METIN_DIZINI, RAPOR, belgeler, gruplar, oku
 
 
 def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim, cevapli: bool = True) -> dict[int, dict]:
@@ -30,8 +30,9 @@ def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim, cevapli: bool
         sayfa = pdf.pages[sayfa_no - 1]
         ayirici, ust, alt = icerik_alani(sayfa)
         kelimeler = sayfa.extract_words()
+        sayfa_genisligi = sayfa.width
         tum = etiketler(kelimeler, ayirici, ust, alt)
-        cevaplar = [s for s in sayfa.extract_text_lines() if CEVAP.search(s["text"])]
+        cevaplar = cevap_satirlari(sayfa)
         cizimler = list(sayfa.rects) + list(sayfa.curves) + list(sayfa.lines) + list(sayfa.images)
     for no in istenen:
         adaylar = [e for e in tum if e["no"] == no]
@@ -59,7 +60,8 @@ def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim, cevapli: bool
                         son, degisti = c["bottom"], True
             y1 = min(y1, son + 6)
         sutun_kelimeleri = [w for w in kelimeler if y0 <= w["top"] and w["bottom"] <= y1 + 2 and (w["x0"] < ayirici) == (e["sutun"] == 0)]
-        tasan = [w["text"] for w in sutun_kelimeleri if w["x1"] > x1 + 0.5 or w["x0"] < x0 - 0.5]
+        # Sayfa dışına taşmış (görünmeyen) metin katmanı sözcükleri (örn. 2020 Muhasebe 10 tablosu) görseli etkilemez.
+        tasan = [w["text"] for w in sutun_kelimeleri if (w["x1"] > x1 + 0.5 or w["x0"] < x0 - 0.5) and w["x0"] < sayfa_genisligi - 1]
         baska = [x["no"] for x in tum if x is not e and x0 - 2 <= x["x0"] <= x1 and y0 <= x["top"] <= y1]
         seceneklar = {w["text"][:2] for w in icerik if w["text"][:2] in ("A)", "B)", "C)", "D)", "E)")}
         hatalar = []
@@ -71,7 +73,7 @@ def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim, cevapli: bool
             hatalar.append(f"seçenek etiketi eksik ({''.join(sorted(seceneklar)) or 'yok'})")
         if any(CEVAP.search(w["text"]) or w["text"].startswith("DOĞRU") for w in icerik):
             hatalar.append("cevap satırı bölgeye girdi")
-        if y1 - y0 < 40:  # tek satırlık kısa sorular ~44 pt
+        if y1 - y0 < 28:  # tek satırlık kısa sorular ~33-44 pt
             hatalar.append(f"bölge çok kısa ({y1 - y0:.0f} pt)")
         kutu = [round(x0, 1), round(y0, 1), round(x1, 1), round(y1, 1)]
         if hatalar:
@@ -97,50 +99,52 @@ def main() -> None:
         for k in [k for k in rapor if k.startswith(f"{b['id']}-")]:
             del rapor[k]
         metin = oku(METIN_DIZINI / f"{b['id']}.json")
-        pdf_yolu = PDF_DIZINI / f"{b['id']}.pdf"
-        belge_pdf = pdfium.PdfDocument(str(pdf_yolu))
-        cizimler: dict = {}
+        yapilan: set[str] = set()  # DHBT-1 üç PDF'te aynıdır; ilk PDF'ten kırpılır
+        for pdf_yolu, grup in gruplar(b):
+            belge_pdf = pdfium.PdfDocument(str(pdf_yolu))
+            cizimler: dict = {}
 
-        def cizim(n: int):
-            if n not in cizimler:
-                cizimler[n] = belge_pdf[n - 1].render(scale=OLCEK, grayscale=True).to_pil()
-            return cizimler[n]
+            def cizim(n: int, _pdf=belge_pdf, _c=cizimler):
+                if n not in _c:
+                    _c[n] = _pdf[n - 1].render(scale=OLCEK, grayscale=True).to_pil()
+                return _c[n]
 
-        for test in b["testler"]:
-            sayfalar: dict[int, list[int]] = {}
-            for q in metin["sorular"].get(test, []):
-                sayfalar.setdefault(q["sayfa"], []).append(q["no"])
-            tam = b["kapsam"] == "tam"
-            # Ortak parçalar yalnız tam kapsamda ("N. ve M. soruları aşağıdaki parçaya göre"): YKS ile aynı.
-            parcalar: dict[int, dict] = {}
-            if tam:
-                for sayfa_no, nolar in sayfalar.items():
-                    for p in ortak_parcalar(pdf_yolu, sayfa_no):
-                        a, b2 = p["aralik"]
-                        if a not in nolar:
-                            continue
-                        g = kirp_gorsel(cizim(sayfa_no), p["kutu"])
-                        for n in range(a, b2 + 1):
-                            parcalar[n] = {**p, "gorsel": g}
-            for sayfa_no, nolar in sorted(sayfalar.items()):
-                for no, r in kirp_sayfa(pdf_yolu, sayfa_no, nolar, cizim(sayfa_no), cevapli=not tam).items():
-                    kimlik = f"{b['id']}-{test}-{no}"
-                    gorsel = r.pop("gorsel", None)
-                    parca = parcalar.get(no)
-                    if gorsel is not None and parca:
-                        if parca["gorsel"] is None:
-                            r["durum"] = "ortak parça boş"
-                            gorsel = None
-                        else:
-                            gorsel = ust_uste(parca["gorsel"], gorsel)
-                            r["ortak"] = [parca["aralik"][0], parca["aralik"][1], parca["sayfa"]]
-                    if gorsel is not None:
-                        dosya = GORSEL_DIZINI / f"{kimlik}.webp"
-                        gorsel = soluklastir(gorsel, test)
-                        gorsel.save(dosya, "WEBP", quality=WEBP_KALITE, method=6)
-                        r.update({"genislik": gorsel.width, "yukseklik": gorsel.height, "bayt": dosya.stat().st_size})
-                    rapor[kimlik] = {"sayfa": sayfa_no, **r}
-        belge_pdf.close()
+            for test in [k for k, _, _ in grup if k not in yapilan]:
+                yapilan.add(test)
+                sayfalar: dict[int, list[int]] = {}
+                for q in metin["sorular"].get(test, []):
+                    sayfalar.setdefault(q["sayfa"], []).append(q["no"])
+                tam = b["kapsam"] == "tam"
+                # Ortak parçalar yalnız tam kapsamda ("N. ve M. soruları aşağıdaki parçaya göre"): YKS ile aynı.
+                parcalar: dict[int, dict] = {}
+                if tam:
+                    for sayfa_no, nolar in sayfalar.items():
+                        for p in ortak_parcalar(pdf_yolu, sayfa_no):
+                            a, b2 = p["aralik"]
+                            if a not in nolar:
+                                continue
+                            g = kirp_gorsel(cizim(sayfa_no), p["kutu"])
+                            for n in range(a, b2 + 1):
+                                parcalar[n] = {**p, "gorsel": g}
+                for sayfa_no, nolar in sorted(sayfalar.items()):
+                    for no, r in kirp_sayfa(pdf_yolu, sayfa_no, nolar, cizim(sayfa_no), cevapli=not tam).items():
+                        kimlik = f"{b['id']}-{test}-{no}"
+                        gorsel = r.pop("gorsel", None)
+                        parca = parcalar.get(no)
+                        if gorsel is not None and parca:
+                            if parca["gorsel"] is None:
+                                r["durum"] = "ortak parça boş"
+                                gorsel = None
+                            else:
+                                gorsel = ust_uste(parca["gorsel"], gorsel)
+                                r["ortak"] = [parca["aralik"][0], parca["aralik"][1], parca["sayfa"]]
+                        if gorsel is not None:
+                            dosya = GORSEL_DIZINI / f"{kimlik}.webp"
+                            gorsel = soluklastir(gorsel, test)
+                            gorsel.save(dosya, "WEBP", quality=WEBP_KALITE, method=6)
+                            r.update({"genislik": gorsel.width, "yukseklik": gorsel.height, "bayt": dosya.stat().st_size})
+                        rapor[kimlik] = {"sayfa": sayfa_no, **r}
+            belge_pdf.close()
     RAPOR.write_text(json.dumps(rapor, ensure_ascii=False, indent=1), encoding="utf-8")
     tamam = [k for k, r in rapor.items() if r["durum"] == "tamam"]
     toplam = sum(r.get("bayt", 0) for r in rapor.values())

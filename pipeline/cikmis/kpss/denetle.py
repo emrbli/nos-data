@@ -17,9 +17,13 @@ from .ortak import (
     ETIKET_TURLERI,
     HARFLER,
     KONU_DESENI,
+    GORSEL_DIZINI,
     METIN_DIZINI,
+    RAPOR,
     TESTLER,
+    belge_testleri,
     beklenen,
+    ders_testleri,
     belgeler,
     etiket_dosyalari,
     konu_katalogu,
@@ -37,9 +41,16 @@ def denetle() -> list[str]:
         bler[b["id"]] = b
         if b["kapsam"] not in ("tam", "yuzde10"):
             hatalar.append(f"{b['id']}: kapsam")
-        for alan in ("kitapcikUrl", "yayimUrl"):
-            if not str(b.get(alan, "")).startswith("https://"):
-                hatalar.append(f"{b['id']}: {alan} https değil")
+        if b.get("kitapciklar"):  # her testi ayrı PDF olan belge (alan, DHBT): kitapcikUrl yok, test başına adres
+            if b.get("kitapcikUrl") is not None or set(b["kitapciklar"]) != set(b["testler"]):
+                hatalar.append(f"{b['id']}: kitapciklar testlerle uyuşmuyor ya da kitapcikUrl dolu")
+            for t, u in b["kitapciklar"].items():
+                if not str(u).startswith("https://"):
+                    hatalar.append(f"{b['id']}: kitapciklar[{t}] https değil")
+        elif not str(b.get("kitapcikUrl", "")).startswith("https://"):
+            hatalar.append(f"{b['id']}: kitapcikUrl https değil")
+        if not str(b.get("yayimUrl", "")).startswith("https://"):
+            hatalar.append(f"{b['id']}: yayimUrl https değil")
         if b.get("cozumUrl") is not None and not str(b["cozumUrl"]).startswith("https://"):
             hatalar.append(f"{b['id']}: cozumUrl https değil")
         testler = {kod for kod, _, _ in TESTLER.get(b["oturum"], [])}
@@ -83,12 +94,12 @@ def denetle() -> list[str]:
                 hatalar.append(f"{ad}: konu {konu} belgenin dersleriyle uyumsuz")
             elif anahtar not in katalog.get(ders, {}).get("konular", {}):
                 hatalar.append(f"{ad}: konu {konu} katalogda yok")
-            elif katalog[ders]["test"] != test:
+            elif test not in ders_testleri(katalog[ders]):
                 hatalar.append(f"{ad}: konu {konu} {test} testine ait değil")
             ek = s.get("ekKonu")
             if ek is not None:
                 ed, _, ea = ek.partition(".")
-                if not KONU_DESENI.match(ek) or ek == konu or ea not in katalog.get(ed, {}).get("konular", {}) or ed not in b["dersler"]:
+                if not KONU_DESENI.match(ek) or ek == konu or ea not in katalog.get(ed, {}).get("konular", {}) or ed not in b["dersler"] or test not in ders_testleri(katalog[ed]):
                     hatalar.append(f"{ad}: ekKonu {ek}")
             if s.get("altKonu") is not None:
                 hatalar.append(f"{ad}: KPSS'de altKonu tanımlı değil")
@@ -101,11 +112,26 @@ def denetle() -> list[str]:
                 hatalar.append(f"{ad}: cevap {s.get('cevap')}")
             if metin:
                 kitapcik = metin["anahtar"][test].get(str(s["no"]), "yok")
-                if kitapcik != s.get("cevap"):
+                if kitapcik == "İPTAL":
+                    if not s.get("iptal") or s.get("cevap") is not None:
+                        hatalar.append(f"{ad}: kitapçık anahtarında İPTAL, etikette iptal={s.get('iptal')} cevap={s.get('cevap')}")
+                elif s.get("iptal") or kitapcik != s.get("cevap"):
                     hatalar.append(f"{ad}: cevap {s.get('cevap')}, kitapçık anahtarı {kitapcik}")
                 sf = next((q["sayfa"] for q in metin["sorular"].get(test, []) if q["no"] == s["no"]), None)
                 if sf != s.get("sayfa"):
                     hatalar.append(f"{ad}: sayfa {s.get('sayfa')}, kitapçıkta {sf}")
+    if RAPOR.exists():  # görsel tutarlılığı: her sorunun kırpması tamam, dosya var, boyutlar rapordakiyle aynı (iptal soru görselsiz olabilir)
+        rapor = oku(RAPOR)
+        for yol in etiket_dosyalari():
+            e = oku(yol)
+            for s in e["sorular"]:
+                k = f"{e['belge']}-{e['test']}-{s['no']}"
+                r = rapor.get(k)
+                if r is None or r.get("durum") != "tamam":
+                    if not s.get("iptal"):
+                        hatalar.append(f"{k}: görsel yok ({(r or {}).get('durum', 'kirp.json kaydı yok')})")
+                elif not (GORSEL_DIZINI / f"{k}.webp").exists():
+                    hatalar.append(f"{k}: görsel dosyası yok")
     for b in bler.values():
         for t in b.get("testler", []):
             if (b["id"], t) not in gorulen:
@@ -114,14 +140,26 @@ def denetle() -> list[str]:
 
 
 def baglantilari_denetle() -> list[str]:
-    from .. import denetle as yks
+    """Her kitapçık adresi (belge ya da test başına) `%PDF` imzasıyla yanıt vermeli; yayım sayfası 200 dönmeli."""
+    import httpx
 
-    esli = yks.belgeler
-    yks.belgeler = belgeler  # YKS bağlantı denetimi aynı mantıkla KPSS belgelerine uygulanır
-    try:
-        return yks.baglantilari_denetle()
-    finally:
-        yks.belgeler = esli
+    hatalar: list[str] = []
+    for b in belgeler():
+        adresler = {b["kitapcikUrl"]} if b.get("kitapcikUrl") else set(b.get("kitapciklar", {}).values())
+        for u in sorted(adresler):
+            try:
+                with httpx.stream("GET", u, timeout=60, follow_redirects=True) as y:
+                    bas = next(y.iter_bytes(), b"")[:5]
+                    if y.status_code != 200 or bas != b"%PDF-":
+                        hatalar.append(f"{b['id']}: {u} PDF değil ({y.status_code})")
+            except httpx.HTTPError as ex:
+                hatalar.append(f"{b['id']}: {u} ağ hatası {ex}")
+        try:
+            if httpx.get(b["yayimUrl"], timeout=60, follow_redirects=True).status_code != 200:
+                hatalar.append(f"{b['id']}: yayimUrl 200 değil")
+        except httpx.HTTPError as ex:
+            hatalar.append(f"{b['id']}: yayimUrl ağ hatası {ex}")
+    return hatalar
 
 
 def main() -> None:

@@ -1,5 +1,5 @@
 {
- "_not": "KPSS konu kimliği: kpss_<ders>.<konu>. Kaynak: nosakademi-web data/kpss/konu-anahtarlari.ts (GY-GK ders konu listesi, EB: 2024 Lisans Başvuru Kılavuzu Tablo-1); 11.512 soruluk orada etiketli dizinle aynı slug'lar, kalıcıdır. Düzey (lisans/ön lisans/ortaöğretim) kimliğe girmez: GY-GK düzeni üç düzeyde aynı, düzey belgenin oturumundadır.",
+ "_not": "KPSS konu kimliği: kpss_<ders>.<konu>. Kaynak: nosakademi-web data/kpss/konu-anahtarlari.ts (GY-GK ders konu listesi, EB: 2024 Lisans Başvuru Kılavuzu Tablo-1); 11.512 soruluk orada etiketli dizinle aynı slug'lar, kalıcıdır. Düzey (lisans/ön lisans/ortaöğretim) kimliğe girmez: GY-GK düzeni üç düzeyde aynı, düzey belgenin oturumundadır. Alan Bilgisi (A grubu) ve DHBT: konu anahtarları nosakademi-web data/kpss/kapsam.ts maddelerinden (ALAN_KAPSAM, DHBT_KAPSAM); ders kodu test koduyla aynıdır (kpss_huk, kpss_ikt, kpss_isl, kpss_ist, kpss_kamu, kpss_mal, kpss_muh, kpss_ui, kpss_ceei, kpss_dhbt1, kpss_dhbt2). Aynı slug farklı derste olabilir (örn. temel-kavramlar kpss_mat ve kpss_isl): konu kimliği ders önekiyle tekildir. kpss_dhbt2 üç düzeyin (lisans, önlisans, ortaöğretim) DHBT-2 testini kapsar. ÖABT bu hatta yoktur.",
  "dersler": {
   "kpss_tur": {
    "ad": "Türkçe",
@@ -87,6 +87,142 @@
     "ogrenme-psikolojisi": "Öğrenme psikolojisi",
     "gelisim-psikolojisi": "Gelişim psikolojisi",
     "rehberlik-ve-ozel-egitim": "Rehberlik ve özel eğitim"
+   }
+  },
+  "kpss_huk": {
+   "ad": "Hukuk",
+   "test": "huk",
+   "konular": {
+    "anayasa-hukuku": "Anayasa hukuku",
+    "idare-hukuku-ve-idari-yargi": "İdare hukuku ve idari yargı",
+    "ceza-hukuku": "Ceza hukuku",
+    "medeni-hukuk": "Medeni hukuk",
+    "borclar-hukuku": "Borçlar hukuku",
+    "ticaret-hukuku": "Ticaret hukuku",
+    "icra-ve-iflas-hukuku": "İcra ve iflas hukuku"
+   }
+  },
+  "kpss_ikt": {
+   "ad": "İktisat",
+   "test": "ikt",
+   "konular": {
+    "iktisadi-doktrinler-tarihi": "İktisadi doktrinler tarihi",
+    "mikro-iktisat": "Mikro iktisat",
+    "makro-iktisat": "Makro iktisat",
+    "para-banka-kredi": "Para, banka, kredi",
+    "uluslararasi-iktisat": "Uluslararası iktisat",
+    "kalkinma-ve-buyume": "Kalkınma ve büyüme",
+    "turkiye-ekonomisi": "Türkiye ekonomisi"
+   }
+  },
+  "kpss_isl": {
+   "ad": "İşletme",
+   "test": "isl",
+   "konular": {
+    "temel-kavramlar": "Temel kavramlar",
+    "isletme-yonetimi": "İşletme yönetimi",
+    "uretim-yonetimi": "Üretim yönetimi",
+    "pazarlama-yonetimi": "Pazarlama yönetimi",
+    "finansal-yonetim": "Finansal yönetim"
+   }
+  },
+  "kpss_ist": {
+   "ad": "İstatistik",
+   "test": "ist",
+   "konular": {
+    "olasilik-ve-stokastik-surecler": "Olasılık ve stokastik süreçler",
+    "matematiksel-istatistik": "Matematiksel istatistik",
+    "yoneylem-arastirmasi": "Yöneylem araştırması",
+    "cok-degiskenli-analizler": "Çok değişkenli analizler",
+    "parametrik-olmayan-testler": "Parametrik olmayan testler",
+    "uygulamali-istatistik": "Uygulamalı istatistik",
+    "zaman-serileri": "Zaman serileri",
+    "deney-tasarimi-ve-varyans-analizi": "Deney tasarımı ve varyans analizi",
+    "ornekleme": "Örnekleme",
+    "regresyon-analizi": "Regresyon analizi"
+   }
+  },
+  "kpss_kamu": {
+   "ad": "Kamu Yönetimi",
+   "test": "kamu",
+   "konular": {
+    "siyaset-bilimi": "Siyaset bilimi",
+    "anayasa": "Anayasa",
+    "yonetim-bilimleri": "Yönetim bilimleri",
+    "yonetim-hukuku": "Yönetim hukuku",
+    "kentlesme-ve-cevre-sorunlari": "Kentleşme ve çevre sorunları",
+    "turk-siyasi-hayati": "Türk siyasi hayatı"
+   }
+  },
+  "kpss_mal": {
+   "ad": "Maliye",
+   "test": "mal",
+   "konular": {
+    "maliye-teorisi": "Maliye teorisi",
+    "kamu-gelirleri": "Kamu gelirleri",
+    "kamu-giderleri": "Kamu giderleri",
+    "kamu-borclari": "Kamu borçları",
+    "butce": "Bütçe",
+    "vergi-hukuku": "Vergi hukuku",
+    "maliye-politikasi": "Maliye politikası"
+   }
+  },
+  "kpss_muh": {
+   "ad": "Muhasebe",
+   "test": "muh",
+   "konular": {
+    "genel-muhasebe": "Genel muhasebe",
+    "mali-tablolar-analizi": "Mali tablolar analizi",
+    "ihtisas-muhasebesi": "İhtisas muhasebesi"
+   }
+  },
+  "kpss_ui": {
+   "ad": "Uluslararası İlişkiler",
+   "test": "ui",
+   "konular": {
+    "uluslararasi-iliskiler-teorisi": "Uluslararası ilişkiler teorisi",
+    "uluslararasi-hukuk": "Uluslararası hukuk",
+    "siyasi-tarih": "Siyasi tarih",
+    "uluslararasi-guncel-sorunlar": "Uluslararası güncel sorunlar",
+    "uluslararasi-orgutler": "Uluslararası örgütler",
+    "turk-dis-politikasi": "Türk dış politikası"
+   }
+  },
+  "kpss_ceei": {
+   "ad": "Çalışma Ekonomisi ve Endüstri İlişkileri",
+   "test": "ceei",
+   "konular": {
+    "is-ve-sosyal-guvenlik-hukuku": "İş ve sosyal güvenlik hukuku",
+    "calisma-ekonomisi": "Çalışma ekonomisi",
+    "calisma-psikolojisi-ve-calisma-sosyolojisi": "Çalışma psikolojisi ve çalışma sosyolojisi"
+   }
+  },
+  "kpss_dhbt1": {
+   "ad": "DHBT-1",
+   "test": "dhbt1",
+   "konular": {
+    "islam-inanc-esaslari": "İslam inanç esasları",
+    "islam-ibadet-esaslari": "İslam ibadet esasları",
+    "kur-an-bilgisi": "Kur'an bilgisi",
+    "siyer": "Siyer",
+    "islam-ahlaki": "İslam ahlakı"
+   }
+  },
+  "kpss_dhbt2": {
+   "ad": "DHBT-2",
+   "testler": [
+    "dhbt2-lisans",
+    "dhbt2-onlisans",
+    "dhbt2-ortaogretim"
+   ],
+   "konular": {
+    "tefsir": "Tefsir",
+    "fikih": "Fıkıh",
+    "hadis": "Hadis",
+    "akaid-ve-kelam": "Akaid ve kelam",
+    "islam-tarihi": "İslam tarihi",
+    "dinler-ve-mezhepler-tarihi": "Dinler ve mezhepler tarihi",
+    "dini-hitabet": "Dini hitabet"
    }
   }
  }

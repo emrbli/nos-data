@@ -40,7 +40,7 @@ def kur() -> dict:
     return {
         "surum": 1,
         "veriSurumu": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M"),
-        "belgeler": [{k: b.get(k) for k in BELGE_ALANLARI} for b in bler],
+        "belgeler": [{k: b.get(k) for k in BELGE_ALANLARI if not (k == "kitapciklar" and not b.get(k))} for b in bler],
         "sorular": sorular,
     }
 

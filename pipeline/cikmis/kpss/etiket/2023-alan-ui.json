@@ -1,0 +1,11 @@
+{
+  "belge": "2023-alan",
+  "test": "ui",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 6, "sayfa": 4, "konu": "kpss_ui.uluslararasi-iliskiler-teorisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 16, "sayfa": 5, "konu": "kpss_ui.uluslararasi-hukuk", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 26, "sayfa": 7, "konu": "kpss_ui.siyasi-tarih", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 34, "sayfa": 8, "konu": "kpss_ui.uluslararasi-orgutler", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

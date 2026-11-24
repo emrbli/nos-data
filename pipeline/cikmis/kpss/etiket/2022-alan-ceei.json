@@ -1,0 +1,11 @@
+{
+  "belge": "2022-alan",
+  "test": "ceei",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 8, "sayfa": 4, "konu": "kpss_ceei.is-ve-sosyal-guvenlik-hukuku", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 20, "sayfa": 6, "konu": "kpss_ceei.is-ve-sosyal-guvenlik-hukuku", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 24, "sayfa": 7, "konu": "kpss_ceei.calisma-ekonomisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 31, "sayfa": 8, "konu": "kpss_ceei.is-ve-sosyal-guvenlik-hukuku", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

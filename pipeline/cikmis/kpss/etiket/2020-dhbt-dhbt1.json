@@ -1,0 +1,27 @@
+{
+  "belge": "2020-dhbt",
+  "test": "dhbt1",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 1, "sayfa": 3, "konu": "kpss_dhbt1.islam-inanc-esaslari", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 2, "sayfa": 3, "konu": "kpss_dhbt1.islam-inanc-esaslari", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 3, "sayfa": 3, "konu": "kpss_dhbt1.islam-inanc-esaslari", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 4, "sayfa": 3, "konu": "kpss_dhbt1.islam-inanc-esaslari", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 5, "sayfa": 4, "konu": "kpss_dhbt1.islam-ibadet-esaslari", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 6, "sayfa": 4, "konu": "kpss_dhbt1.islam-ibadet-esaslari", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 7, "sayfa": 4, "konu": "kpss_dhbt1.islam-ibadet-esaslari", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 8, "sayfa": 4, "konu": "kpss_dhbt1.islam-ibadet-esaslari", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 9, "sayfa": 5, "konu": "kpss_dhbt1.kur-an-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
+    {"no": 10, "sayfa": 5, "konu": "kpss_dhbt1.kur-an-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 11, "sayfa": 6, "konu": "kpss_dhbt1.kur-an-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 12, "sayfa": 6, "konu": "kpss_dhbt1.kur-an-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
+    {"no": 13, "sayfa": 6, "konu": "kpss_dhbt1.siyer", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 14, "sayfa": 6, "konu": "kpss_dhbt1.siyer", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 15, "sayfa": 7, "konu": "kpss_dhbt1.siyer", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 16, "sayfa": 7, "konu": "kpss_dhbt1.siyer", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 17, "sayfa": 7, "konu": "kpss_dhbt1.islam-ahlaki", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 18, "sayfa": 7, "konu": "kpss_dhbt1.islam-ahlaki", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 19, "sayfa": 8, "konu": "kpss_dhbt1.islam-ahlaki", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 20, "sayfa": 8, "konu": "kpss_dhbt1.islam-ahlaki", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

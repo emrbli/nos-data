@@ -1,0 +1,11 @@
+{
+  "belge": "2022-alan",
+  "test": "kamu",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 7, "sayfa": 4, "konu": "kpss_kamu.siyaset-bilimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 13, "sayfa": 5, "konu": "kpss_kamu.anayasa", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 28, "sayfa": 7, "konu": "kpss_kamu.yonetim-hukuku", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 32, "sayfa": 8, "konu": "kpss_kamu.kentlesme-ve-cevre-sorunlari", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

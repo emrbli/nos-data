@@ -1,0 +1,11 @@
+{
+  "belge": "2023-alan",
+  "test": "mal",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 6, "sayfa": 4, "konu": "kpss_mal.kamu-gelirleri", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 24, "sayfa": 8, "konu": "kpss_mal.butce", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 31, "sayfa": 10, "konu": "kpss_mal.vergi-hukuku", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 37, "sayfa": 11, "konu": "kpss_mal.maliye-politikasi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

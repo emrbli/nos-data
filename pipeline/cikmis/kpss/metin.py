@@ -19,16 +19,34 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 
 import pdfplumber
 
 from ..kirp import etiketler, icerik_alani
-from .ortak import METIN_DIZINI, PDF_DIZINI, TESTLER, YAYIMLANAN, belgeler, beklenen
+from .ortak import METIN_DIZINI, YAYIMLANAN, belgeler, gruplar
 
 CEVAP = re.compile(r"DOĞRU\s+CEVAP:\s*([A-E])\b")
 
 
+def cevap_satirlari(sayfa) -> list[dict]:
+    """Sayfadaki "DOĞRU CEVAP: X" satırları (x0, top, harf). Sözcük düzeyinde aranır: metin satırı iki sütundaki
+    sözcükleri aynı yükseklikte birleştirebilir (sol sütundaki "26." ile sağ sütunun cevap satırı) ve sütunu yanıltır."""
+    kel = sayfa.extract_words()
+    sonuc = []
+    for w in kel:
+        if w["text"] != "DOĞRU":
+            continue
+        ayni = sorted((x for x in kel if abs(x["top"] - w["top"]) < 3 and x["x0"] >= w["x0"]), key=lambda x: x["x0"])
+        m = CEVAP.search(" ".join(x["text"] for x in ayni[:4]))
+        if m:
+            sonuc.append({"x0": w["x0"], "top": w["top"], "harf": m.group(1)})
+    return sonuc
+
+
 def sayfa_testi(metin: str, testler) -> str | None:
+    if len(testler) == 1:  # tek testli PDF (alan, DHBT-2 tek başına, EB): üstbilgi aranmaz
+        return testler[0][0]
     ust = "\n".join(metin.split("\n")[:8])
     for kod, _, desen in testler:
         if re.search(desen, ust):
@@ -46,17 +64,24 @@ def tam_anahtar(sayfa, testler) -> dict[str, dict[str, str]]:
             kumeler[-1].append(w)
         else:
             kumeler.append([w])
-    sutun_sayisi = 4 if len(testler) == 2 else 2
+    # Test başına anahtar sütunu: 60/80 soruluk testlerde iki (1-47, 48-N), 20/40 soruluk testlerde bir.
+    per = [2 if n > 40 else 1 for _, n, _ in testler]
+    sutun_sayisi = sum(per)
     if len(kumeler) != sutun_sayisi:
         raise SystemExit(f"anahtar sayfasında {len(kumeler)} sütun bulundu, beklenen {sutun_sayisi}")
     sonuc: dict[str, dict[str, str]] = {kod: {} for kod, _, _ in testler}
     for i, kume in enumerate(kumeler):
-        kod = testler[i // 2][0] if len(testler) == 2 else testler[0][0]
+        kod = next(testler[j][0] for j in range(len(testler)) if i < sum(per[: j + 1]))
         for w in kume:
             ayni = [x for x in kel if abs(x["top"] - w["top"]) < 3 and x["x0"] > w["x1"] and re.fullmatch(r"[A-E]", x["text"])]
             if not ayni:
-                raise SystemExit(f"anahtar: {w['text']} için harf yok")
-            h = min(ayni, key=lambda x: x["x0"])["text"]
+                # İptal edilen soru: harf yerine "İPTAL" yazar (örn. 2019 Muhasebe 30); cevap yok, iptal true.
+                iptal = [x for x in kel if abs(x["top"] - w["top"]) < 8 and x["x0"] > w["x1"] and x["text"].upper().replace("İ", "I") == "IPTAL"]
+                if not iptal:
+                    raise SystemExit(f"anahtar: {w['text']} için harf yok")
+                h = "İPTAL"
+            else:
+                h = min(ayni, key=lambda x: x["x0"])["text"]
             n = w["text"].rstrip(".")
             if n in sonuc[kod]:
                 raise SystemExit(f"anahtar: {kod} {n} iki kez")
@@ -64,11 +89,10 @@ def tam_anahtar(sayfa, testler) -> dict[str, dict[str, str]]:
     return sonuc
 
 
-def tam_isle(belge: dict) -> dict:
-    testler = TESTLER[belge["oturum"]]
+def tam_isle(belge: dict, pdf_yolu, testler) -> dict:
     adet = {kod: n for kod, n, _ in testler}
     sorular: dict[str, list[dict]] = {kod: [] for kod, _, _ in testler}
-    with pdfplumber.open(str(PDF_DIZINI / f"{belge['id']}.pdf")) as pdf:
+    with pdfplumber.open(str(pdf_yolu)) as pdf:
         anahtar = tam_anahtar(pdf.pages[-1], testler)
         for i, sayfa in enumerate(pdf.pages[:-1]):
             try:
@@ -95,16 +119,13 @@ def tam_isle(belge: dict) -> dict:
     return {"belge": belge["id"], "anahtar": anahtar, "sorular": sorular}
 
 
-def isle(belge: dict) -> dict:
-    if belge["kapsam"] == "tam":
-        return tam_isle(belge)
-    testler = TESTLER[belge["oturum"]]
+def yuzde10_isle(belge: dict, pdf_yolu, testler) -> dict:
     adet = {kod: n for kod, n, _ in testler}
     anahtar: dict[str, dict[str, str]] = {kod: {} for kod, _, _ in testler}
     sorular: dict[str, list[dict]] = {kod: [] for kod, _, _ in testler}
-    with pdfplumber.open(str(PDF_DIZINI / f"{belge['id']}.pdf")) as pdf:
+    with pdfplumber.open(str(pdf_yolu)) as pdf:
         for i, sayfa in enumerate(pdf.pages):
-            cevaplar = [s for s in sayfa.extract_text_lines() if CEVAP.search(s["text"])]
+            cevaplar = cevap_satirlari(sayfa)
             if not cevaplar:
                 continue
             kod = sayfa_testi(sayfa.extract_text() or "", testler)
@@ -123,7 +144,7 @@ def isle(belge: dict) -> dict:
                 no = e["no"]
                 if no in anahtar[kod]:
                     raise SystemExit(f"{belge['id']} {kod} #{no}: iki kez")
-                anahtar[kod][str(no)] = CEVAP.search(c["text"]).group(1)
+                anahtar[kod][str(no)] = c["harf"]
                 sorular[kod].append({"no": no, "sayfa": i + 1, "bolundu": True, "metin": parca})
     for kod in sorular:
         sorular[kod].sort(key=lambda q: q["no"])
@@ -133,11 +154,40 @@ def isle(belge: dict) -> dict:
     return {"belge": belge["id"], "anahtar": anahtar, "sorular": sorular}
 
 
+def isle(belge: dict) -> dict:
+    """Belgenin her PDF grubunu işler, test başına birleştirir (yalnız `belge["testler"]` içindekiler)."""
+    islev = tam_isle if belge["kapsam"] == "tam" else yuzde10_isle
+    sonuc = {"belge": belge["id"], "anahtar": {}, "sorular": {}}
+    for pdf_yolu, testler in gruplar(belge):
+        parca = islev(belge, pdf_yolu, testler)
+        for kod in parca["sorular"]:
+            if kod in sonuc["sorular"]:  # aynı test birden çok PDF'te (DHBT-1): ilkiyle birebir aynı olmalı
+                if parca["anahtar"][kod] != sonuc["anahtar"][kod] or [q["no"] for q in parca["sorular"][kod]] != [q["no"] for q in sonuc["sorular"][kod]]:
+                    raise SystemExit(f"{belge['id']} {kod}: PDF'lerde farklı anahtar/numara")
+                continue
+            sonuc["anahtar"][kod] = parca["anahtar"][kod]
+            sonuc["sorular"][kod] = parca["sorular"][kod]
+    return sonuc
+
+
 def main() -> None:
     METIN_DIZINI.mkdir(parents=True, exist_ok=True)
+    tek = sys.argv[sys.argv.index("--belge") + 1] if "--belge" in sys.argv else None
     for b in belgeler():
-        sonuc = isle(b)
-        (METIN_DIZINI / f"{b['id']}.json").write_text(json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
+        if tek and b["id"] != tek:
+            continue
+        hedef = METIN_DIZINI / f"{b['id']}.json"
+        if hedef.exists() and "--yeniden" not in sys.argv:
+            print(f"{b['id']}: metin var, atlandı")
+            continue
+        try:
+            sonuc = isle(b)
+        except SystemExit as e:
+            print(f"{b['id']}: HATA {e}")
+            continue
+        gecici = hedef.with_suffix(".swap")
+        gecici.write_text(json.dumps(sonuc, ensure_ascii=False, indent=1), encoding="utf-8")
+        gecici.replace(hedef)
         ozet = ", ".join(f"{k}: {[q['no'] for q in v]}" for k, v in sonuc["sorular"].items())
         print(f"{b['id']}: {ozet}")
 

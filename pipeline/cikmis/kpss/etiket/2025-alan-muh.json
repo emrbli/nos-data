@@ -1,0 +1,11 @@
+{
+  "belge": "2025-alan",
+  "test": "muh",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 4, "sayfa": 3, "konu": "kpss_muh.genel-muhasebe", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 14, "sayfa": 6, "konu": "kpss_muh.genel-muhasebe", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 36, "sayfa": 11, "konu": "kpss_muh.mali-tablolar-analizi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 38, "sayfa": 11, "konu": "kpss_muh.ihtisas-muhasebesi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

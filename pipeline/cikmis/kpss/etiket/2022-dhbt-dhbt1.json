@@ -1,0 +1,9 @@
+{
+  "belge": "2022-dhbt",
+  "test": "dhbt1",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 11, "sayfa": 5, "konu": "kpss_dhbt1.kur-an-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 16, "sayfa": 6, "konu": "kpss_dhbt1.siyer", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"}
+  ]
+}
