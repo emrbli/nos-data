@@ -1,0 +1,15 @@
+{
+  "belge": "2023-oabt",
+  "test": "din-kulturu-ve-ahlak-bilgisi",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 5, "sayfa": 3, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 19, "sayfa": 6, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 25, "sayfa": 8, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 35, "sayfa": 10, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 47, "sayfa": 13, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 51, "sayfa": 14, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 56, "sayfa": 15, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 66, "sayfa": 18, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

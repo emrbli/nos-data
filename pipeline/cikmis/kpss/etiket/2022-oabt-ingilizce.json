@@ -1,0 +1,15 @@
+{
+  "belge": "2022-oabt",
+  "test": "ingilizce",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 25, "sayfa": 9, "konu": "kpss_oabt_ingilizce.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 34, "sayfa": 11, "konu": "kpss_oabt_ingilizce.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 40, "sayfa": 12, "konu": "kpss_oabt_ingilizce.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 48, "sayfa": 14, "konu": "kpss_oabt_ingilizce.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 50, "sayfa": 15, "konu": "kpss_oabt_ingilizce.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 63, "sayfa": 18, "konu": "kpss_oabt_ingilizce.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 69, "sayfa": 20, "konu": "kpss_oabt_ingilizce.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 73, "sayfa": 21, "konu": "kpss_oabt_ingilizce.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"}
+  ]
+}

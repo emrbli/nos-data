@@ -21,9 +21,19 @@ from pathlib import Path
 from .denetle import denetle
 from .etiket_birlestir import ETIKETLEME, KARDES
 from .ortak import (
-    DIST, DIZIN_ADI, ETIKET_DIZINI, ILERLEME, METIN_DIZINI, RAPOR, belgeler, ders_testleri, gruplar, konu_katalogu,
+    DIST, DIZIN_ADI, ETIKET_DIZINI, ILERLEME, METIN_DIZINI, RAPOR, belgeler, ders_testleri, gruplar, konu_katalogu, site_dosyasi,
 )
 
+# ÖABT etiketleme grupları (ajan başına bir grup; çıktı tam-oabt-<grup>-A.json): benzer branşlar birlikte.
+OABT_GRUPLARI = {
+    "g1": ("beden-egitimi", "okul-oncesi", "rehberlik"),
+    "g2": ("biyoloji", "fen-bilimleri", "kimya"),
+    "g3": ("fizik", "matematik-lise", "ilkogretim-matematik"),
+    "g4": ("cografya", "tarih", "sosyal-bilgiler"),
+    "g5": ("din-kulturu-ve-ahlak-bilgisi", "imam-hatip-lisesi-meslek-dersleri", "sinif-ogretmenligi"),
+    "g6": ("turkce", "turk-dili-ve-edebiyati"),
+    "g7": ("ingilizce",),
+}
 ADIMLAR = ("indir", "metin", "kirp", "A", "B", "birlestir", "hakem", "denetle", "paketle")
 GIRDI = ETIKETLEME / "girdi"
 
@@ -50,7 +60,7 @@ def soru_kimlikleri(b: dict) -> list[str]:
 def site_kimlikleri(b: dict) -> set[str]:
     sonuc: set[str] = set()
     for t in b["testler"]:
-        d = _oku(KARDES / b["id"] / f"{t}.json")
+        d = _oku(KARDES / b["id"] / f"{site_dosyasi(b, t)}.json")
         sonuc |= {f"{b['id']}-{t}-{s['no']}" for s in d.get("sorular", []) if s.get("konu")}
     return sonuc
 
@@ -102,9 +112,24 @@ def girdi_yaz(durum: dict) -> list[str]:
     a_set, b2_set = etiketli_kimlikler()
     katalog = konu_katalogu()
     yazilan = []
+    oabt: dict[str, dict[str, dict]] = {}  # {ad: {grup: {"KONULAR":..., "SORULAR":...}}}
     for b in belgeler():
         m = _oku(METIN_DIZINI / f"{b['id']}.json")
         if not m:
+            continue
+        if b["oturum"] == "OABT":
+            site = site_kimlikleri(b)
+            for ad, uygun in (("A", lambda k: k not in a_set), ("B2", lambda k: k not in site and k not in b2_set)):
+                for t, qs in m["sorular"].items():
+                    grup = next(g for g, ts in OABT_GRUPLARI.items() if t in ts)
+                    hedef = oabt.setdefault(ad, {}).setdefault(grup, {"KONULAR": {}, "SORULAR": {}})
+                    for d, vv in katalog.items():
+                        if t in ders_testleri(vv):
+                            hedef["KONULAR"][f"{d} ({vv['ad']}, {t})"] = vv["konular"]
+                    for q in qs:
+                        k = f"{b['id']}-{t}-{q['no']}"
+                        if uygun(k):
+                            hedef["SORULAR"][k] = q["metin"].replace("\n", " ")
             continue
         konular = {
             f"{d} ({v['ad']}, {'/'.join(ders_testleri(v))})": v["konular"]
@@ -120,6 +145,14 @@ def girdi_yaz(durum: dict) -> list[str]:
             if metinler:
                 yol.write_text(json.dumps({"KONULAR": konular, "SORULAR": metinler}, ensure_ascii=False, indent=1), encoding="utf-8")
                 yazilan.append(f"{yol.name}: {len(metinler)} soru")
+            elif yol.exists():
+                yol.unlink()
+    for ad, gruplar_ in oabt.items():
+        for grup, icerik in gruplar_.items():
+            yol = GIRDI / f"{ad}-oabt-{grup}.json"
+            if icerik["SORULAR"]:
+                yol.write_text(json.dumps(icerik, ensure_ascii=False, indent=1), encoding="utf-8")
+                yazilan.append(f"{yol.name}: {len(icerik['SORULAR'])} soru")
             elif yol.exists():
                 yol.unlink()
     return yazilan

@@ -1,0 +1,15 @@
+{
+  "belge": "2024-oabt",
+  "test": "fen-bilimleri",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 8, "sayfa": 5, "konu": "kpss_oabt_fen_bilimleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 14, "sayfa": 6, "konu": "kpss_oabt_fen_bilimleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 26, "sayfa": 9, "konu": "kpss_oabt_fen_bilimleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 31, "sayfa": 10, "konu": "kpss_oabt_fen_bilimleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 46, "sayfa": 13, "konu": "kpss_oabt_fen_bilimleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 58, "sayfa": 15, "konu": "kpss_oabt_fen_bilimleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 63, "sayfa": 17, "konu": "kpss_oabt_fen_bilimleri.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 69, "sayfa": 19, "konu": "kpss_oabt_fen_bilimleri.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

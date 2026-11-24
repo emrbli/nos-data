@@ -1,0 +1,15 @@
+{
+  "belge": "2024-oabt",
+  "test": "kimya",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 2, "sayfa": 3, "konu": "kpss_oabt_kimya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 9, "sayfa": 4, "konu": "kpss_oabt_kimya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 12, "sayfa": 5, "konu": "kpss_oabt_kimya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 21, "sayfa": 6, "konu": "kpss_oabt_kimya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 26, "sayfa": 7, "konu": "kpss_oabt_kimya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 53, "sayfa": 13, "konu": "kpss_oabt_kimya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 57, "sayfa": 14, "konu": "kpss_oabt_kimya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 74, "sayfa": 20, "konu": "kpss_oabt_kimya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

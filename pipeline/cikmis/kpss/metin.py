@@ -142,23 +142,35 @@ def yuzde10_isle(belge: dict, pdf_yolu, testler) -> dict:
                 x0, x1 = (36.0, ayirici - 3) if sutun == 0 else (ayirici + 3, 580.0)
                 parca = sayfa.crop((x0, e["top"] - 4, x1, c["top"] - 1)).extract_text() or ""
                 no = e["no"]
-                if no in anahtar[kod]:
+                if str(no) in anahtar[kod]:
                     raise SystemExit(f"{belge['id']} {kod} #{no}: iki kez")
                 anahtar[kod][str(no)] = c["harf"]
                 sorular[kod].append({"no": no, "sayfa": i + 1, "bolundu": True, "metin": parca})
     for kod in sorular:
         sorular[kod].sort(key=lambda q: q["no"])
         nolar = [q["no"] for q in sorular[kod]]
-        if len(nolar) != YAYIMLANAN[kod] or max(nolar, default=0) > adet[kod]:
-            raise SystemExit(f"{belge['id']} {kod}: {len(nolar)} soru {nolar}, beklenen {YAYIMLANAN[kod]}")
+        if (YAYIMLANAN.get(kod) is not None and len(nolar) != YAYIMLANAN[kod]) or not nolar or max(nolar) > adet[kod]:
+            raise SystemExit(f"{belge['id']} {kod}: {len(nolar)} soru {nolar}, beklenen {YAYIMLANAN.get(kod)}")
     return {"belge": belge["id"], "anahtar": anahtar, "sorular": sorular}
+
+
+def pdf_soru_adedi(pdf_yolu) -> int:
+    """"Bu testte N soru vardır." satırından (ilk sayfalar)."""
+    with pdfplumber.open(str(pdf_yolu)) as pdf:
+        for sayfa in pdf.pages[:5]:
+            e = re.search(r"Bu testte (\d+) soru", sayfa.extract_text() or "")
+            if e:
+                return int(e.group(1))
+    raise SystemExit(f"{pdf_yolu}: soru adedi bulunamadı")
 
 
 def isle(belge: dict) -> dict:
     """Belgenin her PDF grubunu işler, test başına birleştirir (yalnız `belge["testler"]` içindekiler)."""
     islev = tam_isle if belge["kapsam"] == "tam" else yuzde10_isle
-    sonuc = {"belge": belge["id"], "anahtar": {}, "sorular": {}}
+    sonuc = {"belge": belge["id"], "anahtar": {}, "sorular": {}, "adet": {}}
     for pdf_yolu, testler in gruplar(belge):
+        testler = [(k, a or pdf_soru_adedi(pdf_yolu), d) for k, a, d in testler]  # adet 0: PDF'ten
+        sonuc["adet"].update({k: a for k, a, _ in testler})
         parca = islev(belge, pdf_yolu, testler)
         for kod in parca["sorular"]:
             if kod in sonuc["sorular"]:  # aynı test birden çok PDF'te (DHBT-1): ilkiyle birebir aynı olmalı

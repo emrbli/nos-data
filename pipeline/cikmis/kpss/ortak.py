@@ -32,6 +32,11 @@ TESTLER: dict[str, list[tuple[str, int, str]]] = {
     "EB": [("eb", 80, r"KPSS[^\n]*?/EB\b")],
     # Alan Bilgisi (A grubu): her test ayrı PDF'tir, sayfa üstbilgisi aranmaz (desen None).
     "ALAN": [(k, 40, None) for k in ("huk", "ikt", "isl", "ist", "kamu", "mal", "muh", "ui", "ceei")],
+    # ÖABT: branş başına test (site dizini `oabt-<branş>.json`); soru adedi PDF'ten okunur (0 = otomatik: 2018'de 50, sonra 75).
+    "OABT": [(t, 0, None) for t in (
+        "beden-egitimi", "biyoloji", "cografya", "din-kulturu-ve-ahlak-bilgisi", "fen-bilimleri", "fizik", "ilkogretim-matematik",
+        "imam-hatip-lisesi-meslek-dersleri", "ingilizce", "kimya", "matematik-lise", "okul-oncesi", "rehberlik",
+        "sinif-ogretmenligi", "sosyal-bilgiler", "tarih", "turk-dili-ve-edebiyati", "turkce")],
     # DHBT: her düzey PDF'inde DHBT-1 (hepsinde aynı; lisans PDF'inden alınır) ve o düzeyin DHBT-2'si.
     "DHBT": [
         ("dhbt1", 20, r"DHBT-1"), ("dhbt2-lisans", 20, r"DHBT-2"),
@@ -46,15 +51,16 @@ YAYIMLANAN = {
 }
 
 
-def beklenen(belge: dict, test: str, adet: int) -> int:
-    return adet if belge["kapsam"] == "tam" else YAYIMLANAN[test]
+def beklenen(belge: dict, test: str, adet: int) -> int | None:
+    """Beklenen soru sayısı; yüzde 10'da ÖABT için sabit değil (None: kitapçıktaki yayımlanan sayı esas)."""
+    return adet if belge["kapsam"] == "tam" else YAYIMLANAN.get(test)
 
 # `kitapciklar` ({test: PDF adresi}) yalnız her testi ayrı PDF olan belgelerde (alan, DHBT) vardır; orada `kitapcikUrl` null'dır.
 BELGE_ALANLARI = ("id", "yil", "oturum", "kapsam", "dersler", "kitapcikUrl", "kitapciklar", "yayimUrl", "cozumUrl")
 SORU_ALANLARI = ("id", "belge", "test", "no", "sayfa", "konu", "altKonu", "ekKonu", "cevap", "iptal", "cevapDegisti", "etiket")
 
 ETIKET_TURLERI = {"cift-onay", "hakem", "insan", "belirsiz"}
-KONU_DESENI = re.compile(r"^kpss_[a-z0-9]+\.[a-z0-9-]+$")
+KONU_DESENI = re.compile(r"^kpss_[a-z0-9_]+\.[a-z0-9-]+$")
 HARFLER = {"A", "B", "C", "D", "E"}
 
 
@@ -90,3 +96,8 @@ def gruplar(belge: dict) -> list[tuple[Path, list[tuple[str, int, str | None]]]]
 
 def ders_testleri(ders: dict) -> list[str]:
     return ders.get("testler") or [ders["test"]]
+
+
+def site_dosyasi(belge: dict, test: str) -> str:
+    """nosakademi-web cikmis-dizin dosya adı (uzantısız): ÖABT'de `oabt-<branş>`."""
+    return f"oabt-{test}" if belge["oturum"] == "OABT" else test

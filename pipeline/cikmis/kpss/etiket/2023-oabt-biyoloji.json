@@ -1,0 +1,15 @@
+{
+  "belge": "2023-oabt",
+  "test": "biyoloji",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 5, "sayfa": 3, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 13, "sayfa": 5, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 28, "sayfa": 8, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 38, "sayfa": 10, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 47, "sayfa": 12, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 53, "sayfa": 14, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 62, "sayfa": 16, "konu": "kpss_oabt_biyoloji.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 70, "sayfa": 19, "konu": "kpss_oabt_biyoloji.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

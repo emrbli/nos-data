@@ -1,0 +1,15 @@
+{
+  "belge": "2023-oabt",
+  "test": "cografya",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 8, "sayfa": 4, "konu": "kpss_oabt_cografya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 15, "sayfa": 7, "konu": "kpss_oabt_cografya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 19, "sayfa": 8, "konu": "kpss_oabt_cografya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 28, "sayfa": 10, "konu": "kpss_oabt_cografya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 44, "sayfa": 14, "konu": "kpss_oabt_cografya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 60, "sayfa": 17, "konu": "kpss_oabt_cografya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 64, "sayfa": 18, "konu": "kpss_oabt_cografya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 72, "sayfa": 20, "konu": "kpss_oabt_cografya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

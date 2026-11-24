@@ -19,3 +19,16 @@ PDF'ler: 2022-onlisans `https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ONL/int
 
 ## Tekrarı önlemek için
 Cevap karşılaştırması: aynı sayfada iki cevap satırı olan her sayfa elle ya da konumla doğrulanmalı. nos-data'nın 2019-2026 KPSS cevapları (1016 soru) ÖSYM'nin satır konumundan ve 2019-2021 için sondaki anahtar tablosundan gelir; ikisi `pipeline/cikmis/kpss/denetle.py` ile kitapçıkla çapraz denetlenir.
+
+## ÖABT %10 kitapçıkları: yanlış soru numarası ve eksik kayıtlar (2026-11-24)
+nosakademi-web `data/kpss/cikmis-dizin/<belge>/oabt-<branş>.json` ile ÖSYM kitapçıkları karşılaştırıldı (5.280 soru). Sayfa görüntüsüyle doğrulanan fark: yayımlanan sorunun numarası. Kutu içindeki soru ya da bağlam parçası dahil soru, kendi etiketinin ("66.", "67." gibi) altındadır; sitedeki numaralar bir önceki boş etiketi göstermiş.
+
+| Belge / branş | Kitapçıkta yayımlanan | Sitede |
+|---|---|---|
+| 2022-oabt / rehberlik | 43 (cevap E) | 45 |
+| 2022-oabt / imam-hatip-lisesi-meslek-dersleri | 70 (cevap D) ve 71 | 70 yok |
+| 2023-oabt / ingilizce | 67 (cevap B; kutudaki "hardworking" sorusu ile aynı soru) | 66 |
+| 2024-oabt / ingilizce | 51 (cevap D; TASK tablosu kutusu aynı soru) | 50 |
+| 2024-oabt / tarih | 66 (cevap A; kutudaki soru aynı soru) | 65 |
+
+Ayrıca: 2021-oabt / kimya 13 sitede `iptal`; kitapçık anahtarı A. ÖSYM bir duyuruda 13. sorunun cevabını C'den A'ya düzeltmiş görünüyor (Kimya olduğu doğrulanmadı), anahtar düzeltilmiş harfi veriyorsa iptal değildir. nos-data dizininde anahtardaki harf esastır.

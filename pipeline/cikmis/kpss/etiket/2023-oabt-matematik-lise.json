@@ -1,0 +1,15 @@
+{
+  "belge": "2023-oabt",
+  "test": "matematik-lise",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 8, "sayfa": 4, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 22, "sayfa": 8, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 28, "sayfa": 9, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 32, "sayfa": 10, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 46, "sayfa": 14, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 51, "sayfa": 16, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 59, "sayfa": 17, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 73, "sayfa": 22, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

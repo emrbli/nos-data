@@ -1,0 +1,15 @@
+{
+  "belge": "2024-oabt",
+  "test": "okul-oncesi",
+  "etiketleme": {"tarih": "2026-11-24", "yontem": "iki bağımsız etiketleme (bu hat + nosakademi-web dizini ya da ayrı ikinci etiketleyici); uyuşmayanlar üçüncü karar (hakem); insan denetimi bekliyor"},
+  "sorular": [
+    {"no": 3, "sayfa": 3, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 13, "sayfa": 5, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 29, "sayfa": 9, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 35, "sayfa": 10, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 45, "sayfa": 13, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"},
+    {"no": 62, "sayfa": 17, "konu": "kpss_oabt_okul_oncesi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"},
+    {"no": 69, "sayfa": 18, "konu": "kpss_oabt_okul_oncesi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"},
+    {"no": 72, "sayfa": 19, "konu": "kpss_oabt_okul_oncesi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+  ]
+}

@@ -1655,6 +1655,1248 @@
    "yayimUrl": "https://www.osym.gov.tr/2026-kpss-a-grubu-alan-bilgisi-1-oturum-2-oturum-ve-3-oturum-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
    "cozumUrl": null,
    "sinavTarihi": "2026-09-12"
+  },
+  {
+   "id": "2018-oabt",
+   "yil": 2018,
+   "oturum": "OABT",
+   "kapsam": "tam",
+   "testler": [
+    "biyoloji",
+    "cografya",
+    "din-kulturu-ve-ahlak-bilgisi",
+    "fen-bilimleri",
+    "fizik",
+    "ilkogretim-matematik",
+    "ingilizce",
+    "kimya",
+    "matematik-lise",
+    "okul-oncesi",
+    "rehberlik",
+    "sinif-ogretmenligi",
+    "sosyal-bilgiler",
+    "tarih",
+    "turk-dili-ve-edebiyati",
+    "turkce"
+   ],
+   "dersler": [
+    "kpss_oabt_biyoloji",
+    "kpss_oabt_cografya",
+    "kpss_oabt_din_kulturu_ve_ahlak_bilgisi",
+    "kpss_oabt_fen_bilimleri",
+    "kpss_oabt_fizik",
+    "kpss_oabt_ilkogretim_matematik",
+    "kpss_oabt_ingilizce",
+    "kpss_oabt_kimya",
+    "kpss_oabt_matematik_lise",
+    "kpss_oabt_okul_oncesi",
+    "kpss_oabt_rehberlik",
+    "kpss_oabt_sinif_ogretmenligi",
+    "kpss_oabt_sosyal_bilgiler",
+    "kpss_oabt_tarih",
+    "kpss_oabt_turk_dili_ve_edebiyati",
+    "kpss_oabt_turkce"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "biyoloji": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTBiyoloji12112019.pdf",
+    "cografya": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTCografya12112019.pdf",
+    "din-kulturu-ve-ahlak-bilgisi": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTDinKulturu12112019.pdf",
+    "fen-bilimleri": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTFenBilimleri12112019.pdf",
+    "fizik": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTFizik12112019.pdf",
+    "ilkogretim-matematik": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTIlkogretimMatematik12112019.pdf",
+    "ingilizce": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTIngilizce12112019.pdf",
+    "kimya": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTKimya12112019.pdf",
+    "matematik-lise": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTMatematik_lise12112019.pdf",
+    "okul-oncesi": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTOkuloncesi12112019.pdf",
+    "rehberlik": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTRehber12112019.pdf",
+    "sinif-ogretmenligi": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTSinif12112019.pdf",
+    "sosyal-bilgiler": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTSosyalBilgiler12112019.pdf",
+    "tarih": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTTarihi12112019.pdf",
+    "turk-dili-ve-edebiyati": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTTurkDili12112019.pdf",
+    "turkce": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/SINAVSORULARI/2018KPSSOABTTurkce12112019.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2018-oabt/biyoloji.pdf",
+     "testler": [
+      "biyoloji"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/cografya.pdf",
+     "testler": [
+      "cografya"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/din-kulturu-ve-ahlak-bilgisi.pdf",
+     "testler": [
+      "din-kulturu-ve-ahlak-bilgisi"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/fen-bilimleri.pdf",
+     "testler": [
+      "fen-bilimleri"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/fizik.pdf",
+     "testler": [
+      "fizik"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/ilkogretim-matematik.pdf",
+     "testler": [
+      "ilkogretim-matematik"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/ingilizce.pdf",
+     "testler": [
+      "ingilizce"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/kimya.pdf",
+     "testler": [
+      "kimya"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/matematik-lise.pdf",
+     "testler": [
+      "matematik-lise"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/okul-oncesi.pdf",
+     "testler": [
+      "okul-oncesi"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/rehberlik.pdf",
+     "testler": [
+      "rehberlik"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/snf-ogretmenligi.pdf",
+     "testler": [
+      "sinif-ogretmenligi"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/sosyal-bilgiler.pdf",
+     "testler": [
+      "sosyal-bilgiler"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/tarih.pdf",
+     "testler": [
+      "tarih"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/turk-dili-ve-edebiyat.pdf",
+     "testler": [
+      "turk-dili-ve-edebiyati"
+     ]
+    },
+    {
+     "pdf": "2018-oabt/turkce.pdf",
+     "testler": [
+      "turkce"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2018kpss-ogretmenlik-alan-bilgisi-testi-oabt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2018-08-05"
+  },
+  {
+   "id": "2019-oabt",
+   "yil": 2019,
+   "oturum": "OABT",
+   "kapsam": "tam",
+   "testler": [
+    "beden-egitimi",
+    "biyoloji",
+    "cografya",
+    "din-kulturu-ve-ahlak-bilgisi",
+    "fen-bilimleri",
+    "fizik",
+    "ilkogretim-matematik",
+    "imam-hatip-lisesi-meslek-dersleri",
+    "ingilizce",
+    "kimya",
+    "matematik-lise",
+    "okul-oncesi",
+    "rehberlik",
+    "sinif-ogretmenligi",
+    "sosyal-bilgiler",
+    "tarih",
+    "turk-dili-ve-edebiyati",
+    "turkce"
+   ],
+   "dersler": [
+    "kpss_oabt_beden_egitimi",
+    "kpss_oabt_biyoloji",
+    "kpss_oabt_cografya",
+    "kpss_oabt_din_kulturu_ve_ahlak_bilgisi",
+    "kpss_oabt_fen_bilimleri",
+    "kpss_oabt_fizik",
+    "kpss_oabt_ilkogretim_matematik",
+    "kpss_oabt_imam_hatip_lisesi_meslek_dersleri",
+    "kpss_oabt_ingilizce",
+    "kpss_oabt_kimya",
+    "kpss_oabt_matematik_lise",
+    "kpss_oabt_okul_oncesi",
+    "kpss_oabt_rehberlik",
+    "kpss_oabt_sinif_ogretmenligi",
+    "kpss_oabt_sosyal_bilgiler",
+    "kpss_oabt_tarih",
+    "kpss_oabt_turk_dili_ve_edebiyati",
+    "kpss_oabt_turkce"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "beden-egitimi": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_bedenegitim.pdf",
+    "biyoloji": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Biyoloji.pdf",
+    "cografya": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Cografya.pdf",
+    "din-kulturu-ve-ahlak-bilgisi": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Din_Kulturu.pdf",
+    "fen-bilimleri": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Fen_Bilimleri.pdf",
+    "fizik": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Fizik.pdf",
+    "ilkogretim-matematik": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_İlkog_Matematik.pdf",
+    "imam-hatip-lisesi-meslek-dersleri": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_İmamhatip.pdf",
+    "ingilizce": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_İngilizce.pdf",
+    "kimya": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Kimya.pdf",
+    "matematik-lise": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Lisemat.pdf",
+    "okul-oncesi": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Okuloncesi.pdf",
+    "rehberlik": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Rehber.pdf",
+    "sinif-ogretmenligi": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Sınıfogr.pdf",
+    "sosyal-bilgiler": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Sosyal_Bilgiler.pdf",
+    "tarih": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Tarih.pdf",
+    "turk-dili-ve-edebiyati": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Turkdili.pdf",
+    "turkce": "https://dokuman.osym.gov.tr/pdfdokuman/2019/KPSS/SINAVSORULARI/2019_OABT_Turkce.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2019-oabt/beden-egitimi.pdf",
+     "testler": [
+      "beden-egitimi"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/biyoloji.pdf",
+     "testler": [
+      "biyoloji"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/cografya.pdf",
+     "testler": [
+      "cografya"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/din-kulturu-ve-ahlak-bilgisi.pdf",
+     "testler": [
+      "din-kulturu-ve-ahlak-bilgisi"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/fen-bilimleri.pdf",
+     "testler": [
+      "fen-bilimleri"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/fizik.pdf",
+     "testler": [
+      "fizik"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/ilkogretim-matematik.pdf",
+     "testler": [
+      "ilkogretim-matematik"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/imam-hatip-lisesi-meslek-dersleri.pdf",
+     "testler": [
+      "imam-hatip-lisesi-meslek-dersleri"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/ingilizce.pdf",
+     "testler": [
+      "ingilizce"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/kimya.pdf",
+     "testler": [
+      "kimya"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/matematik-lise.pdf",
+     "testler": [
+      "matematik-lise"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/okul-oncesi.pdf",
+     "testler": [
+      "okul-oncesi"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/rehberlik.pdf",
+     "testler": [
+      "rehberlik"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/snf-ogretmenligi.pdf",
+     "testler": [
+      "sinif-ogretmenligi"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/sosyal-bilgiler.pdf",
+     "testler": [
+      "sosyal-bilgiler"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/tarih.pdf",
+     "testler": [
+      "tarih"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/turk-dili-ve-edebiyat.pdf",
+     "testler": [
+      "turk-dili-ve-edebiyati"
+     ]
+    },
+    {
+     "pdf": "2019-oabt/turkce.pdf",
+     "testler": [
+      "turkce"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2019kpss-ogretmenlik-alan-bilgisi-testi-oabt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2019-07-28"
+  },
+  {
+   "id": "2020-oabt",
+   "yil": 2020,
+   "oturum": "OABT",
+   "kapsam": "tam",
+   "testler": [
+    "beden-egitimi",
+    "biyoloji",
+    "cografya",
+    "din-kulturu-ve-ahlak-bilgisi",
+    "fen-bilimleri",
+    "fizik",
+    "ilkogretim-matematik",
+    "imam-hatip-lisesi-meslek-dersleri",
+    "ingilizce",
+    "kimya",
+    "matematik-lise",
+    "okul-oncesi",
+    "rehberlik",
+    "sinif-ogretmenligi",
+    "sosyal-bilgiler",
+    "tarih",
+    "turk-dili-ve-edebiyati",
+    "turkce"
+   ],
+   "dersler": [
+    "kpss_oabt_beden_egitimi",
+    "kpss_oabt_biyoloji",
+    "kpss_oabt_cografya",
+    "kpss_oabt_din_kulturu_ve_ahlak_bilgisi",
+    "kpss_oabt_fen_bilimleri",
+    "kpss_oabt_fizik",
+    "kpss_oabt_ilkogretim_matematik",
+    "kpss_oabt_imam_hatip_lisesi_meslek_dersleri",
+    "kpss_oabt_ingilizce",
+    "kpss_oabt_kimya",
+    "kpss_oabt_matematik_lise",
+    "kpss_oabt_okul_oncesi",
+    "kpss_oabt_rehberlik",
+    "kpss_oabt_sinif_ogretmenligi",
+    "kpss_oabt_sosyal_bilgiler",
+    "kpss_oabt_tarih",
+    "kpss_oabt_turk_dili_ve_edebiyati",
+    "kpss_oabt_turkce"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "beden-egitimi": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_bedenegitim.pdf",
+    "biyoloji": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Biyoloji.pdf",
+    "cografya": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Cografya.pdf",
+    "din-kulturu-ve-ahlak-bilgisi": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Din_Kulturu.pdf",
+    "fen-bilimleri": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Fen_Bilimleri.pdf",
+    "fizik": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Fizik.pdf",
+    "ilkogretim-matematik": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_İlk_Matematik.pdf",
+    "imam-hatip-lisesi-meslek-dersleri": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_İmamhatip.pdf",
+    "ingilizce": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_İngilizce.pdf",
+    "kimya": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Kimya.pdf",
+    "matematik-lise": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Lise_Matematik.pdf",
+    "okul-oncesi": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Okuloncesi.pdf",
+    "rehberlik": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Rehber.pdf",
+    "sinif-ogretmenligi": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Sınıfogr.pdf",
+    "sosyal-bilgiler": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Sosyal_Bilgiler.pdf",
+    "tarih": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Tarih.pdf",
+    "turk-dili-ve-edebiyati": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Turkdili.pdf",
+    "turkce": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/SINAVSORULARI/2020_OABT_Turkce.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2020-oabt/beden-egitimi.pdf",
+     "testler": [
+      "beden-egitimi"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/biyoloji.pdf",
+     "testler": [
+      "biyoloji"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/cografya.pdf",
+     "testler": [
+      "cografya"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/din-kulturu-ve-ahlak-bilgisi.pdf",
+     "testler": [
+      "din-kulturu-ve-ahlak-bilgisi"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/fen-bilimleri.pdf",
+     "testler": [
+      "fen-bilimleri"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/fizik.pdf",
+     "testler": [
+      "fizik"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/ilkogretim-matematik.pdf",
+     "testler": [
+      "ilkogretim-matematik"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/imam-hatip-lisesi-meslek-dersleri.pdf",
+     "testler": [
+      "imam-hatip-lisesi-meslek-dersleri"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/ingilizce.pdf",
+     "testler": [
+      "ingilizce"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/kimya.pdf",
+     "testler": [
+      "kimya"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/matematik-lise.pdf",
+     "testler": [
+      "matematik-lise"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/okul-oncesi.pdf",
+     "testler": [
+      "okul-oncesi"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/rehberlik.pdf",
+     "testler": [
+      "rehberlik"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/snf-ogretmenligi.pdf",
+     "testler": [
+      "sinif-ogretmenligi"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/sosyal-bilgiler.pdf",
+     "testler": [
+      "sosyal-bilgiler"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/tarih.pdf",
+     "testler": [
+      "tarih"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/turk-dili-ve-edebiyat.pdf",
+     "testler": [
+      "turk-dili-ve-edebiyati"
+     ]
+    },
+    {
+     "pdf": "2020-oabt/turkce.pdf",
+     "testler": [
+      "turkce"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2020kpss-ogretmenlik-alan-bilgisi-testi-oabt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2020-09-20"
+  },
+  {
+   "id": "2021-oabt",
+   "yil": 2021,
+   "oturum": "OABT",
+   "kapsam": "tam",
+   "testler": [
+    "beden-egitimi",
+    "biyoloji",
+    "cografya",
+    "din-kulturu-ve-ahlak-bilgisi",
+    "fen-bilimleri",
+    "fizik",
+    "ilkogretim-matematik",
+    "imam-hatip-lisesi-meslek-dersleri",
+    "ingilizce",
+    "kimya",
+    "matematik-lise",
+    "okul-oncesi",
+    "rehberlik",
+    "sinif-ogretmenligi",
+    "sosyal-bilgiler",
+    "tarih",
+    "turk-dili-ve-edebiyati",
+    "turkce"
+   ],
+   "dersler": [
+    "kpss_oabt_beden_egitimi",
+    "kpss_oabt_biyoloji",
+    "kpss_oabt_cografya",
+    "kpss_oabt_din_kulturu_ve_ahlak_bilgisi",
+    "kpss_oabt_fen_bilimleri",
+    "kpss_oabt_fizik",
+    "kpss_oabt_ilkogretim_matematik",
+    "kpss_oabt_imam_hatip_lisesi_meslek_dersleri",
+    "kpss_oabt_ingilizce",
+    "kpss_oabt_kimya",
+    "kpss_oabt_matematik_lise",
+    "kpss_oabt_okul_oncesi",
+    "kpss_oabt_rehberlik",
+    "kpss_oabt_sinif_ogretmenligi",
+    "kpss_oabt_sosyal_bilgiler",
+    "kpss_oabt_tarih",
+    "kpss_oabt_turk_dili_ve_edebiyati",
+    "kpss_oabt_turkce"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "beden-egitimi": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_bedenegitim.pdf",
+    "biyoloji": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Biyoloji.pdf",
+    "cografya": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Cografya.pdf",
+    "din-kulturu-ve-ahlak-bilgisi": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Din_Kulturu.pdf",
+    "fen-bilimleri": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Fen_Bilimleri.pdf",
+    "fizik": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Fizik.pdf",
+    "ilkogretim-matematik": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_İlk_Matematik.pdf",
+    "imam-hatip-lisesi-meslek-dersleri": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_İmamhatip.pdf",
+    "ingilizce": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_İngilizce.pdf",
+    "kimya": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Kimya.pdf",
+    "matematik-lise": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Lise_Matematik.pdf",
+    "okul-oncesi": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Okuloncesi.pdf",
+    "rehberlik": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Rehber.pdf",
+    "sinif-ogretmenligi": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Sınıfogr.pdf",
+    "sosyal-bilgiler": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Sosyal_Bilgiler.pdf",
+    "tarih": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Tarih.pdf",
+    "turk-dili-ve-edebiyati": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Turkdili.pdf",
+    "turkce": "https://dokuman.osym.gov.tr/pdfdokuman/2021/KPSS/SINAVSORULARI/2021_OABT_Turkce.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2021-oabt/beden-egitimi.pdf",
+     "testler": [
+      "beden-egitimi"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/biyoloji.pdf",
+     "testler": [
+      "biyoloji"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/cografya.pdf",
+     "testler": [
+      "cografya"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/din-kulturu-ve-ahlak-bilgisi.pdf",
+     "testler": [
+      "din-kulturu-ve-ahlak-bilgisi"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/fen-bilimleri.pdf",
+     "testler": [
+      "fen-bilimleri"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/fizik.pdf",
+     "testler": [
+      "fizik"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/ilkogretim-matematik.pdf",
+     "testler": [
+      "ilkogretim-matematik"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/imam-hatip-lisesi-meslek-dersleri.pdf",
+     "testler": [
+      "imam-hatip-lisesi-meslek-dersleri"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/ingilizce.pdf",
+     "testler": [
+      "ingilizce"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/kimya.pdf",
+     "testler": [
+      "kimya"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/matematik-lise.pdf",
+     "testler": [
+      "matematik-lise"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/okul-oncesi.pdf",
+     "testler": [
+      "okul-oncesi"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/rehberlik.pdf",
+     "testler": [
+      "rehberlik"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/snf-ogretmenligi.pdf",
+     "testler": [
+      "sinif-ogretmenligi"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/sosyal-bilgiler.pdf",
+     "testler": [
+      "sosyal-bilgiler"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/tarih.pdf",
+     "testler": [
+      "tarih"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/turk-dili-ve-edebiyat.pdf",
+     "testler": [
+      "turk-dili-ve-edebiyati"
+     ]
+    },
+    {
+     "pdf": "2021-oabt/turkce.pdf",
+     "testler": [
+      "turkce"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2021kpss-ogretmenlik-alan-bilgisi-testi-oabt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2021-08-15"
+  },
+  {
+   "id": "2022-oabt",
+   "yil": 2022,
+   "oturum": "OABT",
+   "kapsam": "yuzde10",
+   "testler": [
+    "beden-egitimi",
+    "biyoloji",
+    "cografya",
+    "din-kulturu-ve-ahlak-bilgisi",
+    "fen-bilimleri",
+    "fizik",
+    "ilkogretim-matematik",
+    "imam-hatip-lisesi-meslek-dersleri",
+    "ingilizce",
+    "kimya",
+    "matematik-lise",
+    "okul-oncesi",
+    "rehberlik",
+    "sinif-ogretmenligi",
+    "sosyal-bilgiler",
+    "tarih",
+    "turk-dili-ve-edebiyati",
+    "turkce"
+   ],
+   "dersler": [
+    "kpss_oabt_beden_egitimi",
+    "kpss_oabt_biyoloji",
+    "kpss_oabt_cografya",
+    "kpss_oabt_din_kulturu_ve_ahlak_bilgisi",
+    "kpss_oabt_fen_bilimleri",
+    "kpss_oabt_fizik",
+    "kpss_oabt_ilkogretim_matematik",
+    "kpss_oabt_imam_hatip_lisesi_meslek_dersleri",
+    "kpss_oabt_ingilizce",
+    "kpss_oabt_kimya",
+    "kpss_oabt_matematik_lise",
+    "kpss_oabt_okul_oncesi",
+    "kpss_oabt_rehberlik",
+    "kpss_oabt_sinif_ogretmenligi",
+    "kpss_oabt_sosyal_bilgiler",
+    "kpss_oabt_tarih",
+    "kpss_oabt_turk_dili_ve_edebiyati",
+    "kpss_oabt_turkce"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "beden-egitimi": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/bedenegitimi02102022.pdf",
+    "biyoloji": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/biyoloji02102022.pdf",
+    "cografya": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/cografya02102022.pdf",
+    "din-kulturu-ve-ahlak-bilgisi": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/dinkulturu02102022.pdf",
+    "fen-bilimleri": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/fenbilimleri04102022.pdf",
+    "fizik": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/fizik02102022.pdf",
+    "ilkogretim-matematik": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/ilkogretim-matematik021012022.pdf",
+    "imam-hatip-lisesi-meslek-dersleri": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/ihl-meslekdersleri02102022.pdf",
+    "ingilizce": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/ingilizce02102022.pdf",
+    "kimya": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/kimya02102022.pdf",
+    "matematik-lise": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/lise-matematik02102022.pdf",
+    "okul-oncesi": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/okuloncesi02102022.pdf",
+    "rehberlik": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/rehberlik02102022.pdf",
+    "sinif-ogretmenligi": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/sinifogretmenligi02102022.pdf",
+    "sosyal-bilgiler": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/sosyalbilgiler02102022.pdf",
+    "tarih": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/tarih02102022.pdf",
+    "turk-dili-ve-edebiyati": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/turkdiliedebiyati02102022.pdf",
+    "turkce": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/OABT/turkce02102022.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2022-oabt/beden-egitimi.pdf",
+     "testler": [
+      "beden-egitimi"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/biyoloji.pdf",
+     "testler": [
+      "biyoloji"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/cografya.pdf",
+     "testler": [
+      "cografya"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/din-kulturu-ve-ahlak-bilgisi.pdf",
+     "testler": [
+      "din-kulturu-ve-ahlak-bilgisi"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/fen-bilimleri.pdf",
+     "testler": [
+      "fen-bilimleri"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/fizik.pdf",
+     "testler": [
+      "fizik"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/ilkogretim-matematik.pdf",
+     "testler": [
+      "ilkogretim-matematik"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/imam-hatip-lisesi-meslek-dersleri.pdf",
+     "testler": [
+      "imam-hatip-lisesi-meslek-dersleri"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/ingilizce.pdf",
+     "testler": [
+      "ingilizce"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/kimya.pdf",
+     "testler": [
+      "kimya"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/matematik-lise.pdf",
+     "testler": [
+      "matematik-lise"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/okul-oncesi.pdf",
+     "testler": [
+      "okul-oncesi"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/rehberlik.pdf",
+     "testler": [
+      "rehberlik"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/snf-ogretmenligi.pdf",
+     "testler": [
+      "sinif-ogretmenligi"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/sosyal-bilgiler.pdf",
+     "testler": [
+      "sosyal-bilgiler"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/tarih.pdf",
+     "testler": [
+      "tarih"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/turk-dili-ve-edebiyat.pdf",
+     "testler": [
+      "turk-dili-ve-edebiyati"
+     ]
+    },
+    {
+     "pdf": "2022-oabt/turkce.pdf",
+     "testler": [
+      "turkce"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2022kpss-lisans-ogretmenlik-alan-bilgisi-testi-oabt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2022-10-02"
+  },
+  {
+   "id": "2023-oabt",
+   "yil": 2023,
+   "oturum": "OABT",
+   "kapsam": "yuzde10",
+   "testler": [
+    "beden-egitimi",
+    "biyoloji",
+    "cografya",
+    "din-kulturu-ve-ahlak-bilgisi",
+    "fen-bilimleri",
+    "fizik",
+    "ilkogretim-matematik",
+    "imam-hatip-lisesi-meslek-dersleri",
+    "ingilizce",
+    "kimya",
+    "matematik-lise",
+    "okul-oncesi",
+    "rehberlik",
+    "sinif-ogretmenligi",
+    "sosyal-bilgiler",
+    "tarih",
+    "turk-dili-ve-edebiyati",
+    "turkce"
+   ],
+   "dersler": [
+    "kpss_oabt_beden_egitimi",
+    "kpss_oabt_biyoloji",
+    "kpss_oabt_cografya",
+    "kpss_oabt_din_kulturu_ve_ahlak_bilgisi",
+    "kpss_oabt_fen_bilimleri",
+    "kpss_oabt_fizik",
+    "kpss_oabt_ilkogretim_matematik",
+    "kpss_oabt_imam_hatip_lisesi_meslek_dersleri",
+    "kpss_oabt_ingilizce",
+    "kpss_oabt_kimya",
+    "kpss_oabt_matematik_lise",
+    "kpss_oabt_okul_oncesi",
+    "kpss_oabt_rehberlik",
+    "kpss_oabt_sinif_ogretmenligi",
+    "kpss_oabt_sosyal_bilgiler",
+    "kpss_oabt_tarih",
+    "kpss_oabt_turk_dili_ve_edebiyati",
+    "kpss_oabt_turkce"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "beden-egitimi": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/bedenegitimi06082023.pdf",
+    "biyoloji": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/biyoloji06082023.pdf",
+    "cografya": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/cografya06082023.pdf",
+    "din-kulturu-ve-ahlak-bilgisi": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/dink06082023.pdf",
+    "fen-bilimleri": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/fenbilim06082023.pdf",
+    "fizik": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/fizik06082023.pdf",
+    "ilkogretim-matematik": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/ilkmat06082023.pdf",
+    "imam-hatip-lisesi-meslek-dersleri": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/ihl-meslek06082023.pdf",
+    "ingilizce": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/ing06082023.pdf",
+    "kimya": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/kimya06082023.pdf",
+    "matematik-lise": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/lisemat06082023.pdf",
+    "okul-oncesi": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/okuloncesi06082023.pdf",
+    "rehberlik": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/rehberlik06082023.pdf",
+    "sinif-ogretmenligi": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/sinifogr06082023.pdf",
+    "sosyal-bilgiler": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/sosyalbilg06082023.pdf",
+    "tarih": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/tarih06082023.pdf",
+    "turk-dili-ve-edebiyati": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/turkdili06082023.pdf",
+    "turkce": "https://dokuman.osym.gov.tr/pdfdokuman/2023/KPSS/OABT/turkce06082023.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2023-oabt/beden-egitimi.pdf",
+     "testler": [
+      "beden-egitimi"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/biyoloji.pdf",
+     "testler": [
+      "biyoloji"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/cografya.pdf",
+     "testler": [
+      "cografya"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/din-kulturu-ve-ahlak-bilgisi.pdf",
+     "testler": [
+      "din-kulturu-ve-ahlak-bilgisi"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/fen-bilimleri.pdf",
+     "testler": [
+      "fen-bilimleri"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/fizik.pdf",
+     "testler": [
+      "fizik"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/ilkogretim-matematik.pdf",
+     "testler": [
+      "ilkogretim-matematik"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/imam-hatip-lisesi-meslek-dersleri.pdf",
+     "testler": [
+      "imam-hatip-lisesi-meslek-dersleri"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/ingilizce.pdf",
+     "testler": [
+      "ingilizce"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/kimya.pdf",
+     "testler": [
+      "kimya"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/matematik-lise.pdf",
+     "testler": [
+      "matematik-lise"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/okul-oncesi.pdf",
+     "testler": [
+      "okul-oncesi"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/rehberlik.pdf",
+     "testler": [
+      "rehberlik"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/snf-ogretmenligi.pdf",
+     "testler": [
+      "sinif-ogretmenligi"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/sosyal-bilgiler.pdf",
+     "testler": [
+      "sosyal-bilgiler"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/tarih.pdf",
+     "testler": [
+      "tarih"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/turk-dili-ve-edebiyat.pdf",
+     "testler": [
+      "turk-dili-ve-edebiyati"
+     ]
+    },
+    {
+     "pdf": "2023-oabt/turkce.pdf",
+     "testler": [
+      "turkce"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2023kpss-lisans-ogretmenlik-alan-bilgisi-testi-oabt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2023-08-06"
+  },
+  {
+   "id": "2024-oabt",
+   "yil": 2024,
+   "oturum": "OABT",
+   "kapsam": "yuzde10",
+   "testler": [
+    "beden-egitimi",
+    "biyoloji",
+    "cografya",
+    "din-kulturu-ve-ahlak-bilgisi",
+    "fen-bilimleri",
+    "fizik",
+    "ilkogretim-matematik",
+    "imam-hatip-lisesi-meslek-dersleri",
+    "ingilizce",
+    "kimya",
+    "matematik-lise",
+    "okul-oncesi",
+    "rehberlik",
+    "sinif-ogretmenligi",
+    "sosyal-bilgiler",
+    "tarih",
+    "turk-dili-ve-edebiyati",
+    "turkce"
+   ],
+   "dersler": [
+    "kpss_oabt_beden_egitimi",
+    "kpss_oabt_biyoloji",
+    "kpss_oabt_cografya",
+    "kpss_oabt_din_kulturu_ve_ahlak_bilgisi",
+    "kpss_oabt_fen_bilimleri",
+    "kpss_oabt_fizik",
+    "kpss_oabt_ilkogretim_matematik",
+    "kpss_oabt_imam_hatip_lisesi_meslek_dersleri",
+    "kpss_oabt_ingilizce",
+    "kpss_oabt_kimya",
+    "kpss_oabt_matematik_lise",
+    "kpss_oabt_okul_oncesi",
+    "kpss_oabt_rehberlik",
+    "kpss_oabt_sinif_ogretmenligi",
+    "kpss_oabt_sosyal_bilgiler",
+    "kpss_oabt_tarih",
+    "kpss_oabt_turk_dili_ve_edebiyati",
+    "kpss_oabt_turkce"
+   ],
+   "kitapcikUrl": null,
+   "kitapciklar": {
+    "beden-egitimi": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/bedenegitimi04082024.pdf",
+    "biyoloji": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/biyoloji04082024.pdf",
+    "cografya": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/cografya04082024.pdf",
+    "din-kulturu-ve-ahlak-bilgisi": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/dink04082024.pdf",
+    "fen-bilimleri": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/fenbilim04082024.pdf",
+    "fizik": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/fizik04082024.pdf",
+    "ilkogretim-matematik": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/ilkmat04082024.pdf",
+    "imam-hatip-lisesi-meslek-dersleri": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/ihl-meslek04082024.pdf",
+    "ingilizce": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/ing04082024.pdf",
+    "kimya": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/kimya04082024.pdf",
+    "matematik-lise": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/lisemat04082024.pdf",
+    "okul-oncesi": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/okuloncesi04082024.pdf",
+    "rehberlik": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/rehberlik04082024.pdf",
+    "sinif-ogretmenligi": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/sinifogr04082024.pdf",
+    "sosyal-bilgiler": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/sosyalbilg04082024.pdf",
+    "tarih": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/tarih04082024.pdf",
+    "turk-dili-ve-edebiyati": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/turkdil04082024.pdf",
+    "turkce": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/OABT/turkce04082024.pdf"
+   },
+   "kaynaklar": [
+    {
+     "pdf": "2024-oabt/beden-egitimi.pdf",
+     "testler": [
+      "beden-egitimi"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/biyoloji.pdf",
+     "testler": [
+      "biyoloji"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/cografya.pdf",
+     "testler": [
+      "cografya"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/din-kulturu-ve-ahlak-bilgisi.pdf",
+     "testler": [
+      "din-kulturu-ve-ahlak-bilgisi"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/fen-bilimleri.pdf",
+     "testler": [
+      "fen-bilimleri"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/fizik.pdf",
+     "testler": [
+      "fizik"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/ilkogretim-matematik.pdf",
+     "testler": [
+      "ilkogretim-matematik"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/imam-hatip-lisesi-meslek-dersleri.pdf",
+     "testler": [
+      "imam-hatip-lisesi-meslek-dersleri"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/ingilizce.pdf",
+     "testler": [
+      "ingilizce"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/kimya.pdf",
+     "testler": [
+      "kimya"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/matematik-lise.pdf",
+     "testler": [
+      "matematik-lise"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/okul-oncesi.pdf",
+     "testler": [
+      "okul-oncesi"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/rehberlik.pdf",
+     "testler": [
+      "rehberlik"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/snf-ogretmenligi.pdf",
+     "testler": [
+      "sinif-ogretmenligi"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/sosyal-bilgiler.pdf",
+     "testler": [
+      "sosyal-bilgiler"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/tarih.pdf",
+     "testler": [
+      "tarih"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/turk-dili-ve-edebiyat.pdf",
+     "testler": [
+      "turk-dili-ve-edebiyati"
+     ]
+    },
+    {
+     "pdf": "2024-oabt/turkce.pdf",
+     "testler": [
+      "turkce"
+     ]
+    }
+   ],
+   "yayimUrl": "https://www.osym.gov.tr/2024kpss-lisans-ogretmenlik-alan-bilgisi-testi-oabt-temel-soru-kitapciklari-ve-cevap-anahtarlari-10",
+   "cozumUrl": null,
+   "sinavTarihi": "2024-08-04"
   }
  ]
 }

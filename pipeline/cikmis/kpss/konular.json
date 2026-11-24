@@ -1,5 +1,5 @@
 {
- "_not": "KPSS konu kimliği: kpss_<ders>.<konu>. Kaynak: nosakademi-web data/kpss/konu-anahtarlari.ts (GY-GK ders konu listesi, EB: 2024 Lisans Başvuru Kılavuzu Tablo-1); 11.512 soruluk orada etiketli dizinle aynı slug'lar, kalıcıdır. Düzey (lisans/ön lisans/ortaöğretim) kimliğe girmez: GY-GK düzeni üç düzeyde aynı, düzey belgenin oturumundadır. Alan Bilgisi (A grubu) ve DHBT: konu anahtarları nosakademi-web data/kpss/kapsam.ts maddelerinden (ALAN_KAPSAM, DHBT_KAPSAM); ders kodu test koduyla aynıdır (kpss_huk, kpss_ikt, kpss_isl, kpss_ist, kpss_kamu, kpss_mal, kpss_muh, kpss_ui, kpss_ceei, kpss_dhbt1, kpss_dhbt2). Aynı slug farklı derste olabilir (örn. temel-kavramlar kpss_mat ve kpss_isl): konu kimliği ders önekiyle tekildir. kpss_dhbt2 üç düzeyin (lisans, önlisans, ortaöğretim) DHBT-2 testini kapsar. ÖABT bu hatta yoktur.",
+ "_not": "KPSS konu kimliği: kpss_<ders>.<konu>. Kaynak: nosakademi-web data/kpss/konu-anahtarlari.ts (GY-GK ders konu listesi, EB: 2024 Lisans Başvuru Kılavuzu Tablo-1); 11.512 soruluk orada etiketli dizinle aynı slug'lar, kalıcıdır. Düzey (lisans/ön lisans/ortaöğretim) kimliğe girmez: GY-GK düzeni üç düzeyde aynı, düzey belgenin oturumundadır. Alan Bilgisi (A grubu) ve DHBT: konu anahtarları nosakademi-web data/kpss/kapsam.ts maddelerinden (ALAN_KAPSAM, DHBT_KAPSAM); ders kodu test koduyla aynıdır (kpss_huk, kpss_ikt, kpss_isl, kpss_ist, kpss_kamu, kpss_mal, kpss_muh, kpss_ui, kpss_ceei, kpss_dhbt1, kpss_dhbt2). Aynı slug farklı derste olabilir (örn. temel-kavramlar kpss_mat ve kpss_isl): konu kimliği ders önekiyle tekildir. kpss_dhbt2 üç düzeyin (lisans, önlisans, ortaöğretim) DHBT-2 testini kapsar. ÖABT bu hatta yoktur. ÖABT: ders kodu kpss_oabt_<branş slug> (tire alt çizgi); konu yalnız alan-bilgisi ve alan-egitimi (ÖSYM yüzde 80/20 ayrımı; İngilizce ve Sınıf Öğretmenliğinde 60/40). Branş alt konuları (nosakademi-web cikmis-dizin/sozluk) KPSS formatında altKonu olmadığı için alınmadı.",
  "dersler": {
   "kpss_tur": {
    "ad": "Türkçe",
@@ -223,6 +223,150 @@
     "islam-tarihi": "İslam tarihi",
     "dinler-ve-mezhepler-tarihi": "Dinler ve mezhepler tarihi",
     "dini-hitabet": "Dini hitabet"
+   }
+  },
+  "kpss_oabt_beden_egitimi": {
+   "ad": "ÖABT beden egitimi",
+   "test": "beden-egitimi",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_biyoloji": {
+   "ad": "ÖABT biyoloji",
+   "test": "biyoloji",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_cografya": {
+   "ad": "ÖABT cografya",
+   "test": "cografya",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_din_kulturu_ve_ahlak_bilgisi": {
+   "ad": "ÖABT din kulturu ve ahlak bilgisi",
+   "test": "din-kulturu-ve-ahlak-bilgisi",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_fen_bilimleri": {
+   "ad": "ÖABT fen bilimleri",
+   "test": "fen-bilimleri",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_fizik": {
+   "ad": "ÖABT fizik",
+   "test": "fizik",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_ilkogretim_matematik": {
+   "ad": "ÖABT ilkogretim matematik",
+   "test": "ilkogretim-matematik",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_imam_hatip_lisesi_meslek_dersleri": {
+   "ad": "ÖABT imam hatip lisesi meslek dersleri",
+   "test": "imam-hatip-lisesi-meslek-dersleri",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_ingilizce": {
+   "ad": "ÖABT ingilizce",
+   "test": "ingilizce",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_kimya": {
+   "ad": "ÖABT kimya",
+   "test": "kimya",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_matematik_lise": {
+   "ad": "ÖABT matematik lise",
+   "test": "matematik-lise",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_okul_oncesi": {
+   "ad": "ÖABT okul oncesi",
+   "test": "okul-oncesi",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_rehberlik": {
+   "ad": "ÖABT rehberlik",
+   "test": "rehberlik",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_sinif_ogretmenligi": {
+   "ad": "ÖABT sinif ogretmenligi",
+   "test": "sinif-ogretmenligi",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_sosyal_bilgiler": {
+   "ad": "ÖABT sosyal bilgiler",
+   "test": "sosyal-bilgiler",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_tarih": {
+   "ad": "ÖABT tarih",
+   "test": "tarih",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_turk_dili_ve_edebiyati": {
+   "ad": "ÖABT turk dili ve edebiyati",
+   "test": "turk-dili-ve-edebiyati",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
+   }
+  },
+  "kpss_oabt_turkce": {
+   "ad": "ÖABT turkce",
+   "test": "turkce",
+   "konular": {
+    "alan-bilgisi": "Alan bilgisi",
+    "alan-egitimi": "Alan eğitimi"
    }
   }
  }

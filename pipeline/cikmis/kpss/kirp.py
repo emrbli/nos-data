@@ -43,6 +43,10 @@ def kirp_sayfa(pdf_yolu, sayfa_no: int, istenen: list[int], cizim, cevapli: bool
         sonraki = sorted(x["top"] for x in tum if x["sutun"] == e["sutun"] and x["top"] > e["top"] + 1)
         x0, x1 = (SOL_KENAR, ayirici - 3) if e["sutun"] == 0 else (ayirici + 3, SAG_KENAR)
         y0, y1 = e["top"] - 4, (sonraki[0] - 6) if sonraki else alt - 3
+        if e["sutun"] == 1:  # sağ kenara taşan ama sayfa içindeki sözcük (örn. ÖABT 2019 Fen 37 "Etanol"): kutuyu sayfa kenarına dek genişlet
+            sag = [w["x1"] for w in kelimeler if w["x0"] >= ayirici and y0 <= w["top"] and w["bottom"] <= y1 + 2 and x1 + 0.5 < w["x1"] < sayfa_genisligi - 1]
+            if sag:
+                x1 = min(max(sag) + 3, sayfa_genisligi - 1)
         if cevapli:  # yüzde 10 kitapçık: "DOĞRU CEVAP" satırının üstünde kes
             benim = [c for c in cevaplar if (c["x0"] < ayirici) == (e["sutun"] == 0) and c["top"] > e["top"]]
             if not benim:

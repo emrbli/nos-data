@@ -20,7 +20,7 @@ import json
 import sys
 from pathlib import Path
 
-from .ortak import ETIKET_DIZINI, HAM, KOK, METIN_DIZINI, belgeler, ders_testleri, konu_katalogu
+from .ortak import ETIKET_DIZINI, HAM, KOK, METIN_DIZINI, belgeler, ders_testleri, konu_katalogu, site_dosyasi
 
 ETIKETLEME = HAM / "etiketleme"
 KARDES = KOK.parent / "nosakademi-web" / "data" / "kpss" / "cikmis-dizin"
@@ -64,7 +64,7 @@ def main() -> None:
         metin = json.loads((METIN_DIZINI / f"{b['id']}.json").read_text(encoding="utf-8"))
         for test in b["testler"]:
             ozgun: dict[int, str] = {}
-            yol = kardes / b["id"] / f"{test}.json"
+            yol = kardes / b["id"] / f"{site_dosyasi(b, test)}.json"
             if yol.exists():
                 ozgun = {s["no"]: s.get("konu", "") for s in json.loads(yol.read_text(encoding="utf-8"))["sorular"]}
             sorular = []

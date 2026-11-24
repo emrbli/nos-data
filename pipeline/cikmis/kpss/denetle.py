@@ -73,13 +73,17 @@ def denetle() -> list[str]:
         if test not in b.get("testler", []):
             hatalar.append(f"{yol.name}: {test} belgede etiketlenen testlerde yok")
         adet = next((a for k, a, _ in TESTLER[b["oturum"]] if k == test), None)
-        nolar = [s["no"] for s in e["sorular"]]
-        if adet is None or len(set(nolar)) != len(nolar) or not all(1 <= n <= adet for n in nolar) or len(nolar) != beklenen(b, test, adet):
-            hatalar.append(f"{yol.name}: numaralar tekil, 1..{adet} ve {beklenen(b, test, adet) if adet else '?'} adet olmalı ({sorted(nolar)})")
         metin = None
         mp = METIN_DIZINI / f"{b['id']}.json"
         if mp.exists():
             metin = oku(mp)
+        if adet == 0:  # ÖABT: adet PDF'ten (metin.json "adet")
+            adet = (metin or {}).get("adet", {}).get(test)
+        nolar = [s["no"] for s in e["sorular"]]
+        bek = beklenen(b, test, adet) if adet else None
+        if adet is None or len(set(nolar)) != len(nolar) or not all(1 <= n <= adet for n in nolar) or (bek is not None and len(nolar) != bek):
+            hatalar.append(f"{yol.name}: numaralar tekil, 1..{adet} ve {bek if bek is not None else 'kitapçıktaki'} adet olmalı ({sorted(nolar)})")
+        if metin:
             yayimlanan = sorted(int(n) for n in metin["anahtar"][test])
             if sorted(nolar) != yayimlanan:
                 hatalar.append(f"{yol.name}: numaralar kitapçıktaki yayımlanan sorularla aynı değil ({yayimlanan})")
