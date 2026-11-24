@@ -18,7 +18,7 @@ import pdfplumber
 import pypdfium2 as pdfium
 
 from ..kirp import (
-    KENAR_PX, OLCEK, SAG_KENAR, SOL_KENAR, WEBP_KALITE, etiketler, icerik_alani, kirp_gorsel, ortak_parcalar, soluklastir, ust_uste,
+    KENAR_PX, OLCEK, FiligranCizici, SAG_KENAR, SOL_KENAR, WEBP_KALITE, etiketler, icerik_alani, kirp_gorsel, ortak_parcalar, soluklastir, ust_uste,
 )
 from .metin import CEVAP, cevap_satirlari
 from .ortak import GORSEL_DIZINI, METIN_DIZINI, RAPOR, belgeler, gruplar, oku
@@ -103,10 +103,11 @@ def main() -> None:
         for pdf_yolu, grup in gruplar(b):
             belge_pdf = pdfium.PdfDocument(str(pdf_yolu))
             cizimler: dict = {}
+            ciz = FiligranCizici(belge_pdf)
 
             def cizim(n: int, _pdf=belge_pdf, _c=cizimler):
                 if n not in _c:
-                    _c[n] = _pdf[n - 1].render(scale=OLCEK, grayscale=True).to_pil()
+                    _c[n] = ciz(n)
                 return _c[n]
 
             for test in [k for k, _, _ in grup if k not in yapilan]:
@@ -140,7 +141,8 @@ def main() -> None:
                                 r["ortak"] = [parca["aralik"][0], parca["aralik"][1], parca["sayfa"]]
                         if gorsel is not None:
                             dosya = GORSEL_DIZINI / f"{kimlik}.webp"
-                            gorsel = soluklastir(gorsel, test)
+                            if not ciz.yeni:  # yeni filigranda sayfa zaten soluklaştırılmış çizildi
+                                gorsel = soluklastir(gorsel, test)
                             gorsel.save(dosya, "WEBP", quality=WEBP_KALITE, method=6)
                             r.update({"genislik": gorsel.width, "yukseklik": gorsel.height, "bayt": dosya.stat().st_size})
                         rapor[kimlik] = {"sayfa": sayfa_no, **r}

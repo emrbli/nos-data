@@ -32,7 +32,8 @@ import sys
 
 import pdfplumber
 import pypdfium2 as pdfium
-from PIL import Image, ImageOps
+import pypdfium2.raw as pdfium_raw
+from PIL import Image, ImageChops, ImageOps
 
 from .ortak import HAM, METIN_DIZINI, PDF_DIZINI, belgeler, oku
 
@@ -196,6 +197,44 @@ def soluk_tablosu(egri: str = "standart") -> list[int]:
     return tablo
 
 
+# Yeni ÖSYM filigranı (KPSS 2018-2021 ve 2023-2026, YKS 2020, 2021 ve 2026 YDT gibi): filigran sayfaya
+# ANOTASYON olarak biner ve tonu 128-166 arasındadır (eski kitapçıklarda 179-205); ton eşlemesi (yukarısı)
+# bunları yeterince açamaz. Bu belgelerde sayfa iki kez çizilir: anotasyonlu (A) ve anotasyonsuz (B).
+# Filigranın etkisi B-A'dır; soluk sonuç B - k*(B-A) olur, k = (255-212)/(255-ton): filigran ~212'ye çıkar,
+# metin siyah kalır (B=0 ise sonuç 0), sorunun kendi gri şekilleri ve tabloları B'de olduğu için aynen kalır.
+# Silinmez, soluklaşır (telif bildirimi kalır). Ton belge başına PDF'ten ölçülür; ton >= YENI_FILIGRAN_ESIGI ise eski eşleme.
+YENI_FILIGRAN_ESIGI, FILIGRAN_HEDEF = 170, 212
+
+
+class FiligranCizici:
+    """Bir PDF'in sayfalarını gri tonda çizer; filigran yeniyse soluklaştırılmış hâliyle (`yeni` True)."""
+
+    def __init__(self, belge_pdf, olcek: int = OLCEK):
+        self.pdf, self.olcek, self.ton, self.yeni = belge_pdf, olcek, None, False
+        for i in range(min(2, len(belge_pdf) - 1), min(len(belge_pdf), 9)):
+            sayfa = belge_pdf[i]
+            if pdfium_raw.FPDFPage_GetAnnotCount(sayfa.raw) == 0:
+                continue
+            a = sayfa.render(scale=0.6, grayscale=True).to_pil()
+            b = sayfa.render(scale=0.6, grayscale=True, draw_annots=False).to_pil()
+            h = a.histogram(b.point(lambda v: 255 if v == 255 else 0))
+            ton = max(range(60, 245), key=h.__getitem__)
+            if h[ton] >= 500:
+                self.ton = ton
+                break
+        self.yeni = self.ton is not None and self.ton < YENI_FILIGRAN_ESIGI
+
+    def __call__(self, sayfa_no: int) -> Image.Image:
+        sayfa = self.pdf[sayfa_no - 1]
+        a = sayfa.render(scale=self.olcek, grayscale=True).to_pil()
+        if not self.yeni:
+            return a
+        b = sayfa.render(scale=self.olcek, grayscale=True, draw_annots=False).to_pil()
+        kat = (255 - FILIGRAN_HEDEF) / (255 - self.ton)
+        fark = ImageChops.subtract(b, a).point(lambda v: round(v * kat))
+        return ImageChops.subtract(b, fark)
+
+
 def soluklastir(gri: Image.Image, test: str = "") -> Image.Image:
     return gri.point(soluk_tablosu(SOLUK_TEST_EGRISI.get(test, "standart")))
 
@@ -239,10 +278,11 @@ def main() -> None:
         pdf_yolu = PDF_DIZINI / f"{b['id']}.pdf"
         belge_pdf = pdfium.PdfDocument(str(pdf_yolu))
         cizimler: dict[int, Image.Image] = {}
+        ciz = FiligranCizici(belge_pdf)
 
         def cizim(sayfa_no: int) -> Image.Image:
             if sayfa_no not in cizimler:
-                cizimler[sayfa_no] = belge_pdf[sayfa_no - 1].render(scale=OLCEK, grayscale=True).to_pil()
+                cizimler[sayfa_no] = ciz(sayfa_no)
             return cizimler[sayfa_no]
 
         for test in b["testler"]:
@@ -274,7 +314,8 @@ def main() -> None:
                             r["ortak"] = [parca["aralik"][0], parca["aralik"][1], parca["sayfa"]]
                     if gorsel is not None:
                         dosya = GORSEL_DIZINI / f"{kimlik}.webp"
-                        gorsel = soluklastir(gorsel, test)
+                        if not ciz.yeni:  # yeni filigranda sayfa zaten soluklaştırılmış çizildi
+                            gorsel = soluklastir(gorsel, test)
                         gorsel.save(dosya, "WEBP", quality=WEBP_KALITE, method=6)
                         r.update({"genislik": gorsel.width, "yukseklik": gorsel.height, "bayt": dosya.stat().st_size})
                     rapor[kimlik] = {"sayfa": sayfa_no, **r}
