@@ -309,3 +309,11 @@ Doğrulanmış (T = hakem): 71 kayıt, listede işaretsiz. ⚠ açık (insan kar
 - 2026-ortaogretim-gy-1: sozcukte-anlam  ⚠ açık (beraberlik: A cumlede-anlam, B sozcukte-anlam, üçüncü cumlede-anlam)
 
 Sınır sorular (öncelik): şekil/formülü metne çıkmayan matematik ve istatistik, Göbeklitepe ve Darülaceze, İbn Haldun, sözcükte-anlam / cümlede-anlam, EB'de yıllık plan / program geliştirme / taksonomi, alan testlerinde komşu konular (örn. mikro/makro iktisat, genel muhasebe / mali tablolar).
+
+### Etiketleyici ve hakem notları (ek sınır sorular)
+- Alan testlerinde ÖSYM soruları konu bloklarına göre dizer (örn. UI: teori 1-8, hukuk 9-18, siyasi tarih 19-26, güncel sorunlar 27-30, örgütler 31-34, dış politika 35-40); hakemler içerik iki konuya uyduğunda bloğu esas aldı. %10 kitapçıklarda blok kanıtı zayıftır (örn. 2023-alan-ceei-37).
+- Hakemin içerik ile blok arasında kaldığı sorular: 2018-alan-kamu-18, 2018-alan-muh-39, 2019-alan-kamu-13, 2019-alan-mal-40, 2020-alan-huk-5, 2020-alan-ist-6, 2020-alan-mal-8, 2020-alan-mal-10.
+- Üçüncü konu seçilen alan soruları: 2018-alan-ceei-39, 2019-alan-ist-23, 2019-alan-ui-27 (ek: uluslararasi-orgutler), 2019-alan-ui-34, 2020-alan-ist-23, 2021-alan-ist-25, 2021-alan-ist-26.
+- A etiketleyicinin kararsız kaldığı (hakeme gitmemiş, uyuşmuş olabilir) alan soruları: 2021-alan-isl-1, isl-2, muh-13, muh-14, muh-17, muh-19, muh-20, muh-21, muh-24, kamu-9, kamu-20, ikt-24, ui-27, ui-30, ui-39, ceei-20, ceei-33; 2018-alan-ikt-5, ikt-26, ikt-37, ikt-38, isl-15, isl-18, isl-19, ui-7, ui-8.
+- Alan İstatistik'te formül ve şekil metne çıkmadığı için birçok soru (2018 ist 1-5, 8, 10-12, 14-18 gibi) soru kökünden etiketlendi; 2018 GY-GK matematik gy-31..45 aralığında da hata payı var.
+- 2018 GY-GK: lisans gk-37 (yayla: nufus-yerlesme), ortaöğretim gk-55 (guncel-dunya), gk-59 (guncel-turkiye), gk-27 (cagdas-tarih), gk-29 (uluslararasi-kuruluslar) hakem/A kararıdır, tartışmalı.
