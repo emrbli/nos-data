@@ -9,7 +9,7 @@
     {"no": 35, "sayfa": 12, "konu": "kpss_oabt_turkce.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 46, "sayfa": 15, "konu": "kpss_oabt_turkce.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 59, "sayfa": 17, "konu": "kpss_oabt_turkce.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 66, "sayfa": 21, "konu": "kpss_oabt_turkce.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "hakem"},
+    {"no": 66, "sayfa": 21, "konu": "kpss_oabt_turkce.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 73, "sayfa": 24, "konu": "kpss_oabt_turkce.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
   ]
 }

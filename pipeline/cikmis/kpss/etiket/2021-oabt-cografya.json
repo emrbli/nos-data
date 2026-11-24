@@ -77,6 +77,6 @@
     {"no": 72, "sayfa": 20, "konu": "kpss_oabt_cografya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 73, "sayfa": 20, "konu": "kpss_oabt_cografya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 74, "sayfa": 20, "konu": "kpss_oabt_cografya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
-    {"no": 75, "sayfa": 20, "konu": "kpss_oabt_cografya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+    {"no": 75, "sayfa": 20, "konu": "kpss_oabt_cografya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"}
   ]
 }

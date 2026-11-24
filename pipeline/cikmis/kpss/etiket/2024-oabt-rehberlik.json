@@ -5,11 +5,11 @@
   "sorular": [
     {"no": 2, "sayfa": 3, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 12, "sayfa": 6, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
-    {"no": 39, "sayfa": 13, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
+    {"no": 39, "sayfa": 13, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 45, "sayfa": 14, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 47, "sayfa": 15, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 53, "sayfa": 16, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 58, "sayfa": 17, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
-    {"no": 72, "sayfa": 23, "konu": "kpss_oabt_rehberlik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"}
+    {"no": 72, "sayfa": 23, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"}
   ]
 }

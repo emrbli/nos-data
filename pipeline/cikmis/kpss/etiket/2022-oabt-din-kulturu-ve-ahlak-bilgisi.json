@@ -10,6 +10,6 @@
     {"no": 34, "sayfa": 10, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 38, "sayfa": 11, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 43, "sayfa": 12, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
-    {"no": 74, "sayfa": 21, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"}
+    {"no": 74, "sayfa": 21, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"}
   ]
 }

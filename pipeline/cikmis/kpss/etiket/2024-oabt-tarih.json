@@ -10,6 +10,6 @@
     {"no": 52, "sayfa": 12, "konu": "kpss_oabt_tarih.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 58, "sayfa": 14, "konu": "kpss_oabt_tarih.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 66, "sayfa": 16, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
-    {"no": 73, "sayfa": 18, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
+    {"no": 73, "sayfa": 18, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"}
   ]
 }

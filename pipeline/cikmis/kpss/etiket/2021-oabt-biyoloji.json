@@ -77,6 +77,6 @@
     {"no": 72, "sayfa": 24, "konu": "kpss_oabt_biyoloji.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 73, "sayfa": 25, "konu": "kpss_oabt_biyoloji.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 74, "sayfa": 25, "konu": "kpss_oabt_biyoloji.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
-    {"no": 75, "sayfa": 26, "konu": "kpss_oabt_biyoloji.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"}
+    {"no": 75, "sayfa": 26, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"}
   ]
 }

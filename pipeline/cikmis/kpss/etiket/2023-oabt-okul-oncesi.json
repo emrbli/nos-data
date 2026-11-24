@@ -7,9 +7,9 @@
     {"no": 13, "sayfa": 5, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 25, "sayfa": 9, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 34, "sayfa": 11, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 38, "sayfa": 12, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
-    {"no": 45, "sayfa": 13, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
-    {"no": 63, "sayfa": 18, "konu": "kpss_oabt_okul_oncesi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"},
-    {"no": 74, "sayfa": 20, "konu": "kpss_oabt_okul_oncesi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"}
+    {"no": 38, "sayfa": 12, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"},
+    {"no": 45, "sayfa": 13, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 63, "sayfa": 18, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"},
+    {"no": 74, "sayfa": 20, "konu": "kpss_oabt_okul_oncesi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"}
   ]
 }

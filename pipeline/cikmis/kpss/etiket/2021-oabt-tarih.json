@@ -68,7 +68,7 @@
     {"no": 63, "sayfa": 15, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 64, "sayfa": 16, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 65, "sayfa": 16, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
-    {"no": 66, "sayfa": 16, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 66, "sayfa": 16, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "hakem"},
     {"no": 67, "sayfa": 16, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 68, "sayfa": 17, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 69, "sayfa": 17, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},

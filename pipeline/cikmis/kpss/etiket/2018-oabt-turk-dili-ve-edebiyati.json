@@ -44,14 +44,14 @@
     {"no": 39, "sayfa": 12, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 40, "sayfa": 13, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 41, "sayfa": 13, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
-    {"no": 42, "sayfa": 13, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
+    {"no": 42, "sayfa": 13, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
     {"no": 43, "sayfa": 13, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
-    {"no": 44, "sayfa": 14, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 44, "sayfa": 14, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "hakem"},
     {"no": 45, "sayfa": 14, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 46, "sayfa": 14, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 47, "sayfa": 15, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
-    {"no": 48, "sayfa": 15, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"},
+    {"no": 47, "sayfa": 15, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
+    {"no": 48, "sayfa": 15, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 49, "sayfa": 16, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 50, "sayfa": 16, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"}
+    {"no": 50, "sayfa": 16, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
   ]
 }

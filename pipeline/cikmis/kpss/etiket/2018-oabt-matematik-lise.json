@@ -45,13 +45,13 @@
     {"no": 40, "sayfa": 13, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 41, "sayfa": 14, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 42, "sayfa": 14, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 43, "sayfa": 14, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
-    {"no": 44, "sayfa": 15, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 43, "sayfa": 14, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "hakem"},
+    {"no": 44, "sayfa": 15, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
     {"no": 45, "sayfa": 15, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 46, "sayfa": 16, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 47, "sayfa": 16, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 48, "sayfa": 17, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 49, "sayfa": 17, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
-    {"no": 50, "sayfa": 18, "konu": "kpss_oabt_matematik_lise.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
+    {"no": 50, "sayfa": 18, "konu": "kpss_oabt_matematik_lise.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"}
   ]
 }

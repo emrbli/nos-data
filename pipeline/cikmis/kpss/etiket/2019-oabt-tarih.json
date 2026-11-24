@@ -71,11 +71,11 @@
     {"no": 66, "sayfa": 16, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 67, "sayfa": 16, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 68, "sayfa": 17, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 69, "sayfa": 17, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
+    {"no": 69, "sayfa": 17, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "hakem"},
     {"no": 70, "sayfa": 17, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 71, "sayfa": 17, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 72, "sayfa": 18, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
-    {"no": 73, "sayfa": 18, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
+    {"no": 73, "sayfa": 18, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"},
     {"no": 74, "sayfa": 18, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 75, "sayfa": 19, "konu": "kpss_oabt_tarih.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"}
   ]

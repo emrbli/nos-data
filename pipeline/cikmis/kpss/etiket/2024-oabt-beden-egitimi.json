@@ -9,7 +9,7 @@
     {"no": 25, "sayfa": 7, "konu": "kpss_oabt_beden_egitimi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 30, "sayfa": 8, "konu": "kpss_oabt_beden_egitimi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 57, "sayfa": 13, "konu": "kpss_oabt_beden_egitimi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
-    {"no": 59, "sayfa": 14, "konu": "kpss_oabt_beden_egitimi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"},
+    {"no": 59, "sayfa": 14, "konu": "kpss_oabt_beden_egitimi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "hakem"},
     {"no": 72, "sayfa": 17, "konu": "kpss_oabt_beden_egitimi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
   ]
 }

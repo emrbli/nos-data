@@ -66,7 +66,7 @@
     {"no": 61, "sayfa": 17, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 62, "sayfa": 17, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
     {"no": 63, "sayfa": 18, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
-    {"no": 64, "sayfa": 18, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
+    {"no": 64, "sayfa": 18, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
     {"no": 65, "sayfa": 18, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 66, "sayfa": 19, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 67, "sayfa": 19, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
@@ -76,7 +76,7 @@
     {"no": 71, "sayfa": 20, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 72, "sayfa": 20, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 73, "sayfa": 20, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
-    {"no": 74, "sayfa": 21, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": null, "iptal": true, "etiket": "belirsiz"},
+    {"no": 74, "sayfa": 21, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": null, "iptal": true, "etiket": "belirsiz"},
     {"no": 75, "sayfa": 21, "konu": "kpss_oabt_din_kulturu_ve_ahlak_bilgisi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"}
   ]
 }

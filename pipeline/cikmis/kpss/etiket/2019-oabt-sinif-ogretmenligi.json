@@ -75,8 +75,8 @@
     {"no": 70, "sayfa": 20, "konu": "kpss_oabt_sinif_ogretmenligi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 71, "sayfa": 20, "konu": "kpss_oabt_sinif_ogretmenligi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 72, "sayfa": 20, "konu": "kpss_oabt_sinif_ogretmenligi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
-    {"no": 73, "sayfa": 21, "konu": "kpss_oabt_sinif_ogretmenligi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
-    {"no": 74, "sayfa": 21, "konu": "kpss_oabt_sinif_ogretmenligi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
+    {"no": 73, "sayfa": 21, "konu": "kpss_oabt_sinif_ogretmenligi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
+    {"no": 74, "sayfa": 21, "konu": "kpss_oabt_sinif_ogretmenligi.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
     {"no": 75, "sayfa": 21, "konu": "kpss_oabt_sinif_ogretmenligi.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
   ]
 }

@@ -52,6 +52,6 @@
     {"no": 47, "sayfa": 15, "konu": "kpss_oabt_fizik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 48, "sayfa": 15, "konu": "kpss_oabt_fizik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 49, "sayfa": 16, "konu": "kpss_oabt_fizik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
-    {"no": 50, "sayfa": 16, "konu": "kpss_oabt_fizik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"}
+    {"no": 50, "sayfa": 16, "konu": "kpss_oabt_fizik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
   ]
 }

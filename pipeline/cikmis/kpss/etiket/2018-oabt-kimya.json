@@ -51,7 +51,7 @@
     {"no": 46, "sayfa": 16, "konu": "kpss_oabt_kimya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 47, "sayfa": 16, "konu": "kpss_oabt_kimya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 48, "sayfa": 17, "konu": "kpss_oabt_kimya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
-    {"no": 49, "sayfa": 17, "konu": "kpss_oabt_kimya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 49, "sayfa": 17, "konu": "kpss_oabt_kimya.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
     {"no": 50, "sayfa": 18, "konu": "kpss_oabt_kimya.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"}
   ]
 }

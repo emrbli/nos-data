@@ -9,7 +9,7 @@
     {"no": 28, "sayfa": 9, "konu": "kpss_oabt_imam_hatip_lisesi_meslek_dersleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 43, "sayfa": 12, "konu": "kpss_oabt_imam_hatip_lisesi_meslek_dersleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 55, "sayfa": 15, "konu": "kpss_oabt_imam_hatip_lisesi_meslek_dersleri.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 70, "sayfa": 19, "konu": "kpss_oabt_imam_hatip_lisesi_meslek_dersleri.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
+    {"no": 70, "sayfa": 19, "konu": "kpss_oabt_imam_hatip_lisesi_meslek_dersleri.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"},
     {"no": 71, "sayfa": 19, "konu": "kpss_oabt_imam_hatip_lisesi_meslek_dersleri.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"}
   ]
 }

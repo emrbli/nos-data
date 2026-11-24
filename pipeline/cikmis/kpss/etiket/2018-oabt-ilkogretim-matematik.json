@@ -45,13 +45,13 @@
     {"no": 40, "sayfa": 14, "konu": "kpss_oabt_ilkogretim_matematik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 41, "sayfa": 14, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 42, "sayfa": 15, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 43, "sayfa": 15, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
+    {"no": 43, "sayfa": 15, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"},
     {"no": 44, "sayfa": 15, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 45, "sayfa": 15, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 46, "sayfa": 16, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 47, "sayfa": 16, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 48, "sayfa": 16, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},
     {"no": 49, "sayfa": 17, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
-    {"no": 50, "sayfa": 17, "konu": "kpss_oabt_ilkogretim_matematik.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"}
+    {"no": 50, "sayfa": 17, "konu": "kpss_oabt_ilkogretim_matematik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "hakem"}
   ]
 }

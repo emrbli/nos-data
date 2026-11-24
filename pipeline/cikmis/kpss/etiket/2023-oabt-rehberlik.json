@@ -6,7 +6,7 @@
     {"no": 2, "sayfa": 3, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 12, "sayfa": 6, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 20, "sayfa": 8, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 36, "sayfa": 13, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"},
+    {"no": 36, "sayfa": 13, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 42, "sayfa": 14, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 48, "sayfa": 16, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 56, "sayfa": 18, "konu": "kpss_oabt_rehberlik.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "cift-onay"},

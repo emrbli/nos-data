@@ -77,6 +77,6 @@
     {"no": 72, "sayfa": 23, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "E", "iptal": false, "etiket": "cift-onay"},
     {"no": 73, "sayfa": 23, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 74, "sayfa": 23, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
-    {"no": 75, "sayfa": 24, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "hakem"}
+    {"no": 75, "sayfa": 24, "konu": "kpss_oabt_turk_dili_ve_edebiyati.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"}
   ]
 }

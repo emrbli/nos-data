@@ -10,6 +10,6 @@
     {"no": 35, "sayfa": 10, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "B", "iptal": false, "etiket": "cift-onay"},
     {"no": 50, "sayfa": 14, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "C", "iptal": false, "etiket": "cift-onay"},
     {"no": 59, "sayfa": 16, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "A", "iptal": false, "etiket": "cift-onay"},
-    {"no": 64, "sayfa": 18, "konu": "kpss_oabt_biyoloji.alan-egitimi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"}
+    {"no": 64, "sayfa": 18, "konu": "kpss_oabt_biyoloji.alan-bilgisi", "altKonu": null, "ekKonu": null, "cevap": "D", "iptal": false, "etiket": "hakem"}
   ]
 }
